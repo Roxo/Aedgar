@@ -1,0 +1,53 @@
+@relation  new-thyroid1
+@attribute T3resin {0,1,2,3,4,5,6,7,8,9}
+@attribute Thyroxin {0,1,2,3,4,5,6,7,8,9}
+@attribute Triiodothyronine {0,1,2,3,4,5,6,7,8,9}
+@attribute Thyroidstimulating {0,1,2,3,4,5,6,7,8,9}
+@attribute TSH_value {0,1,2,3,4,5,6,7,8,9}
+@attribute Class{positive,negative}
+@inputs T3resin,Thyroxin,Triiodothyronine,Thyroidstimulating,TSH_value
+@outputs Class
+@data
+0,9,9,7,0,positive
+5,3,3,1,3,negative
+3,8,8,4,1,positive
+3,5,5,2,6,negative
+9,7,8,4,6,negative
+2,1,0,2,2,negative
+8,8,3,6,2,negative
+2,5,3,4,4,negative
+0,9,9,4,1,positive
+2,7,1,5,5,negative
+9,0,0,8,8,negative
+9,5,8,2,7,negative
+8,6,7,4,4,negative
+9,0,0,9,8,negative
+7,6,7,6,2,negative
+4,5,6,4,7,negative
+9,3,6,7,8,negative
+1,8,8,0,1,positive
+1,9,6,5,2,positive
+1,5,3,2,6,negative
+7,2,3,2,6,negative
+7,7,6,4,7,negative
+0,7,8,6,0,positive
+8,6,5,5,1,negative
+9,0,0,9,6,negative
+1,2,3,6,4,negative
+7,7,3,6,5,negative
+2,7,7,2,3,negative
+9,0,0,9,9,negative
+2,5,1,5,2,negative
+8,2,6,5,4,negative
+8,5,3,2,5,negative
+1,1,3,2,6,negative
+7,4,8,6,4,negative
+4,3,2,8,4,negative
+0,9,9,2,2,positive
+9,1,6,9,9,negative
+0,3,5,8,8,negative
+7,3,3,4,7,negative
+8,0,0,9,9,negative
+6,5,8,8,8,negative
+8,0,8,4,8,negative
+2,6,2,0,1,negative

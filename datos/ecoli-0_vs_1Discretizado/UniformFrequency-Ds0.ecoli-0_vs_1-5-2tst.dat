@@ -1,0 +1,56 @@
+@relation  ecoli-0_vs_1
+@attribute Mcg {0,1,2,3,4,5,6,7,8,9}
+@attribute Gvh {0,1,2,3,4,5,6,7,8,9}
+@attribute Lip {0,1}
+@attribute Chg {0}
+@attribute Aac {0,1,2,3,4,5,6,7,8,9}
+@attribute Alm1 {0,1,2,3,4,5,6,7,8,9}
+@attribute Alm2 {0,1,2,3,4,5,6,7,8,9}
+@attribute Class{positive,negative}
+@inputs Mcg,Gvh,Lip,Chg,Aac,Alm1,Alm2
+@outputs Class
+@data
+8,7,0,0,6,5,2,positive
+5,3,0,0,8,0,1,positive
+4,0,0,0,4,1,2,positive
+1,3,0,0,1,2,2,positive
+2,2,0,0,5,5,6,positive
+2,8,0,0,3,2,3,positive
+3,5,0,0,6,3,3,positive
+0,2,0,0,4,5,5,positive
+4,1,0,0,4,3,4,positive
+6,0,0,0,5,3,5,positive
+4,7,0,0,8,5,5,positive
+1,0,0,0,0,2,2,positive
+4,7,0,0,3,4,5,positive
+5,0,0,0,5,2,2,positive
+2,6,0,0,2,1,2,positive
+4,5,0,0,6,6,6,positive
+4,4,0,0,1,2,0,positive
+9,8,0,0,0,4,0,positive
+1,9,0,0,9,4,5,positive
+1,7,0,0,3,3,3,positive
+3,1,0,0,5,6,6,positive
+4,0,0,0,3,2,3,positive
+2,0,0,0,5,5,5,positive
+1,3,0,0,5,1,2,positive
+0,0,0,0,2,2,3,positive
+3,7,0,0,3,4,5,positive
+0,2,0,0,3,6,6,positive
+1,3,0,0,0,2,2,positive
+6,1,0,0,3,6,6,positive
+6,9,0,0,5,9,9,negative
+6,5,0,0,9,8,8,negative
+7,9,0,0,0,9,9,negative
+6,3,0,0,9,7,8,negative
+7,2,0,0,9,6,7,negative
+9,2,0,0,9,7,7,negative
+0,7,0,0,0,5,5,negative
+9,5,0,0,8,8,7,negative
+9,9,0,0,9,6,7,negative
+3,9,0,0,6,7,8,negative
+7,9,0,0,9,6,6,negative
+4,7,0,0,9,7,7,negative
+9,7,0,0,9,7,8,negative
+0,7,0,0,0,6,5,negative
+2,7,0,0,3,6,2,negative

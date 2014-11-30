@@ -1,0 +1,57 @@
+Conjunto de reglas
+Número de Reglas: 11
+0-  ( Alm1=  (8 || 9 ) )  -->  ( Class = negative)
+  - Fitness: 1.0962264150943397
+  - Casos Positivos: 35
+  - Negativos: 0
+
+1-  ( Alm2=  (7 || 8 ) )  -->  ( Class = negative)
+  - Fitness: 1.0962264150943397
+  - Casos Positivos: 35
+  - Negativos: 0
+
+2-  ( Alm1=  (0 || 1 || 2 || 3 || 4 ) )  -->  ( Class = positive)
+  - Fitness: 1.090566037735849
+  - Casos Positivos: 88
+  - Negativos: 0
+
+3-  ( Alm1=  (1 || 3 || 4 || 6 || 8 ) )  AND  ( Alm2=  (2 || 3 || 4 || 5 || 6 ) )  -->  ( Class = positive)
+  - Fitness: 1.0811320754716982
+  - Casos Positivos: 53
+  - Negativos: 0
+
+4-  ( Alm2=  (2 || 3 ) )  -->  ( Class = positive)
+  - Fitness: 1.0962264150943397
+  - Casos Positivos: 41
+  - Negativos: 0
+
+5-  ( Mcg=  (0 || 7 || 9 ) )  AND  ( Gvh=  (2 || 3 || 4 || 7 || 8 ) )  AND  ( Lip=  (0 ) )  AND  ( Alm1=  (6 || 7 || 8 || 9 ) )  AND  ( Alm2=  (0 || 1 || 2 || 3 || 4 || 8 || 9 ) )  -->  ( Class = negative)
+  - Fitness: 1.0622641509433963
+  - Casos Positivos: 11
+  - Negativos: 0
+
+6-  ( Alm1=  (2 || 3 || 5 || 6 || 7 || 8 || 9 ) )  AND  ( Alm2=  (0 || 1 || 7 || 8 || 9 ) )  -->  ( Class = negative)
+  - Fitness: 0.14580461646812426
+  - Casos Positivos: 57
+  - Negativos: 2
+
+7-  ( Alm1=  (0 || 1 || 2 || 3 || 4 || 5 || 6 ) )  AND  ( Alm2=  (2 || 3 || 4 || 5 ) )  -->  ( Class = positive)
+  - Fitness: 0.39703215160389627
+  - Casos Positivos: 73
+  - Negativos: 1
+
+8-  ( Mcg=  (0 || 2 || 3 || 8 || 9 ) )  AND  ( Gvh=  (0 || 2 || 3 || 6 || 7 || 8 || 9 ) )  AND  ( Alm1=  (1 || 6 || 7 || 8 ) )  AND  ( Alm2=  (0 || 2 || 4 || 5 || 7 || 8 ) )  -->  ( Class = negative)
+  - Fitness: 0.38870280576605226
+  - Casos Positivos: 20
+  - Negativos: 1
+
+9-  ( Alm2=  (2 || 3 || 6 ) )  -->  ( Class = positive)
+  - Fitness: 0.4018909366759719
+  - Casos Positivos: 55
+  - Negativos: 1
+
+10-  ( Gvh=  (2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 ) )  AND  ( Alm2=  (2 || 4 || 5 || 7 || 8 || 9 ) )  -->  ( Class = negative)
+  - Fitness: 4.9929194913560945E-15
+  - Casos Positivos: 54
+  - Negativos: 33
+

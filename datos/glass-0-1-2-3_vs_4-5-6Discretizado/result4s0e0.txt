@@ -1,0 +1,77 @@
+Cut point 0 of attribute 0 : 1.51588824
+Cut point 1 of attribute 0 : 1.51626411
+Cut point 2 of attribute 0 : 1.5166058100000002
+Cut point 3 of attribute 0 : 1.5171525300000002
+Cut point 4 of attribute 0 : 1.51763091
+Cut point 5 of attribute 0 : 1.51800678
+Cut point 6 of attribute 0 : 1.5185079400000001
+Cut point 7 of attribute 0 : 1.52006837
+Cut point 8 of attribute 0 : 1.52203884
+Number of cut points of attribute 0 : 9
+Cut point 0 of attribute 1 : 12.645199999999999
+Cut point 1 of attribute 1 : 12.834724999999999
+Cut point 2 of attribute 1 : 12.974375
+Cut point 3 of attribute 1 : 13.127324999999999
+Cut point 4 of attribute 1 : 13.293575
+Cut point 5 of attribute 1 : 13.43655
+Cut point 6 of attribute 1 : 13.712525
+Cut point 7 of attribute 1 : 13.998475
+Cut point 8 of attribute 1 : 14.4089
+Number of cut points of attribute 1 : 9
+Cut point 0 of attribute 2 : 0.163885
+Cut point 1 of attribute 2 : 2.71645
+Cut point 2 of attribute 2 : 3.3809699999999996
+Cut point 3 of attribute 2 : 3.48424
+Cut point 4 of attribute 2 : 3.53363
+Cut point 5 of attribute 2 : 3.57404
+Cut point 6 of attribute 2 : 3.630165
+Cut point 7 of attribute 2 : 3.74915
+Number of cut points of attribute 2 : 8
+Cut point 0 of attribute 3 : 0.895085
+Cut point 1 of attribute 3 : 1.174355
+Cut point 2 of attribute 3 : 1.235345
+Cut point 3 of attribute 3 : 1.296335
+Cut point 4 of attribute 3 : 1.3749799999999999
+Cut point 5 of attribute 3 : 1.50017
+Cut point 6 of attribute 3 : 1.565975
+Cut point 7 of attribute 3 : 1.774625
+Cut point 8 of attribute 3 : 2.0859949999999996
+Number of cut points of attribute 3 : 9
+Cut point 0 of attribute 4 : 71.7644
+Cut point 1 of attribute 4 : 72.1312
+Cut point 2 of attribute 4 : 72.44479999999999
+Cut point 3 of attribute 4 : 72.6856
+Cut point 4 of attribute 4 : 72.834
+Cut point 5 of attribute 4 : 72.9628
+Cut point 6 of attribute 4 : 73.086
+Cut point 7 of attribute 4 : 73.2204
+Cut point 8 of attribute 4 : 73.40520000000001
+Number of cut points of attribute 4 : 9
+Cut point 0 of attribute 5 : 0.009315
+Cut point 1 of attribute 5 : 0.08383499999999999
+Cut point 2 of attribute 5 : 0.21114
+Cut point 3 of attribute 5 : 0.51543
+Cut point 4 of attribute 5 : 0.56511
+Cut point 5 of attribute 5 : 0.57132
+Cut point 6 of attribute 5 : 0.605475
+Cut point 7 of attribute 5 : 0.64584
+Cut point 8 of attribute 5 : 0.686205
+Number of cut points of attribute 5 : 9
+Cut point 0 of attribute 6 : 7.963979999999999
+Cut point 1 of attribute 6 : 8.103860000000001
+Cut point 2 of attribute 6 : 8.292159999999999
+Cut point 3 of attribute 6 : 8.45894
+Cut point 4 of attribute 6 : 8.59882
+Cut point 5 of attribute 6 : 8.76022
+Cut point 6 of attribute 6 : 8.97542
+Cut point 7 of attribute 6 : 9.58874
+Cut point 8 of attribute 6 : 10.8369
+Number of cut points of attribute 6 : 9
+Cut point 0 of attribute 7 : 0.045675
+Cut point 1 of attribute 7 : 0.6662250000000001
+Number of cut points of attribute 7 : 2
+Cut point 0 of attribute 8 : 0.00255
+Cut point 1 of attribute 8 : 0.02805
+Cut point 2 of attribute 8 : 0.08415
+Cut point 3 of attribute 8 : 0.12495
+Number of cut points of attribute 8 : 4

@@ -1,0 +1,70 @@
+@relation  haberman
+@attribute Age {0,1,2,3,4,5,6,7,8,9}
+@attribute Year {0,1,2,3,4,5,6,7,8,9}
+@attribute Positive {0,1,2,3,4,5,6}
+@attribute Class{positive,negative}
+@inputs Age,Year,Positive
+@outputs Class
+@data
+5,3,2,negative
+3,9,4,negative
+8,9,0,negative
+6,0,1,negative
+5,1,5,negative
+7,4,1,negative
+7,1,0,negative
+9,8,3,negative
+5,0,4,positive
+8,4,5,negative
+3,3,0,negative
+9,6,3,positive
+8,6,6,positive
+8,7,0,negative
+6,0,0,negative
+5,4,1,negative
+8,0,0,negative
+0,4,3,negative
+7,1,0,negative
+8,7,0,negative
+3,8,1,positive
+5,6,0,negative
+0,5,1,negative
+8,8,0,negative
+8,4,0,negative
+5,5,0,negative
+0,9,0,negative
+1,0,0,negative
+7,3,3,negative
+7,0,3,negative
+1,9,5,negative
+8,7,0,negative
+5,1,5,positive
+0,0,6,negative
+7,4,6,positive
+4,4,0,positive
+7,4,0,negative
+5,6,1,positive
+0,5,1,negative
+6,9,6,positive
+1,0,0,negative
+7,5,0,negative
+5,3,5,positive
+8,4,0,negative
+1,4,0,negative
+1,5,0,negative
+8,4,0,negative
+2,5,0,positive
+5,8,6,negative
+9,4,0,negative
+5,3,5,positive
+9,4,1,negative
+8,4,6,positive
+5,6,5,positive
+2,3,0,negative
+0,4,0,negative
+4,4,1,negative
+7,6,0,positive
+2,1,2,positive
+0,3,1,negative
+3,9,0,negative
+5,7,4,positive

@@ -1,0 +1,57 @@
+@relation  glass-0-1-2-3_vs_4-5-6
+@attribute RI {0,1,2,3,4,5,6,7,8,9}
+@attribute Na {0,1,2,3,4,5,6,7,8,9}
+@attribute Mg {0,1,2,3,4,5,6,7,8}
+@attribute Al {0,1,2,3,4,5,6,7,8,9}
+@attribute Si {0,1,2,3,4,5,6,7,8,9}
+@attribute K {0,1,2,3,4,5,6,7,8,9}
+@attribute Ca {0,1,2,3,4,5,6,7,8,9}
+@attribute Ba {0,1,2}
+@attribute Fe {0,1,2,3,4}
+@attribute Class{positive,negative}
+@inputs RI,Na,Mg,Al,Si,K,Ca,Ba,Fe
+@outputs Class
+@data
+5,1,7,2,7,7,5,0,0,negative
+5,2,4,4,6,7,3,0,0,negative
+7,9,6,5,2,5,2,0,0,negative
+5,1,5,4,6,5,5,0,0,negative
+0,1,3,6,8,8,1,0,3,negative
+3,2,4,4,7,5,3,0,0,negative
+4,1,5,3,8,6,3,0,0,negative
+8,6,8,1,1,1,5,0,0,negative
+1,6,5,6,6,3,0,0,0,negative
+4,0,4,5,8,5,4,0,0,negative
+5,5,2,2,5,5,6,0,0,negative
+4,1,3,2,8,7,4,0,0,negative
+4,0,2,4,9,5,6,0,3,negative
+6,6,6,1,3,2,5,0,0,negative
+9,8,8,0,0,0,7,0,0,negative
+8,8,8,1,0,2,6,0,0,negative
+1,5,5,3,5,8,1,0,0,negative
+1,3,6,6,5,7,1,0,0,negative
+3,6,7,8,2,8,0,0,0,negative
+5,4,8,4,2,5,3,0,4,negative
+3,2,6,6,6,7,1,0,0,negative
+6,3,6,1,2,8,6,0,2,negative
+6,4,8,4,3,6,3,0,0,negative
+5,5,8,2,3,6,1,0,0,negative
+3,4,5,5,5,5,1,0,0,negative
+1,5,6,6,4,3,1,0,0,negative
+0,3,6,6,7,9,0,0,0,negative
+0,4,4,5,8,3,1,0,0,negative
+0,1,4,8,5,9,0,0,0,negative
+0,4,2,5,7,3,2,0,0,negative
+2,1,2,5,8,5,5,1,3,negative
+4,6,3,6,1,6,5,0,0,negative
+2,5,3,3,3,4,5,0,0,negative
+0,3,0,9,0,9,0,0,0,positive
+0,9,1,6,9,0,0,0,0,positive
+6,9,1,7,3,0,8,0,0,positive
+0,9,0,9,9,0,2,1,0,positive
+0,6,2,8,5,9,0,2,0,positive
+9,5,2,3,3,7,5,0,0,positive
+1,9,0,9,8,0,5,1,0,positive
+1,8,0,9,9,1,6,1,4,positive
+1,9,0,9,7,1,5,1,0,positive
+3,9,0,9,8,0,6,1,0,positive
