@@ -132,7 +132,7 @@ public class CHCOptimizarParticiones {
 			}
 			/**
 			 * @author Danien Albendín
-			 * 
+			 * No se hacía nada cuando el atributo era nominal
 			 */
 			else{
 				hijo[i] = new ArrayList();
@@ -250,7 +250,7 @@ public class CHCOptimizarParticiones {
 			}			
 			/**
 			 * @author Danien Albendín
-			 * 
+			 *  No se hacía nada cuando el atributo era nominal
 			 */
 			else{
 				hijo[i] = new ArrayList();
