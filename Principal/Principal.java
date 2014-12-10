@@ -71,7 +71,19 @@ public class Principal   {
 			String Nombre_fichero_test,String etiqueta) {
 		String prefijo = etiqueta;
 		etiqueta = nombre_fichero_Entrenamiento.substring(0,nombre_fichero_Entrenamiento.length()-7);
-		String particion =nombre_fichero_Entrenamiento.substring(nombre_fichero_Entrenamiento.length()-10,nombre_fichero_Entrenamiento.length()-7);
+		int k=nombre_fichero_Entrenamiento.length();
+		int app = 0;
+		for (int i = nombre_fichero_Entrenamiento.length(); (i = nombre_fichero_Entrenamiento.lastIndexOf('-', i - 1)) != -1; ){ 
+		    if (app < 2)
+		    	k=i;
+			app +=1;
+	}
+		String particion;
+		if (app >= 2){
+			particion = nombre_fichero_Entrenamiento.substring(k,nombre_fichero_Entrenamiento.length()-7); 
+		}
+		else
+		    particion = "";
 		Parametros param = Parametros.getInstancia_Parametros();
 		EntradaSalidaFuzzy InOut = new EntradaSalidaFuzzy();
 			
