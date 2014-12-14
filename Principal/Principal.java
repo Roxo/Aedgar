@@ -447,19 +447,25 @@ public class Principal   {
 		    {System.out.println(" carpeta datos: " + args[9]);
 	    	Parametros.getInstancia_Parametros().set_carpeta_datos(args[9]+ "/");
 	    	}
-	    	if (args.length>10)
+	    	if (args.length>10)//v2 Para guardar restados por carpetas
+	    	{System.out.println(" subdirectorio: " + args[10]);
+	    	Parametros.getInstancia_Parametros().set_carpeta_resultados((args[10]));
+	    	}
+		    if (args.length> 11)//v2  Prefijo para agrupar
 	    	{
-	    		System.out.println(" tipoDeDiscretizador: " + args[10]);
-	    		Parametros.getInstancia_Parametros().set_tipo_de_discretizador((args[10]));
+		    	System.out.println(" Depuracion: " + args[11]);
+		    	Parametros.getInstancia_Parametros().set_Nivel_Depuracion(Integer.parseInt(args[11]));
 	    	}
-	    	if (args.length>11)//v2  Prefijo para agrupar
-	    	{System.out.println(" Prefijo: " + args[11]);
-	    	p_etiqueta = args[11];;
+	    	if (args.length>12)
+	    	{
+	    		System.out.println(" tipoDeDiscretizador: " + args[12]);
+	    		Parametros.getInstancia_Parametros().set_tipo_de_discretizador((args[12]));
 	    	}
-	    	if (args.length>12)//v2 Para guardar restados por carpetas
-	    	{System.out.println(" subdirectorio: " + args[12]);
-	    	Parametros.getInstancia_Parametros().set_carpeta_resultados((args[12]));
-	    	}
+	    /*	if (args.length> 12)//v2  Prefijo para agrupar
+	    	{System.out.println(" Prefijo: " + args[12]);
+	    	p_etiqueta = args[12];
+	    	}*/
+
 	    	
 	    	//Parametros.getInstancia_Parametros().set_carpeta_resultados((args[9]));
 	    	 /*File directorio = new File(Parametros.getInstancia_Parametros().get_carpeta_resultados());

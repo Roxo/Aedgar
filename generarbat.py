@@ -17,7 +17,7 @@ DstFolder = ["datos/ecoli-0_vs_1","datos/ecoli-0_vs_1Discretizado",
 "datos/iris0Discretizado","datos/new-thyroid1","datos/new-thyroid1Discretizado"]
 
 ############## Creamos ficheros bat y csv ####################
-c = csv.writer(open("ejemplo.csv", "wb"))
+c = csv.writer(open("ejecucionNB.csv", "wb"))
 f = open('ejecucion1.bat','w')
 c.writerow(["echo","Etiqueta","Nodos","T_Pob","Representados","Semilla","Topologia","Objetivo","GenSinCom","epocas","Subcarpeta"])
 f.write("echo Etiqueta Nodos T_Pob Representados Semilla Topologia Objetivo GenSinCom epocas Subcarpeta")
