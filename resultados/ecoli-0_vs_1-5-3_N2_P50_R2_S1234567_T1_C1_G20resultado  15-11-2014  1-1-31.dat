@@ -1,0 +1,64 @@
+ 
+
+     EDGAR Evolutionary Distributed Genetic Algorithm for Rule extraction
+
+
+   --- RESULTADOS  día: 15-11-2014  1-1-31 ---
+
+Número de hilos: 2
+Ejemplos de entrenamientos distribuidos por nodo 88.0
+Semilla: 1234567
+Epocas sin mejora para parar: 50
+Fichero datos test: datos/ecoli-0_vs_1/ecoli-0_vs_1-5-3tst.dat
+Fichero datos entrenamiento: datos/ecoli-0_vs_1/ecoli-0_vs_1-5-3tra.dat
+Repartir datos entrenamiento: true
+Valor g: 0.9
+Ratio de Migracion nu: 0.1
+Ratio de foraneos P: 0.1
+Tiempo empleado: 0.1066 minutos
+
+Tamaño Entrenamiento:      176
+Evaluaciones:     11051
+Evaluaciones*datos:     1169704
+Comunicaciones    343
+Número de Reglas: 11
+
+
+******************  RESULTADOS  5x2 Test  **************
+Numero de ejemplos: 44
+Numero de ejemplos bien clasificados: 14 -> 0.3181818181818182
+Numero de ejemplos mal clasificados: 30
+*******************************************************
+
+***  Matriz de confusión Test  ***
+      positive      negative
+positive    0     29     
+negative    1     14     
+*******************************************************
+
+
+******************  RESULTADOS  Datos Entrenamiento ************
+Numero de ejemplos: 176
+Numero de ejemplos bien clasificados: 67 -> 0.3806818181818182
+Numero de ejemplos mal clasificados: 109
+*******************************************************
+
+
+***  Matriz de confusión Entrenamiento  ***
+      positive      negative
+positive    5    109    
+negative    0    62    
+*******************************************************
+
+Particiones de la plantilla
+
+Mcg ([0.0, 0.0969070365163104, 0.16885047781005005, 0.25267998363780364, 0.2836791224211709, 0.3565635904581885, 0.3724075519321759, 0.44112216019712114, 0.49031301035535846, 0.5392774545143865, 0.89])
+Gvh ([0.16, 0.22829180080987943, 0.2897283577275434, 0.36526350480302244, 0.3736931748253829, 0.42264058401532073, 0.42276479717359217, 0.483546223681034, 0.5033393502967063, 0.5142412412973503, 1.0])
+Lip ([0.48, 1.0])
+Chg ([0.5, 1.0])
+Aac ([0.0, 0.16658344215920365, 0.2730846298908219, 0.37142225473507556, 0.390047560778499, 0.46032362329459314, 0.495517972926872, 0.49887821083449163, 0.5337113535176345, 0.5920291679491899, 0.88])
+Alm1 ([0.03, 0.1397120077271949, 0.1846849786882876, 0.2347279256264062, 0.2800746737073136, 0.31104392737648284, 0.40403006165480476, 0.5082200015632692, 0.6279679773614014, 0.7116233620784307, 1.0])
+Alm2 ([0.0, 0.14694316146321543, 0.241008114398194, 0.3072662618003151, 0.38097347833005246, 0.3847808271270995, 0.4567076250625329, 0.560890600901241, 0.661146669468824, 0.7179512119890661, 0.99])
+  --> Class([positive, negative])
+
+*******************************************************

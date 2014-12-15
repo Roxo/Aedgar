@@ -1,0 +1,32 @@
+Conjunto de reglas
+Número de Reglas: 6
+0-  ( Alm1=  (6 || 7 || 8 || 9 ) )  AND  ( Alm2=  (1 || 2 || 7 || 8 || 9 ) )  -->  ( Class = negative)
+  - Fitness: 1.0830188679245283
+  - Casos Positivos: 55
+  - Negativos: 0
+
+1-  ( Alm1=  (7 || 8 || 9 ) )  -->  ( Class = negative)
+  - Fitness: 1.0943396226415094
+  - Casos Positivos: 51
+  - Negativos: 0
+
+2-  ( Alm1=  (0 || 1 || 2 || 3 || 4 ) )  -->  ( Class = positive)
+  - Fitness: 1.090566037735849
+  - Casos Positivos: 88
+  - Negativos: 0
+
+3-  ( Alm1=  (0 || 1 || 2 || 3 || 4 || 5 ) )  -->  ( Class = positive)
+  - Fitness: 0.14733671401419912
+  - Casos Positivos: 106
+  - Negativos: 2
+
+4-  ( Alm1=  (0 || 1 || 4 || 6 || 8 ) )  AND  ( Alm2=  (1 || 2 || 6 ) )  -->  ( Class = positive)
+  - Fitness: 0.3991144880633573
+  - Casos Positivos: 30
+  - Negativos: 1
+
+5-  ( Mcg=  (0 || 5 || 8 ) )  AND  ( Gvh=  (0 || 5 || 7 || 8 ) )  AND  ( Aac=  (0 || 6 || 7 || 9 ) )  AND  ( Alm2=  (0 || 2 || 3 || 4 || 5 || 6 || 8 ) )  -->  ( Class = negative)
+  - Fitness: 0.05307489363743987
+  - Casos Positivos: 5
+  - Negativos: 3
+

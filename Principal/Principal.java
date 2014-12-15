@@ -448,10 +448,17 @@ public class Principal   {
 	    	Parametros.getInstancia_Parametros().set_carpeta_datos(args[9]+ "/");
 	    	}
 	    	if (args.length>10)//v2 Para guardar restados por carpetas
-	    	{System.out.println(" subdirectorio: " + args[10]);
-	    	Parametros.getInstancia_Parametros().set_carpeta_resultados((args[10]));
+	    	{
+	    		System.out.println(" subdirectorio: " + args[10]);
+	    		Parametros.getInstancia_Parametros().set_carpeta_resultados((args[10]));
+	    		File directorio = new File(Parametros.getInstancia_Parametros().get_carpeta_resultados());
+	    	
+			   if (directorio.mkdir())
+			     System.out.println("Se ha creado directorio");
+			   else
+			     System.out.println("No se ha podido crear el directorio");
 	    	}
-		    if (args.length> 11)//v2  Prefijo para agrupar
+		    if (args.length> 11)// v2 nivel depuracion
 	    	{
 		    	System.out.println(" Depuracion: " + args[11]);
 		    	Parametros.getInstancia_Parametros().set_Nivel_Depuracion(Integer.parseInt(args[11]));
@@ -468,12 +475,7 @@ public class Principal   {
 
 	    	
 	    	//Parametros.getInstancia_Parametros().set_carpeta_resultados((args[9]));
-	    	 /*File directorio = new File(Parametros.getInstancia_Parametros().get_carpeta_resultados());
-	
-			   if (directorio.mkdir())
-			     System.out.println("Se ha creado directorio");
-			   else
-			     System.out.println("No se ha podido crear el directorio");
+	    	 /*
 	          por si quisieramos guardar los resultados por carpeta
 			  */ 
 	
