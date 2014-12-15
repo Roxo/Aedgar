@@ -7,9 +7,9 @@ import Dataset.Attribute;
 
 /**
  * Contienen un cromosoma con una clase posible y posibles varios valores por atributo
- * el comienz oy fin de cada atributo está definido en la plantilla asi como los nombres de los mismos
+ * el comienz oy fin de cada atributo estÃ¡ definido en la plantilla asi como los nombres de los mismos
  * Cambios recientes: 
- * 			-08/05/05: añadida propiedad enviada (boolean isenviada() y setEnviada(boolean) 
+ * 			-08/05/05: aÃ±adida propiedad enviada (boolean isenviada() y setEnviada(boolean) 
  * 						Cuando se envia una regla al supervisor se marca como tal. 
  * 						- modificada getCopia(), para tener en cuenta enviada (lo copia).  
  *  *
@@ -23,17 +23,17 @@ public class Regla extends Cromosoma {
 	private int inicio=0;
 	private int NumAtributosParcial= 0;
 	// En las siguiente varible, tabla de enteros,
-	// almaceno en cada indice correspondiente a una clase, el número de ejemplos que cubren la regla y son de esa clase
+	// almaceno en cada indice correspondiente a una clase, el nÃºmero de ejemplos que cubren la regla y son de esa clase
 	private int num_ejemplos_cubiertos[];
 	
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// JOSÉ MANUEL GARRIDO MORGADO 26/03/2011
+	// JOSÃ‰ MANUEL GARRIDO MORGADO 26/03/2011
 	// Variables para almacenar los ids de los ejemplos que cubre la regla, y los ids de los ejemplos que posee la regla
 	private ArrayList<Integer> ids_ejemplos_cubiertos;
 	private ArrayList<Integer> ids_ejemplos_poseidos;
 	
-	// Variable que almacena el fitness que utilizaremos en para la generación de la población con Token Competition
+	// Variable que almacena el fitness que utilizaremos en para la generaciÃ³n de la poblaciÃ³n con Token Competition
 	double fitness_token=0;
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -204,104 +204,104 @@ public class Regla extends Cromosoma {
 	{
 		Double cumpleAtr=1.0;
 		
-		if(ej.plantilla.get_TiposAtributos()[indAtr]==Attribute.NOMINAL)
-		{
-			char []atr_ej=ej.getAtributo(indAtr);
-			if (ej==null)
-				return 0.0;
-			int i=0;
-			int ind_pos_atr=plantilla.get_plantillaAtributos()[indAtr][1];
-			while((i<plantilla.get_plantillaAtributos()[indAtr][0])&&(cumpleAtr.doubleValue()==1.0)){
-				if((atr_ej[i]=='1')&&(cromosoma[ind_pos_atr+i]=='0')) 
-					cumpleAtr=0.0;
-				i++;
-			}	
-			return cumpleAtr;
-		}
-		else //fuzzy o discreto.
-		{
-			double mayorH0 = 0;
-			int posicion_regla = 0;
-			
-			int lugar_atributo = ej.plantilla.posicionAtributo(indAtr);
-			int posiciones_que_ocupa_el_atributo = ej.plantilla.numValoresAtributo(indAtr);
-			
-			// Almacenará el número de intervalos que incluye la regla para ese atributo
-			int numero_de_alternativas = 0;
-			
-			
-			for(int i=0;i<posiciones_que_ocupa_el_atributo;i++)
-			{
-				if(this.cromosoma[i+lugar_atributo]=='1')
-				{
-					numero_de_alternativas++;
-				}
-			}
-			
-			// Si la regla no dice nada sobre ese atributo, es que da igual lo que valga, así que consideramos que sí se cumple la condición.
-			if(numero_de_alternativas == 0 || numero_de_alternativas == ej.plantilla.numValoresAtributo(indAtr))
-				return 1.0;
-			
-			for(int j=0;j<numero_de_alternativas;j++)
-			{
-				// Cada vez, este número tendrá que coincidir con la j, así estaremos buscando cada vez una de las alternativas
-				int encontrados = 0;
-				
-				boolean fin_busqueda = false;
-				for(int i=0; !fin_busqueda && i<posiciones_que_ocupa_el_atributo;i++)
-				{
-					if(this.cromosoma[i+lugar_atributo]=='1')
-					{
-						if(encontrados == j)
-						{
-							posicion_regla = i;
-							fin_busqueda = true;
-						}
-						else
-							encontrados++;
-					}
-				}
-				
-				Double valor = (Double)(ej.getValores().get(indAtr));
-				
-				ArrayList[] valores = ej.plantilla.get_ValoresAtributos();
-				
-				Double min;
-				
-				if(posicion_regla==0)
-					min = (Double)valores[indAtr].get(posicion_regla);
-				else
-					min = (Double)valores[indAtr].get(posicion_regla-1);
-				
-				Double centro = (Double)valores[indAtr].get(posicion_regla);
-				
-				Double max;
-				
-				if(posicion_regla == ej.plantilla.numValoresAtributo(indAtr)-1)
-					max = (Double)valores[indAtr].get(posicion_regla);
-				else
-					max = (Double)valores[indAtr].get(posicion_regla+1);
-				
-				if(valor.doubleValue() >= min.doubleValue() && valor.doubleValue() <= max.doubleValue())
-				{
-					double altura = 0;
-					if(valor.doubleValue() < centro.doubleValue())
-						altura = (valor - min.doubleValue()) / (centro.doubleValue() - min.doubleValue());
-					
-					else if(valor.doubleValue() == centro.doubleValue())
-						altura = 1;
-					
-					else
-						altura = (max.doubleValue() - valor) / (max.doubleValue() - centro.doubleValue());
-					
-					
-					if(altura>mayorH0)
-						mayorH0 = altura;
-				}
-			}
-			
-			return mayorH0;
-		}
+	    if(ej.plantilla.get_TiposAtributos()[indAtr]==Attribute.NOMINAL)
+	    {
+	        char []atr_ej=ej.getAtributo(indAtr);
+	        if (ej==null)
+	            return 0.0;
+	        int i=0;
+	        int ind_pos_atr=plantilla.get_plantillaAtributos()[indAtr][1];
+	        while((i<plantilla.get_plantillaAtributos()[indAtr][0])&&(cumpleAtr.doubleValue()==1.0)){
+	            if((atr_ej[i]=='1')&&(cromosoma[ind_pos_atr+i]=='0')) 
+	                cumpleAtr=0.0;
+	            i++;
+	        }    
+	        return cumpleAtr;
+	    }
+	    else //fuzzy o discreto.
+	    {
+	        double mayorH0 = 0;
+	        int posicion_regla = 0;
+
+	        int lugar_atributo = ej.plantilla.posicionAtributo(indAtr);
+	        int posiciones_que_ocupa_el_atributo = ej.plantilla.numValoresAtributo(indAtr);
+
+	        // AlmacenarÂ· el nË™mero de intervalos que incluye la regla para ese atributo
+	        int numero_de_alternativas = 0;
+	        
+	        for(int i=0;i<posiciones_que_ocupa_el_atributo;i++)
+	        {
+	            if(this.cromosoma[i+lugar_atributo]=='1')
+	            {
+	                numero_de_alternativas++;
+	            }
+	        }
+
+	        // Si la regla no dice nada sobre ese atributo, es que da igual lo que valga, asÃŒ que consideramos que sÃŒ se cumple la condiciÃ›n.
+	        if(numero_de_alternativas == 0 || numero_de_alternativas == ej.plantilla.numValoresAtributo(indAtr))
+	            return 1.0;
+
+	        for(int j=0;j<numero_de_alternativas;j++)
+	        {
+	            // Cada vez, este nË™mero tendrÂ· que coincidir con la j, asÃŒ estaremos buscando cada vez una de las alternativas
+	            int encontrados = 0;
+
+	            boolean fin_busqueda = false;
+	            for(int i=0; !fin_busqueda && i<posiciones_que_ocupa_el_atributo;i++)
+	            {
+	                if(this.cromosoma[i+lugar_atributo]=='1')
+	                {
+	                    if(encontrados == j)
+	                    {
+	                        posicion_regla = i;
+	                        fin_busqueda = true;
+	                    }
+	                    else
+	                        encontrados++;
+	                }
+	            }
+
+	            Double valor = (Double)(ej.getValores().get(indAtr));
+
+	            ArrayList[] valores = ej.plantilla.get_ValoresAtributos();
+
+	            Double min;
+	            //Si es la primera etiqueta , sÃ³lo hay un lado del triangulo
+	            if(posicion_regla==0)
+	                min = (Double)valores[indAtr].get(posicion_regla);
+	            else
+	                min = (Double)valores[indAtr].get(posicion_regla-1);
+
+	            Double centro = (Double)valores[indAtr].get(posicion_regla);
+
+	            Double max;
+
+	            //Si es la ultima etiqueta , sÃ³lo hay un lado del triangulo
+	            if(posicion_regla == ej.plantilla.numValoresAtributo(indAtr)-1)
+	                max = (Double)valores[indAtr].get(posicion_regla);
+	            else
+	                max = (Double)valores[indAtr].get(posicion_regla+1);
+	            // si cumple esa etiqueta comprueba donde la corta
+	            if(valor.doubleValue() >= min.doubleValue() && valor.doubleValue() <= max.doubleValue())
+	            {
+	                double altura = 0;
+	                if(valor.doubleValue() < centro.doubleValue())
+	                    altura = (valor - min.doubleValue()) / (centro.doubleValue() - min.doubleValue());
+
+	                else if(valor.doubleValue() == centro.doubleValue())
+	                    altura = 1;
+
+	                else
+	                    altura = (max.doubleValue() - valor) / (max.doubleValue() - centro.doubleValue());
+
+
+	                if(altura>mayorH0)
+	                    mayorH0 = altura;
+	            }
+	        }
+
+	        return mayorH0;
+	    }
 	}
 	
 	
@@ -333,7 +333,7 @@ public class Regla extends Cromosoma {
 			int lugar_atributo = plan.posicionAtributo(indAtr);
 			int posiciones_que_ocupa_el_atributo = plan.numValoresAtributo(indAtr);
 			
-			// Almacenará el número de intervalos que incluye la regla para ese atributo
+			// AlmacenarÃ¡ el nÃºmero de intervalos que incluye la regla para ese atributo
 			int numero_de_alternativas = 0;
 			
 			
@@ -345,13 +345,13 @@ public class Regla extends Cromosoma {
 				}
 			}
 			
-			// Si la regla no dice nada sobre ese atributo, es que da igual lo que valga, así que consideramos que sí se cumple la condición.
+			// Si la regla no dice nada sobre ese atributo, es que da igual lo que valga, asÃ­ que consideramos que sÃ­ se cumple la condiciÃ³n.
 			if(numero_de_alternativas == 0 || numero_de_alternativas == plan.numValoresAtributo(indAtr))
 				return 1.0;
 			
 			for(int j=0;j<numero_de_alternativas;j++)
 			{
-				// Cada vez, este número tendrá que coincidir con la j, así estaremos buscando cada vez una de las alternativas
+				// Cada vez, este nÃºmero tendrÃ¡ que coincidir con la j, asÃ­ estaremos buscando cada vez una de las alternativas
 				int encontrados = 0;
 				
 				boolean fin_busqueda = false;
@@ -413,10 +413,10 @@ public class Regla extends Cromosoma {
 	
 	
 	
-	// Esta función devuelve un booleano indicando si la regla cubre al ejemplo, pero la parte de entrada
+	// Esta funciÃ³n devuelve un booleano indicando si la regla cubre al ejemplo, pero la parte de entrada
 	
 	/**
-	 * EL siguiente método retorna verdadero, en el caso de que la regla cubra al ejemplo que le pasamos como parámetro
+	 * EL siguiente mÃ©todo retorna verdadero, en el caso de que la regla cubra al ejemplo que le pasamos como parÃ¡metro
 	 * @param Ejemplo a comprobar si cumple la regla.
 	 */
 	
@@ -462,45 +462,44 @@ public class Regla extends Cromosoma {
 	}
 	
 public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
-		
-		if(ej==null)
-			return 0.0;
-		
-		int[] tipos = ej.getPlantilla().get_TiposAtributos();
-		
-		int posRealAtributoNumerico = 0;
-		int i=0;
-		double h0;
-		double menor_h0 = Double.MAX_VALUE;
-				
-		int numAtributosEvaluados = 0;
-		// devolver el minimo de los h0. 
-		while(i<numAtributos)
+ 
+	if(ej==null)// ojo! investigar
+		return 0.0;
+
+	int[] tipos = ej.getPlantilla().get_TiposAtributos();
+
+	int posRealAtributoNumerico = 0;
+	int i=0;
+	double h0;
+	double menor_h0 = Double.MAX_VALUE;
+
+	int numAtributosEvaluados = 0;
+	// devolver el minimo de los h0. 
+	while(i<numAtributos)
+	{
+		if(atributo_evaluado(i))
 		{
-			if(atributo_evaluado(i))
-			{
-				numAtributosEvaluados++;
-				
-				if(tipos[i] == Attribute.NOMINAL)
-						
-					h0 = Math.abs(cumple_Atributo(i,ej));
-						
-				else
-				{
-					h0 = Math.abs(cumple_Atributo(posRealAtributoNumerico, ej, plan));
-					posRealAtributoNumerico++;
-				}
-				
-				if (h0<menor_h0) 
+			numAtributosEvaluados++;
+
+			if(tipos[i] == Attribute.NOMINAL)
+                h0 = Math.abs(cumple_Atributo(i,ej));
+
+            else
+            {
+            	h0 = Math.abs(cumple_Atributo(posRealAtributoNumerico, ej));
+                posRealAtributoNumerico++;
+            }
+            // se queda con la menor, porque se utiliza el operador de inferencia Min, es decir que siempre manda la menor h0
+			if (h0<menor_h0) 
 				menor_h0 = h0;  
-			}		
-			i++;
-		}
-		
-		if(numAtributosEvaluados == 0)
-			return 0.0;
-		return menor_h0;
-	}
+		}        
+		i++;
+    }
+
+    if(numAtributosEvaluados == 0)
+        return 0.0;
+    return menor_h0;
+}
 
 	/**
 	 * Elimina de un conjunto de entrenamiento todos aquellos datos que esta regla soporta con casos positivos
@@ -509,7 +508,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 	
 	
 	public void EliminaEntrenamiento(Dataset datosEntrenamiento){
-		int num_ejemplos = datosEntrenamiento.getTamaño_conjunto_entrenamiento();
+		int num_ejemplos = datosEntrenamiento.getTamaÃ±o_conjunto_entrenamiento();
 		for (int i=num_ejemplos-1;i>=0;i-- ){
 			if (Cubre_Ejemplo_Pos(datosEntrenamiento.get_EjemploFuzzy(i)) )
 				datosEntrenamiento.Eliminar_Ejemplo(i);
@@ -528,8 +527,8 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 					return false;
 			
 			}
-			// Si llega aquí es que es discreto
-			// En fuzzy es cierto, pero en discreto en Discreto tiene que ser 0.5 (ahora el parámetro es 0.3)
+			// Si llega aquÃ­ es que es discreto
+			// En fuzzy es cierto, pero en discreto en Discreto tiene que ser 0.5 (ahora el parÃ¡metro es 0.3)
 			else if (valor > Parametros.getInstancia_Parametros().getCoberturaFuzzy()) 
 				return true;
 		
@@ -578,7 +577,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 							//if(tiposAtributos[i] != Attribute.NOMINAL)
 								valAtributo=plantilla.get_ValoresAtributos()[i].get(aux)+"";
 							//else
-								//valAtributo="Aquí falta algo";
+								//valAtributo="AquÃ­ falta algo";
 							cadena_Regla=cadena_Regla+valAtributo;
 						}
 					}
@@ -643,12 +642,12 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 
 	
 	/**
-	 * Función que evalúa el fitness de una regla.
+	 * FunciÃ³n que evalÃºa el fitness de una regla.
 	 * z= longitud de la regla, numero de ceros/longitud; Si todos cero = 1; potencia reglas cortas;
 	 * w= casos negativos de la regla. si no hay casos negaticos 
 	 * 
-	 * @param regla Regla a la cual se le va a calcular el valor de su función de fitness. 
-	 * @return Devuelve el valor de la función de fitness.
+	 * @param regla Regla a la cual se le va a calcular el valor de su funciÃ³n de fitness. 
+	 * @return Devuelve el valor de la funciÃ³n de fitness.
 	 */
 		
 
@@ -729,11 +728,11 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 	
 	
 	public void evaluar_ejemplos_cubiertos(Dataset datosEntrenamiento){	
-		// Inicializo el número de ejemplos cubiertos
+		// Inicializo el nÃºmero de ejemplos cubiertos
 		for(int i=0;i<plantilla.get_numero_Clases();i++)
 			set_num_ejemplos_cubiertos(i,0);
 		
-		for(int i=0;i<datosEntrenamiento.getTamaño_conjunto_entrenamiento();i++){
+		for(int i=0;i<datosEntrenamiento.getTamaÃ±o_conjunto_entrenamiento();i++){
 			EjemploFuzzy ej=datosEntrenamiento.get_EjemploFuzzy(i);
 			//Si el ejemplo cumple la parte de la izquierda, incrementamos en 1 la clase correspondiente de la regla.
 			if(Cubre_Ejemplo(ej)>Parametros.getInstancia_Parametros().getCoberturaFuzzy()){
@@ -745,7 +744,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 	
 	
 	/**
-	 * Dependiendo del balanceo de clase y de la catalogación como clase objetivo, se pondera el fitness para seleccionar 
+	 * Dependiendo del balanceo de clase y de la catalogaciÃ³n como clase objetivo, se pondera el fitness para seleccionar 
 	 * la regla en el clasificador final 
 	 */
 	public void evaluar_PI(){
@@ -776,7 +775,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 		evaluar_PI();
 	}
 	
-	// Esta función me devuelve el número de casos negativos N- de la regla
+	// Esta funciÃ³n me devuelve el nÃºmero de casos negativos N- de la regla
 	int numero_Casos_Negativos(int ejemplosCubiertos[], int clase){
 		int numNeg=0;
 		for (int i=0;i<plantilla.get_numero_Clases();i++){
@@ -785,7 +784,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 		return numNeg;
 		}
 	
-//	 Esta función me devuelve el número de casos positivos N+ de la regla
+//	 Esta funciÃ³n me devuelve el nÃºmero de casos positivos N+ de la regla
 	int numero_Casos_Positivos(int ejemplosCubiertos[], int clase){
 		int numPos=0;
 		numPos=ejemplosCubiertos[clase];
@@ -794,7 +793,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 
 	public int numeroEjemplosCubierto(Dataset ejemplos){
 		int numEjCubiertos=0;
-		for(int i=0;i<ejemplos.getTamaño_conjunto_entrenamiento();i++){
+		for(int i=0;i<ejemplos.getTamaÃ±o_conjunto_entrenamiento();i++){
 			EjemploFuzzy ej=ejemplos.get_EjemploFuzzy(i);
 			if ((Cubre_Ejemplo(ej)>Parametros.getInstancia_Parametros().getCoberturaFuzzy()) && (getClase()==ej.getClase())) numEjCubiertos++; // chapuza
 		}
@@ -804,7 +803,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 	
 	public int numeroEjemplosNoCumpleClase(Dataset ejemplos){
 		int numEjCubiertos=0;
-		for(int i=0;i<ejemplos.getTamaño_conjunto_entrenamiento();i++){
+		for(int i=0;i<ejemplos.getTamaÃ±o_conjunto_entrenamiento();i++){
 			EjemploFuzzy ej=ejemplos.get_EjemploFuzzy(i);
 			if ((Cubre_Ejemplo(ej) > Parametros.getInstancia_Parametros().getCoberturaFuzzy()) && (getClase()!=ej.getClase())) numEjCubiertos++; // chapuza
 		}

@@ -2,11 +2,12 @@ import csv
 import os
 import shutil
 import sys
+import time
 
-if len(sys.argv) <= 3:
+if len(sys.argv) <= 2:
 
 	f_origen = sys.argv[1]
-	f_destino = sys. argv[2]
+	f_destino =str(time.strftime("%c")).replace(" ","-").replace("/","_").replace(":","-")
 	
 	directoryPath = f_origen+'/'+f_destino
 	if not os.path.exists(directoryPath):
