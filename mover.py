@@ -14,7 +14,7 @@ if len(sys.argv) <= 2:
 		os.mkdir(directoryPath)
 	
 	for fichero in os.listdir(f_origen):
-			if not os.path.isdir(fichero):
+			if not os.path.isdir(f_origen+'/'+fichero):
 				shutil.move(f_origen+"/"+fichero,directoryPath)
 else:
 	print "Error en la llamada. Se necesitan carpetas origen y destino"

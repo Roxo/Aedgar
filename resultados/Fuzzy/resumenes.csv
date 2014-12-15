@@ -1,3 +1,0 @@
-Etiqueta,DelCol,Llamada,Nodos,Poblacion,Representados,Semilla,Topologia,C,Epocas,minutos,T_Entrenamiento,Evaluaciones,Eval*datos,Comunicaciones,Reglas,R_5x2,R_Dat_entr,%aciertoC1,%aciertoC2
-UniformFrequency-Ds0.ecoli-0_vs_1,-5-10,UniformFrequency-Ds0.ecoli-0_vs_1-5-10_N2_P50_R2_S1234567_T1_C1_G20,2,50,2,1234567,1,1,50,0.03693333333333333,176,12048,1233934,333,6,1.0,0.9886363636363636,1.0,1.0
-UniformFrequency-Ds0.ecoli-0_vs_1,-5-10,UniformFrequency-Ds0.ecoli-0_vs_1-5-10_N2_P50_R2_S1234567_T1_C1_G20,2,50,2,1234567,1,1,50,0.026266666666666667,176,9176,747904,413,8,1.0,0.9886363636363636,1.0,1.0
