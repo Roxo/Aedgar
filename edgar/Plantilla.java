@@ -49,6 +49,11 @@ public class Plantilla
 		 Attribute auxAtributo;
 		 int longitud = plantilla.valoresAtributos.length;
 		 valoresAtributos = new ArrayList[longitud];
+//<-- Daniel Albendín APROXIMATIVO
+		 this.valoresClase = new ArrayList();
+		 for(int i=0;i<plantilla.valoresClase.size();i++){
+			 this.valoresClase.add(plantilla.valoresClase.get(i));
+		 }
 		 for(int i=0;i<longitud;i++)
 		 {
 			 this.valoresAtributos[i] = new ArrayList();
@@ -136,7 +141,6 @@ public class Plantilla
 	public Plantilla()
 	{
 	}
-	
 	public void set_ValoresAtributos(ArrayList _ValoresAtributos[]){
 		valoresAtributos=_ValoresAtributos;
 	}

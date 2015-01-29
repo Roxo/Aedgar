@@ -86,6 +86,7 @@ public class Isla extends Thread implements i_Nodo{
 	
 		// Inicializo la poblacion inicial Av	
 		// se crean m (parametro de número de individuos por nodo) individuos, utilizando el operador de sembrado.
+//TODO IF APROXIMATIVO HACER UNA COPIA DE GETPLANTILLA
 		int numAtributos=param.getPlantilla().numAtributos()/param.get_Numero_Nodos();
 		int inicio=this.Id_Nodo*(numAtributos);
 		if (this.Id_Nodo == (param.get_Numero_Nodos()-1)) numAtributos += param.getPlantilla().numAtributos()%param.get_Numero_Nodos() ;
@@ -240,6 +241,7 @@ public class Isla extends Thread implements i_Nodo{
 	public void run(){
 		comunicacionNodos=false;
 		int cont_featureSelection = 0;
+		Regla hijo1 = null, hijo2 = null;
 		NET red=Parametros.getInstancia_Parametros().get_NET();
 		while (param.get_Continuar_Busqueda() && datosEntrenamiento.getTamaño_conjunto_entrenamiento()>0 ){
 			Recibir_Parametros();
@@ -296,12 +298,26 @@ public class Isla extends Thread implements i_Nodo{
 						Regla padre1 = Bv.get_regla(ind_padre1);
 						Regla padre2 = Bv.get_regla(ind_padre2);
 						
-						Regla hijo1 = new Regla();
-						Regla hijo2 = new Regla();
+
+//<-- Daniel Albendín APROXIMATIVO
+						// Probablemente haya que agregar un operador de mutación a una plantilla. ! ! ! 
+						if(Parametros.getInstancia_Parametros().aproximativo()){
+							Plantilla h1 = Operador.blxAlpha(padre1.getPlantilla(),padre2.getPlantilla(),Gen_Aleatorio);
+							Plantilla h2 = Operador.blxAlpha(padre1.getPlantilla(),padre2.getPlantilla(),Gen_Aleatorio);
+							hijo1 = new Regla(h1);
+							hijo2 = new Regla(h2);
+
+						}
+						else{						
+							hijo1 = new Regla();
+							hijo2 = new Regla();
+						}
+//-->
 						
 						// Cruzo las dos soluciones
 						int id_Cruce=opGen.CruzarCromosmas(padre1, padre2, hijo1, hijo2,datosEntrenamiento);	
-						
+
+	//TODO APROXIMATIVO	CRUCE PBLXALPHA PLANTILLA1 Y PLANTILLA2
 						opGen.Mutar(hijo1);
 						opGen.Mutar(hijo2);
 																

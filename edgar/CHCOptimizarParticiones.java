@@ -46,7 +46,8 @@ public class CHCOptimizarParticiones {
 	private int umbral;
 	
 	// Si tipoHijo vale 1 devolveremos O1, si vale 2, devolveremos O2
-	private ArrayList[] pcBlxAlpha(ArrayList[] madre, ArrayList[] padre, Random al, int tipoHijo)
+	// Daniel Albendín Eliminamos la variable tipoHijo.
+	private ArrayList[] pcBlxAlpha(ArrayList[] madre, ArrayList[] padre, Random al)
 	{
 		int numAtributos = madre.length;
 		double max = 0;
@@ -76,7 +77,9 @@ public class CHCOptimizarParticiones {
 					double tempA = (Double)(madre[i].get(0));
 					
 					double tempResta;
-					if(tipoHijo == 1)
+// <-- Daniel Albendín Cambiado tipo hijo por un valor random porque antes siempre cogía el mismo padre como origen de todo los puntos (Variable tipo hijo
+		//	ANTES	if(tipoHijo == 1)
+					if(al.nextDouble() > 0.5)
 						tempResta = x - valorI;
 					else
 						tempResta = y - valorI;
@@ -94,7 +97,9 @@ public class CHCOptimizarParticiones {
 					double tempB = (Double)(madre[i].get(numParticiones-1));
 					
 					double tempSuma;
-					if(tipoHijo == 1)
+					// <-- Daniel Albendín Cambiado tipo hijo por un valor random porque antes siempre cogía el mismo padre como origen de todo los puntos (Variable tipo hijo
+					//	ANTES	if(tipoHijo == 1)
+					if(al.nextDouble() > 0.5)
 						tempSuma = x + valorI;
 					else
 						tempSuma = y + valorI;
@@ -475,12 +480,12 @@ public class CHCOptimizarParticiones {
 		this.concepto = _concepto;
 		al = new Random(Parametros.getInstancia_Parametros().get_Semilla());
 		
-		
+
 		tipos_atributos = ((Regla)(concepto.getReglas().get(0))).plantilla.get_TiposAtributos();
 		valores_atributos = ((Regla)(concepto.getReglas().get(0))).plantilla.get_ValoresAtributos();
 		
 		
-		int numAtributosNumericos =  ((Regla)(concepto.getReglas().get(0))).plantilla.numeroAtributosNumericos() ;
+		int numAtributosNumericos =  ((Regla)(concepto.getReglas().get(0))).getPlantilla().numeroAtributosNumericos() ;
 		
 		int numAtributos = tipos_atributos.length;
 		
@@ -518,6 +523,7 @@ public class CHCOptimizarParticiones {
 	
 	public double  porcentajeClasificadorGM(ArrayList[] particiones)
 	{
+
 		Plantilla plantillaOriginal = ((Regla)(concepto.getReglas().get(0))).plantilla;
 		
 		Plantilla plan = new Plantilla(plantillaOriginal, particiones);
@@ -943,10 +949,10 @@ public class CHCOptimizarParticiones {
 				//decrementarUmbral = false;
 				
 				// CÓDIGO PARA PCBLXALPHA
-				ArrayList[] hijo1 = pcBlxAlpha(madre,padre,al,1);
+				ArrayList[] hijo1 = pcBlxAlpha(madre,padre,al);
 				nuevaPoblacion.add(hijo1);
 				
-				ArrayList[] hijo2 = pcBlxAlpha(madre,padre,al,2);
+				ArrayList[] hijo2 = pcBlxAlpha(madre,padre,al);
 				nuevaPoblacion.add(hijo2);
 				
 				

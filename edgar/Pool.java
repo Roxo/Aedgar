@@ -173,7 +173,14 @@ public class Pool extends Thread implements i_Supervisor{
 			}
 		
 			//S—lo optimiza si hay algœn atributo numŽrico
-			if (param_globales.getOptimizaParticiones() && ((Regla)(concepto.getReglas().get(0))).plantilla.numeroAtributosNumericos() > 0)
+			
+			
+//<-- Daniel Albendín
+			/**
+			 *  Añado al if una condición, la de !aproximativo();
+			 */
+			if (param_globales.getOptimizaParticiones() && ((Regla)(concepto.getReglas().get(0))).plantilla.numeroAtributosNumericos() > 0 && !Parametros.getInstancia_Parametros().aproximativo())
+		//-->
 			{
 				CHCOptimizarParticiones opt = new CHCOptimizarParticiones(ejemplos, concepto);
 				

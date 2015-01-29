@@ -26,7 +26,6 @@ public class Regla extends Cromosoma {
 	// almaceno en cada indice correspondiente a una clase, el número de ejemplos que cubren la regla y son de esa clase
 	private int num_ejemplos_cubiertos[];
 	
-
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// JOSÉ MANUEL GARRIDO MORGADO 26/03/2011
 	// Variables para almacenar los ids de los ejemplos que cubre la regla, y los ids de los ejemplos que posee la regla
@@ -42,7 +41,12 @@ public class Regla extends Cromosoma {
 		fitness=0;
 		PI=0;NumAtributosParcial = this.numAtributos;
 		int numeroBits=0;
-		plantilla =_plantilla;
+//<-- Daniel Albendín - APROXIMATIVO
+		if(Parametros.getInstancia_Parametros().aproximativo())
+			plantilla = new Plantilla(_plantilla,_plantilla.get_ValoresAtributos());
+		else
+			plantilla = _plantilla;
+//--> 
 		for(int i=0;i<numAtributos;i++) numeroBits=numeroBits+plantilla.numValoresAtributo(i);
 		cromosoma=new char[numeroBits];
 		for(int i=0;i<numeroBits;i++) cromosoma[i]='0';
@@ -104,9 +108,11 @@ public class Regla extends Cromosoma {
 	}
 	
 	public Regla(){
+//TODO IF APROXIMATIVO SIEMPRE CAMBIAR EL CROMOSOMA
 				this(Parametros.getInstancia_Parametros().getPlantilla());
 	}
 	
+		
 	public int get_NumCasos_Negativos(){
 		int cont_neg=0;
 		for(int i=0;i<num_ejemplos_cubiertos.length;i++){
@@ -272,6 +278,7 @@ public class Regla extends Cromosoma {
 	            else
 	                min = (Double)valores[indAtr].get(posicion_regla-1);
 
+	            //////////////////////min coge un punto de corte y centro el siguiente.
 	            Double centro = (Double)valores[indAtr].get(posicion_regla);
 
 	            Double max;
@@ -597,7 +604,10 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 	
 	
 	public Regla getCopia(){
-		Regla copia=new Regla();
+//<-- Daniel Albendín - Aproximativo
+		// Se añade la plantilla a la llamada al constructor.
+		Regla copia=new Regla(plantilla);
+//-->
 		copia.setValorCromosoma(cromosoma);
 		copia.setClase(clase);
 		for(int i=0;i<num_ejemplos_cubiertos.length;i++)

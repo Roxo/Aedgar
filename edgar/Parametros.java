@@ -91,6 +91,8 @@ public class Parametros {
 	private boolean chiMejorado = true;
 
 	private int tipo_de_discretizador = 1;
+
+	private boolean aproximativo = true;
 	 public boolean isFuzzy() {
 			return fuzzy;
 		}
@@ -465,6 +467,10 @@ public class Parametros {
 	public int getTipoDeDiscretizador()
 	{
 		return tipo_de_discretizador;
+	}
+	public boolean aproximativo() {
+		// TODO Auto-generated method stub
+		return aproximativo;
 	}
  
 	

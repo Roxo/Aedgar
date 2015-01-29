@@ -12,6 +12,7 @@ public class CromosomaFuzzy{
 	protected Plantilla plantilla;
 	
 	public CromosomaFuzzy(){
+
 				this(Parametros.getInstancia_Parametros().getPlantilla());
 	}
 	public CromosomaFuzzy(Plantilla _plantilla)

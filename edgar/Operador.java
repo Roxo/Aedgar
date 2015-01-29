@@ -3,10 +3,12 @@ package edgar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
 import Aleatorios.Aleatorio;
+import Dataset.Attribute;
 /**
  * 
  * 
@@ -35,7 +37,12 @@ public class Operador {
 	 * @return regla. Devuelve una regla que cubre el ejemplo.
 	 */
 	public static Regla Sembrado(EjemploFuzzy votante,int inicio,int numAtributos){
-		Regla NuevaRegla=new Regla();
+//<-- Daniel Albendín APROXIMATIVO
+		Regla NuevaRegla;
+		if(Parametros.getInstancia_Parametros().aproximativo())
+			NuevaRegla=new Regla(votante.plantilla);
+		else
+			NuevaRegla = new Regla();
 		int posInicio = votante.getPlantilla().posicionAtributo(inicio);
 		int posFin =posInicio;
 		for (int i = inicio ;i<numAtributos;i++)
@@ -68,6 +75,292 @@ public class Operador {
 	}
 	
 	
+// <-- Daniel Albendín
+	/** Operador BLXAlpha. 
+	 * 
+	 * @param madre
+	 * @param padre
+	 * @param al
+	 * @param tipoHijo
+	 * @return
+	 */
+	
+	static Plantilla pcBlxAlpha(Plantilla madre, Plantilla padre, Aleatorio al)
+	{
+		int tipoGeneracion = 1;
+		// cambiar a una décima parte del blx alpha
+		double variacionExtremos = 0.1;
+		
+
+	//	ArrayList[] madre, padre;
+		int numAtributos = madre.get_TiposAtributos().length;
+		double max = 0;
+		double min = 0;
+		double I = 0;
+		ArrayList[] hijo = new ArrayList[numAtributos];
+		
+		
+		for (int i = 0; i < numAtributos; i++)		//Para cada atributo
+		{
+			// Será null cuando sea un atributo nominal y no nos interese
+			if(madre.get_TiposAtributos()[i] != Attribute.NOMINAL)
+			{
+				hijo[i] = new ArrayList();
+				
+				// El primer y el último valor de cada atributo no cambia
+				hijo[i].add(madre.get_ValoresAtributos()[i].get(0));
+				
+				int numParticiones = madre.get_ValoresAtributos()[i].size();
+				
+				for (int j = 1; j < numParticiones-1;j++)
+				{
+					double x = (Double)(padre.get_ValoresAtributos()[i].get(j));
+					double y = (Double)(madre.get_ValoresAtributos()[i].get(j));
+					double valorI = Math.abs(x-y) * variacionExtremos;
+					if(Math.abs(x-y)==0){
+							valorI = valor_medio((Double)padre.get_ValoresAtributos()[i].get(j-1),(Double)padre.get_ValoresAtributos()[i].get(j+1),y);
+
+					}
+					double tempA = (Double)(madre.get_ValoresAtributos()[i].get(0));
+					
+					double tempResta;
+					if(al.Rand()>0.5)
+						tempResta = x - valorI;
+					else
+						tempResta = y - valorI;
+					
+					double ele1;
+					if(tempA < tempResta)
+					{
+						ele1 = tempResta;
+					}
+					else
+					{
+						ele1 = tempA;
+					}
+					
+					double tempB = (Double)(madre.get_ValoresAtributos()[i].get(numParticiones-1));
+					
+					double tempSuma;
+					if(al.Rand()>0.5)
+						tempSuma = x + valorI;
+					else
+						tempSuma = y + valorI;
+					
+					double u1;
+					if(tempB < tempSuma)
+					{
+						u1 = tempB;
+					}
+					else
+					{
+						u1 = tempSuma;
+					}
+					
+					double dif = Math.abs(u1 - ele1);
+					
+					double aleatorio = al.Rand() * dif;
+
+					double puntoBueno;
+					
+					if(u1 < ele1)
+					{
+						puntoBueno = u1 + aleatorio;
+					}
+					else
+					{
+						puntoBueno = ele1 + aleatorio;
+					}
+					
+					hijo[i].add(puntoBueno);
+				}
+				
+				// El primer y el último valor de cada atributo no cambia
+				hijo[i].add(madre.get_ValoresAtributos()[i].get(numParticiones-1));
+			}
+			/**
+			 * @author Danien Albendín
+			 * No se hacía nada cuando el atributo era nominal
+			 */
+			else{
+				hijo[i] = new ArrayList();
+				int num = madre.get_ValoresAtributos()[i].size();
+				for(int s = 0; s < num; s++){
+					hijo[i].add(madre.get_ValoresAtributos()[i].get(s));
+				}
+			}
+		}
+		
+		// Validación del individuo
+		
+		// Ponemos a mínimo los valores menores que el mínimo y al máximo los valores menores que el máximo
+		for(int i=0;i < numAtributos; i++)
+		{
+			if(madre.get_TiposAtributos()[i] != Attribute.NOMINAL)
+			{
+				int numParticiones = hijo[i].size();
+				
+				min = ((Double)(hijo[i].get(0)));
+				max = ((Double)(hijo[i].get(numParticiones-1)));
+				
+				for (int j = 1; j < numParticiones-1;j++)
+				{
+					if(((Double)(hijo[i].get(j))) < min)
+					{
+						hijo[i].remove(j);
+						hijo[i].add(j, min);
+					}
+					else if((((Double)(hijo[i].get(j))) > max))
+					{
+						hijo[i].remove(j);
+						hijo[i].add(j, max);
+					}
+				}
+			}
+		}
+		
+		// Ordenamos los valores de menor a mayor
+		for(int i=0;i < numAtributos; i++)
+		{
+			if(madre.get_TiposAtributos()[i] != Attribute.NOMINAL)
+			{
+				int numParticiones = hijo[i].size();
+				
+				for (int j = 1; j < numParticiones-2;j++)
+				{
+					for(int k = 1; k < numParticiones-2; k++)
+					{
+						double temp = ((Double)(hijo[i].get(k)));
+						double compara = ((Double)(hijo[i].get(k+1)));
+						
+						if(temp > compara)
+						{
+							hijo[i].remove(k);
+							hijo[i].add(k, compara);
+							hijo[i].remove(k+1);
+							hijo[i].add(k+1, temp);
+						}
+					}
+				}
+			}
+		}
+		
+		return (new Plantilla(madre,hijo));	
+	}
+// -->
+	
+	static Plantilla blxAlpha(Plantilla madre, Plantilla padre, Aleatorio al)
+	{
+		int numAtributos = madre.get_TiposAtributos().length;
+		double max = 0;
+		double min = 0;
+		double I = 0;
+		ArrayList[] hijo = new ArrayList[numAtributos];
+		double variacionExtremos = 0.1;
+		
+		for (int i = 0; i < numAtributos; i++)		//Para cada atributo
+		{
+			// Será null cuando sea un atributo nominal y no nos interese
+			if(madre.get_TiposAtributos()[i] != Attribute.NOMINAL)
+			{
+				hijo[i] = new ArrayList();
+				
+				// El primer y el último valor de cada atributo no cambia
+				hijo[i].add(madre.get_ValoresAtributos()[i].get(0));
+				
+				int numParticiones = madre.get_ValoresAtributos()[i].size();
+				
+				for (int j = 1; j < numParticiones-1;j++)
+				{
+					if ((Double)(madre.get_ValoresAtributos()[i].get(j)) < (Double)(padre.get_ValoresAtributos()[i].get(j)))
+					{	
+						max = (Double)(padre.get_ValoresAtributos()[i].get(j));
+						min = (Double)(madre.get_ValoresAtributos()[i].get(j));
+					}
+					else							//Si el gen de la madre es mayor
+					{
+						min = (Double)(padre.get_ValoresAtributos()[i].get(j));
+						max = (Double)(madre.get_ValoresAtributos()[i].get(j));
+					}					 
+					I = Math.abs(max - min);	//Obtenemos la diferencia
+					min = min - (I * variacionExtremos);	//Calculamos el extremo inferior
+					max = max + (I * variacionExtremos);	//Calculamos el extremo superior
+					hijo[i].add(min + al.Rand() * (max - min));	//Calculamos un punto aleatorio dentro del intervalo
+				}
+				
+				// El primer y el último valor de cada atributo no cambia
+				hijo[i].add(madre.get_ValoresAtributos()[i].get(numParticiones-1));
+			}			
+			/**
+			 * @author Danien Albendín
+			 *  No se hacía nada cuando el atributo era nominal
+			 */
+			else{
+				hijo[i] = new ArrayList();
+				int num = madre.get_ValoresAtributos()[i].size();
+				for(int s = 0; s < num; s++){
+					hijo[i].add(madre.get_ValoresAtributos()[i].get(s));
+				}
+			}
+
+		}
+		
+		// Validación del individuo
+		
+		// Ponemos a mínimo los valores menores que el mínimo y al máximo los valores menores que el máximo
+		for(int i=0;i < numAtributos; i++)
+		{
+			if(madre.get_TiposAtributos()[i] != Attribute.NOMINAL)
+			{
+				int numParticiones = hijo[i].size();
+				
+				min = ((Double)(hijo[i].get(0)));
+				max = ((Double)(hijo[i].get(numParticiones-1)));
+				
+				for (int j = 1; j < numParticiones-1;j++)
+				{
+					if(((Double)(hijo[i].get(j))) < min)
+					{
+						hijo[i].remove(j);
+						hijo[i].add(j, min);
+					}
+					else if((((Double)(hijo[i].get(j))) > max))
+					{
+						hijo[i].remove(j);
+						hijo[i].add(j, max);
+					}
+				}
+			}
+		}
+		
+		// Ordenamos los valores de menor a mayor
+		for(int i=0;i < numAtributos; i++)
+		{
+			if(madre.get_TiposAtributos()[i] != Attribute.NOMINAL)
+			{
+				int numParticiones = hijo[i].size();
+				
+				for (int j = 1; j < numParticiones-2;j++)
+				{
+					for(int k = 1; k < numParticiones-2; k++)
+					{
+						double temp = ((Double)(hijo[i].get(k)));
+						double compara = ((Double)(hijo[i].get(k+1)));
+						
+						if(temp > compara)
+						{
+							hijo[i].remove(k);
+							hijo[i].add(k, compara);
+							hijo[i].remove(k+1);
+							hijo[i].add(k+1, temp);
+						}
+					}
+				}
+			}
+		}
+		
+		return new Plantilla(madre,hijo);	
+	}
 	/**
 	 * Operador de sembrado, a partir de un ejemplo genera una regla que lo cubre positivamente.
 	 * @param ej. Ejemplo al que se le va a generar una regla que lo cubra.
@@ -413,11 +706,27 @@ public class Operador {
 	 */
 	public static int cruce_Generalizacion_Especializacion(Regla Padre1, Regla Padre2, Regla Hijo1, Regla Hijo2,char tipo_G_E){
 		Parametros param_globales=Parametros.getInstancia_Parametros();
+		int inicioAtributo=0;
+		int finAtributo=0;
 		int NumeroAtributos=Padre1.getNumAtributos();
 		   for (int nAtributo=0 ; nAtributo<NumeroAtributos ; nAtributo++) {
-			   	int inicioAtributo=param_globales.getPlantilla().posicionAtributo(nAtributo);
-			   	int finAtributo=inicioAtributo+param_globales.getPlantilla().numValoresAtributo(nAtributo);			
-			      if (param_globales.get_GeneradorAleatorio().Rand()<0.4)
+//<-- Daniel Albendín
+			   /**
+			    * Cambiamos la plantilla global por la de una regla. Ahora mismo, ya que vamos 
+			    * a implementar las plantillas con el mismo tamaño y número de atributos nos da
+			    * igual la longitud. Cuando la longitud de ambas plantillas sean variables,
+			    * tendremos que retocar este código. (ELSE)
+			   */
+			   if(!param_globales.aproximativo()){
+			   	inicioAtributo=param_globales.getPlantilla().posicionAtributo(nAtributo);
+			   	finAtributo=inicioAtributo+param_globales.getPlantilla().numValoresAtributo(nAtributo);			
+			   }
+			   else{
+				    inicioAtributo= Padre1.getPlantilla().numValoresAtributo(nAtributo);
+				   	finAtributo=inicioAtributo+Padre1.getPlantilla().numValoresAtributo(nAtributo);			
+			   }
+			   // -->
+			   if (param_globales.get_GeneradorAleatorio().Rand()<0.4)
 			         for (int i=inicioAtributo; i<finAtributo ; i++) { 
 				       char valBit='0';
 				       if(tipo_G_E=='G'){
@@ -467,8 +776,6 @@ public class Operador {
 		hijo.borraAtributo(ind);
 	}	
 	
-
-
 	
 	public static void Mutar(Regla hijo){
 		int inicio=0;int numAtributos=1;
@@ -487,6 +794,43 @@ public class Operador {
 		}	
 		//hijo.LimpiaRegla();
 	}
+
+	/*
+	public static void Mutar(Plantilla hijo){
+		int inicio=0;int numAtributos=hijo.get_ValoresAtributos().length;
+		int posInicio = hijo.posicionAtributo(inicio);
+		int posFin =posInicio;
+		for (int i = inicio ;i<numAtributos;i++){
+			posFin += hijo.numValoresAtributo(i);
+			Aleatorio al = Parametros.getInstancia_Parametros().get_GeneradorAleatorio();
+			double pMutacion =Parametros.getInstancia_Parametros().get_Pmutacion();
+			for (int i=posInicio ; i<posFin ; i++){
+				if(al.Rand()<=pMutacion){
+					double valor = (Double) hijo.get_ValoresAtributos()[0].get(i);
+					if(valor != 0.0){
+						
+					}
+				}
+			}	
+		}
+		//hijo.LimpiaRegla();
+	}*/
+
+/**
+ * Cuando coincidan dos valores a la hora de realizar el pbLXAlpha devolvemos un rango calculado en base al punto
+ * medio entre el punto anterior y el punto posterior.
+ * @param inicio : Punto anterior
+ * @param fin : Punto siguiente
+ * @param valor : Punto en cuestión
+ * @return Rango restado a valor./
+ */
+private static double valor_medio(double inicio, double fin,double valor) {
+	double vm = Math.abs((fin-inicio)/2);
+	if(vm == valor){
+		vm = Math.abs((fin-inicio)/4);		
+	}
+	return Math.abs(valor - vm);
+}
 
 
 /*
