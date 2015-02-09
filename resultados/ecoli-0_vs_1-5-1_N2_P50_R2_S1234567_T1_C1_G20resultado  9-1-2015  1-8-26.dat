@@ -1,0 +1,64 @@
+ 
+
+     EDGAR Evolutionary Distributed Genetic Algorithm for Rule extraction
+
+
+   --- RESULTADOS  día: 9-1-2015  1-8-26 ---
+
+Número de hilos: 2
+Ejemplos de entrenamientos distribuidos por nodo 88.0
+Semilla: 1234567
+Epocas sin mejora para parar: 50
+Fichero datos test: datos/ecoli-0_vs_1/ecoli-0_vs_1-5-1tst.dat
+Fichero datos entrenamiento: datos/ecoli-0_vs_1/ecoli-0_vs_1-5-1tra.dat
+Repartir datos entrenamiento: true
+Valor g: 0.9
+Ratio de Migracion nu: 0.1
+Ratio de foraneos P: 0.1
+Tiempo empleado: 0.48993333333333333 minutos
+
+Tamaño Entrenamiento:      176
+Evaluaciones:     6133
+Evaluaciones*datos:     499968
+Comunicaciones    409
+Número de Reglas: 37
+
+
+******************  RESULTADOS  5x2 Test  **************
+Numero de ejemplos: 44
+Numero de ejemplos bien clasificados: 15 -> 0.3409090909090909
+Numero de ejemplos mal clasificados: 29
+*******************************************************
+
+***  Matriz de confusión Test  ***
+      positive      negative
+positive    0     29     
+negative    0     15     
+*******************************************************
+
+
+******************  RESULTADOS  Datos Entrenamiento ************
+Numero de ejemplos: 176
+Numero de ejemplos bien clasificados: 64 -> 0.36363636363636365
+Numero de ejemplos mal clasificados: 112
+*******************************************************
+
+
+***  Matriz de confusión Entrenamiento  ***
+      positive      negative
+positive    2    112    
+negative    0    62    
+*******************************************************
+
+Particiones de la plantilla
+
+Mcg ([0.235, 0.28500000000000003, 0.325, 0.355, 0.405, 0.43, 0.495, 0.565, 0.635, 0.89])
+Gvh ([0.315, 0.355, 0.395, 0.415, 0.445, 0.475, 0.505, 0.51, 0.555, 1.0])
+Lip ([0.74, 1.0])
+Chg ([1.0])
+Aac ([0.365, 0.4, 0.42, 0.455, 0.485, 0.5, 0.535, 0.565, 0.615, 0.88])
+Alm1 ([0.225, 0.265, 0.315, 0.345, 0.37, 0.475, 0.665, 0.755, 0.795, 1.0])
+Alm2 ([0.305, 0.355, 0.385, 0.415, 0.445, 0.505, 0.635, 0.745, 0.815, 0.99])
+  --> Class([positive, negative])
+
+*******************************************************

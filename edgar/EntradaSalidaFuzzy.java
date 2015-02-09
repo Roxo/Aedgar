@@ -174,31 +174,36 @@ public class EntradaSalidaFuzzy {
 					{
 						
 						int num = dis.getNumIntervals(i);
-						
-						_plantillaAtributos[i][0] = num+1;
-						
+		
+				// ISSUE1 Problema intervalos
+						//_plantillaAtributos[i][0] = num+1;
+						_plantillaAtributos[i][0] = num;
 						_plantillaAtributos[i][1] =indiceAtributo;
-						indiceAtributo=indiceAtributo+num+1;
+						//indiceAtributo=indiceAtributo+num+1;
+						indiceAtributo=indiceAtributo+num;
 						
-						
-						
+					
 						num--; // Hay un punto de corte menos que el número de intervalos
-						
 					
 						double valInicial = auxAtributo.getMinAttribute();
 						double valFinal = auxAtributo.getMaxAttribute();
 						
 						_ValoresAtributos[i] = new ArrayList();
 						
-						_ValoresAtributos[i].add(valInicial);
+//						_ValoresAtributos[i].add(valInicial);
+						// ISSUE <- 	
 						for(int j=0;j<num;j++)
 						{
-							double val1 = (Double) _ValoresAtributos[i].get(j);
+//ISSUE punto medio
+		// Se ha cambiado para usar directamente los puntos del discretizador
+		// en lugar de los puntos altos del triángulo
+				//			double val1 = (Double) _ValoresAtributos[i].get(j);
 							double val2 = dis.getCutPoint(i, j);
+							_ValoresAtributos[i].add(val2);
+
+						//	double media = (val1 + val2) / 2;
 							
-							double media = (val1 + val2) / 2;
-							
-							_ValoresAtributos[i].add(media);
+						//	_ValoresAtributos[i].add(media);
 							
 						}
 						_ValoresAtributos[i].add(valFinal);

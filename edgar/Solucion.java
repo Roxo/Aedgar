@@ -299,7 +299,8 @@ public class Solucion {
 		
 		return resultado_clasificacion;
 	}
-	
+
+// TODO Plantilla no se está usando. Corregir.	
 	public int[][] Clasificar(Dataset ejemplos, Plantilla plan)
 	{
 		int [][] resultado_clasificacion=new int[ejemplos.getTamaño_conjunto_entrenamiento()][2];

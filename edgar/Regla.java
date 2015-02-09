@@ -47,7 +47,7 @@ public class Regla extends Cromosoma {
 		else
 			plantilla = _plantilla;
 //--> 
-		for(int i=0;i<numAtributos;i++) numeroBits=numeroBits+plantilla.numValoresAtributo(i);
+		for(int i=0;i<numAtributos;i++) numeroBits=numeroBits+(plantilla.numValoresAtributo(i));
 		cromosoma=new char[numeroBits];
 		for(int i=0;i<numeroBits;i++) cromosoma[i]='0';
 		
@@ -267,10 +267,26 @@ public class Regla extends Cromosoma {
 	                }
 	            }
 
+	      
 	            Double valor = (Double)(ej.getValores().get(indAtr));
 
 	            ArrayList[] valores = ej.plantilla.get_ValoresAtributos();
 
+	            
+	            Double altura = 0.0;
+	   	//<-- Albendín
+	    /////////////////////////////TRAPEZOIDAL/////////////////////////
+	           if(Parametros.getInstancia_Parametros().getCobertura()==0){
+	            i_Cobertura trap = new C_Trapezoidal(valores,indAtr);
+	            altura = trap.GetCobertura(posicion_regla,valor);
+	           }
+	     /////////////////////////////TRIANGULAR/////////////////////////
+	           else{
+	            i_Cobertura tri = new C_Triangular(valores,indAtr);
+	            altura = tri.GetCobertura(posicion_regla,valor);
+	           }
+	            //-->
+	            /*          ArrayList[] valoresT = cambiarTriangulos(valores,indAtr);
 	            Double min;
 	            //Si es la primera etiqueta , sólo hay un lado del triangulo
 	            if(posicion_regla==0)
@@ -304,14 +320,37 @@ public class Regla extends Cromosoma {
 
 	                if(altura>mayorH0)
 	                    mayorH0 = altura;
-	            }
+	            }*/
+                if(altura>mayorH0)
+                    mayorH0 = altura;
 	        }
 
 	        return mayorH0;
 	    }
 	}
 	
-	
+/**
+ *  Método a cambiar
+ * @author Daniel Albendín
+ * @param valores 
+ * @param indAtr
+ * @return
+ */
+	private ArrayList[] cambiarTriangulos(ArrayList[] valores, int indAtr) {
+		ArrayList[] devolver = new ArrayList[valores.length];
+		devolver[indAtr] = new ArrayList();
+		devolver[indAtr].add(valores[indAtr].get(0));
+		for (int i = 2; i<valores[indAtr].size()-1; i++){
+			Double a =(Double)valores[indAtr].get(i);
+			Double b = (Double)valores[indAtr].get(i-1);
+			Double result = b + ((a-b)/2);
+			devolver[indAtr].add(result);
+		}
+		devolver[indAtr].add(valores[indAtr].get(valores[indAtr].size()-1));
+		return devolver;
+		
+	}
+
 	public Double cumple_Atributo(int indAtr, EjemploFuzzy ej, Plantilla plan)
 	{
 		Double cumpleAtr=1.0;
@@ -426,6 +465,7 @@ public class Regla extends Cromosoma {
 	 * EL siguiente método retorna verdadero, en el caso de que la regla cubra al ejemplo que le pasamos como parámetro
 	 * @param Ejemplo a comprobar si cumple la regla.
 	 */
+
 	
 	public double Cubre_Ejemplo(EjemploFuzzy ej){
 		

@@ -1,0 +1,92 @@
+Conjunto de reglas
+Número de Reglas: 18
+0-  ( Gvh=  (0.0 || 1.0 || 2.0 || 3.0 || 5.0 || 6.0 || 7.0 || 8.0 || 9.0 ) )  AND  ( Alm1=  (7.0 || 8.0 || 9.0 ) )  -->  ( Class = negative)
+  - Fitness: 1.0773584905660378
+  - Casos Positivos: 47
+  - Negativos: 0
+
+1-  ( Gvh=  (0.0 || 2.0 || 3.0 || 4.0 || 6.0 || 7.0 || 8.0 || 9.0 ) )  AND  ( Alm1=  (7.0 || 8.0 || 9.0 ) )  -->  ( Class = negative)
+  - Fitness: 1.079245283018868
+  - Casos Positivos: 41
+  - Negativos: 0
+
+2-  ( Mcg=  (0.0 || 2.0 || 3.0 || 8.0 || 9.0 ) )  AND  ( Gvh=  (0.0 || 2.0 || 3.0 || 6.0 || 7.0 || 8.0 || 9.0 ) )  AND  ( Aac=  (0.0 || 1.0 || 2.0 || 3.0 || 4.0 || 5.0 || 7.0 || 8.0 || 9.0 ) )  AND  ( Alm1=  (6.0 || 7.0 || 8.0 ) )  AND  ( Alm2=  (0.0 || 2.0 || 4.0 || 5.0 || 7.0 || 8.0 ) )  -->  ( Class = negative)
+  - Fitness: 1.0415094339622641
+  - Casos Positivos: 19
+  - Negativos: 0
+
+3-  ( Gvh=  (0.0 || 2.0 || 3.0 || 4.0 || 5.0 || 6.0 || 7.0 || 9.0 ) )  AND  ( Alm1=  (0.0 || 1.0 || 3.0 || 4.0 ) )  -->  ( Class = positive)
+  - Fitness: 1.0773584905660378
+  - Casos Positivos: 60
+  - Negativos: 0
+
+4-  ( Gvh=  (0.0 || 1.0 || 3.0 || 4.0 || 5.0 ) )  AND  ( Alm1=  (1.0 || 2.0 || 3.0 || 4.0 ) )  -->  ( Class = positive)
+  - Fitness: 1.0830188679245283
+  - Casos Positivos: 51
+  - Negativos: 0
+
+5-  ( Gvh=  (0.0 || 1.0 || 2.0 || 3.0 || 5.0 || 6.0 || 8.0 || 9.0 ) )  AND  ( Alm1=  (1.0 || 2.0 || 3.0 || 4.0 ) )  -->  ( Class = positive)
+  - Fitness: 1.0773584905660378
+  - Casos Positivos: 51
+  - Negativos: 0
+
+6-  ( Gvh=  (0.0 || 2.0 || 3.0 || 4.0 || 5.0 || 6.0 || 9.0 ) )  AND  ( Alm1=  (1.0 || 3.0 || 4.0 || 5.0 ) )  -->  ( Class = positive)
+  - Fitness: 1.079245283018868
+  - Casos Positivos: 44
+  - Negativos: 0
+
+7-  ( Gvh=  (0.0 || 2.0 || 3.0 || 6.0 || 7.0 || 8.0 || 9.0 ) )  AND  ( Aac=  (7.0 || 8.0 || 9.0 ) )  AND  ( Alm1=  (6.0 || 7.0 || 8.0 || 9.0 ) )  -->  ( Class = negative)
+  - Fitness: 0.3949498151444353
+  - Casos Positivos: 32
+  - Negativos: 1
+
+8-  ( Gvh=  (0.0 || 1.0 || 2.0 || 3.0 || 5.0 ) )  AND  ( Alm1=  (1.0 || 3.0 || 4.0 || 5.0 ) )  -->  ( Class = positive)
+  - Fitness: 1.0830188679245283
+  - Casos Positivos: 41
+  - Negativos: 0
+
+9-  ( Gvh=  (2.0 || 3.0 || 4.0 || 5.0 || 6.0 || 7.0 || 9.0 ) )  AND  ( Aac=  (7.0 || 8.0 || 9.0 ) )  AND  ( Alm1=  (6.0 || 7.0 || 8.0 ) )  -->  ( Class = negative)
+  - Fitness: 0.3956439272975889
+  - Casos Positivos: 24
+  - Negativos: 1
+
+10-  ( Gvh=  (0.0 || 2.0 || 3.0 || 4.0 || 5.0 || 6.0 || 7.0 || 9.0 ) )  AND  ( Alm1=  (0.0 || 1.0 || 3.0 || 4.0 || 5.0 ) )  -->  ( Class = positive)
+  - Fitness: 0.3956439272975889
+  - Casos Positivos: 74
+  - Negativos: 1
+
+11-  ( Gvh=  (0.0 || 1.0 || 2.0 || 3.0 || 4.0 || 6.0 || 7.0 || 9.0 ) )  AND  ( Alm1=  (0.0 || 1.0 || 3.0 || 4.0 || 5.0 ) )  -->  ( Class = positive)
+  - Fitness: 0.3956439272975889
+  - Casos Positivos: 72
+  - Negativos: 1
+
+12-  ( Gvh=  (0.0 || 1.0 || 2.0 || 3.0 || 5.0 || 6.0 || 8.0 || 9.0 ) )  AND  ( Alm1=  (1.0 || 2.0 || 3.0 || 4.0 || 5.0 ) )  -->  ( Class = positive)
+  - Fitness: 0.3956439272975889
+  - Casos Positivos: 63
+  - Negativos: 1
+
+13-  ( Gvh=  (2.0 || 3.0 || 6.0 || 7.0 || 8.0 || 9.0 ) )  AND  ( Aac=  (0.0 || 1.0 || 2.0 || 3.0 || 4.0 || 5.0 || 7.0 || 8.0 || 9.0 ) )  AND  ( Alm1=  (6.0 || 7.0 ) )  -->  ( Class = negative)
+  - Fitness: 0.1442725189220494
+  - Casos Positivos: 20
+  - Negativos: 2
+
+14-  ( Mcg=  (1.0 || 3.0 || 4.0 || 5.0 || 6.0 || 7.0 || 8.0 || 9.0 ) )  AND  ( Gvh=  (0.0 || 2.0 || 5.0 || 7.0 || 8.0 || 9.0 ) )  AND  ( Aac=  (1.0 || 4.0 || 6.0 ) )  AND  ( Alm2=  (6.0 || 7.0 || 8.0 || 9.0 ) )  -->  ( Class = negative)
+  - Fitness: 0.38800869361289864
+  - Casos Positivos: 5
+  - Negativos: 1
+
+15-  ( Mcg=  (0.0 || 1.0 || 5.0 || 7.0 || 8.0 ) )  AND  ( Gvh=  (0.0 || 1.0 || 2.0 || 4.0 || 5.0 || 6.0 || 8.0 || 9.0 ) )  AND  ( Aac=  (0.0 || 2.0 || 3.0 || 4.0 || 7.0 || 8.0 || 9.0 ) )  AND  ( Alm1=  (0.0 || 4.0 || 6.0 || 7.0 || 8.0 ) )  AND  ( Alm2=  (5.0 || 6.0 || 7.0 || 9.0 ) )  -->  ( Class = negative)
+  - Fitness: 0.14120832382989967
+  - Casos Positivos: 8
+  - Negativos: 2
+
+16-  ( Gvh=  (0.0 || 1.0 || 2.0 || 3.0 || 6.0 || 8.0 ) )  AND  ( Aac=  (3.0 || 6.0 || 7.0 ) )  AND  ( Alm1=  (0.0 || 1.0 || 4.0 || 5.0 || 6.0 ) )  AND  ( Alm2=  (2.0 || 3.0 || 5.0 || 6.0 || 7.0 || 8.0 ) )  -->  ( Class = positive)
+  - Fitness: 0.38870280576605226
+  - Casos Positivos: 9
+  - Negativos: 1
+
+17-  ( Mcg=  (0.0 || 1.0 || 3.0 || 5.0 || 6.0 || 8.0 ) )  AND  ( Gvh=  (0.0 || 1.0 || 2.0 || 3.0 || 5.0 || 8.0 || 9.0 ) )  AND  ( Lip=  (0.0 ) )  AND  ( Aac=  (4.0 || 5.0 || 6.0 || 7.0 || 8.0 ) )  AND  ( Alm1=  (0.0 || 4.0 || 6.0 ) )  AND  ( Alm2=  (0.0 || 6.0 || 7.0 || 8.0 ) )  -->  ( Class = positive)
+  - Fitness: 0.38662046930659133
+  - Casos Positivos: 7
+  - Negativos: 1
+

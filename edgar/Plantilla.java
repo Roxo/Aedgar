@@ -47,6 +47,7 @@ public class Plantilla
 		 this.tiposAtributos = plantilla.tiposAtributos;
 		 this.plantillaAtributos = plantilla.plantillaAtributos;
 		 Attribute auxAtributo;
+
 		 int longitud = plantilla.valoresAtributos.length;
 		 valoresAtributos = new ArrayList[longitud];
 //<-- Daniel Albendín APROXIMATIVO
@@ -274,6 +275,13 @@ public class Plantilla
 	public void set_tiposAtributos(int[] _tiposAtributos) {
 		tiposAtributos = _tiposAtributos;
 		
+	}
+	
+	 // Albendín ISSUE1 problema intervalos.
+	 // Array de objetos que contienen información detallada de cada atributo. [Ini, fin]
+	// private Attributes atributos;
+	public Attribute get_Atributoi(int i){
+		return Attributes.getInputAttribute(i);
 	}
 	
 	

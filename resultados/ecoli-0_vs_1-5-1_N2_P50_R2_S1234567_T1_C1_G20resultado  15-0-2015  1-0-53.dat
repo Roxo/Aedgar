@@ -1,0 +1,64 @@
+ 
+
+     EDGAR Evolutionary Distributed Genetic Algorithm for Rule extraction
+
+
+   --- RESULTADOS  día: 15-0-2015  1-0-53 ---
+
+Número de hilos: 2
+Ejemplos de entrenamientos distribuidos por nodo 88.0
+Semilla: 1234567
+Epocas sin mejora para parar: 50
+Fichero datos test: datos/ecoli-0_vs_1/ecoli-0_vs_1-5-1tst.dat
+Fichero datos entrenamiento: datos/ecoli-0_vs_1/ecoli-0_vs_1-5-1tra.dat
+Repartir datos entrenamiento: true
+Valor g: 0.9
+Ratio de Migracion nu: 0.1
+Ratio de foraneos P: 0.1
+Tiempo empleado: 0.10441666666666667 minutos
+
+Tamaño Entrenamiento:      176
+Evaluaciones:     20728
+Evaluaciones*datos:     2333508
+Comunicaciones    773
+Número de Reglas: 7
+
+
+******************  RESULTADOS  5x2 Test  **************
+Numero de ejemplos: 44
+Numero de ejemplos bien clasificados: 18 -> 0.4090909090909091
+Numero de ejemplos mal clasificados: 26
+*******************************************************
+
+***  Matriz de confusión Test  ***
+      positive      negative
+positive    5     24     
+negative    2     13     
+*******************************************************
+
+
+******************  RESULTADOS  Datos Entrenamiento ************
+Numero de ejemplos: 176
+Numero de ejemplos bien clasificados: 65 -> 0.3693181818181818
+Numero de ejemplos mal clasificados: 111
+*******************************************************
+
+
+***  Matriz de confusión Entrenamiento  ***
+      positive      negative
+positive    8    106    
+negative    5    57    
+*******************************************************
+
+Particiones de la plantilla
+
+Mcg ([0.0, 0.1175, 0.20125, 0.263125, 0.3090625, 0.35703125, 0.39351562500000004, 0.4442578125, 0.50462890625, 0.569814453125, 0.89])
+Gvh ([0.16, 0.2375, 0.29625, 0.345625, 0.3803125, 0.41265625, 0.443828125, 0.4744140625, 0.49220703125, 0.5236035156250001, 1.0])
+Lip ([0.48, 0.61, 1.0])
+Chg ([0.5, 1.0])
+Aac ([0.0, 0.1825, 0.29125, 0.35562499999999997, 0.40531249999999996, 0.44515625, 0.47257812499999996, 0.5037890625, 0.53439453125, 0.574697265625, 0.88])
+Alm1 ([0.03, 0.1275, 0.19625, 0.255625, 0.3003125, 0.33515625, 0.40507812499999996, 0.5350390625, 0.64501953125, 0.720009765625, 1.0])
+Alm2 ([0.0, 0.1525, 0.25375, 0.31937499999999996, 0.3671875, 0.40609375000000003, 0.455546875, 0.5452734375, 0.64513671875, 0.7300683593749999, 0.99])
+  --> Class([positive, negative])
+
+*******************************************************
