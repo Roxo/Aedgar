@@ -68,7 +68,7 @@ public class Net_Anillo implements NET {
 	 */	
 	public void EnviarDatosEntrenamiento(int ident_Nodo, Dataset nuevosDatosEntrenamientos){
 		synchronized(buffer_datos_entrenamientos){
-			param.depura("Nodo("+ident_Nodo+") ENVIA DATOS "+nuevosDatosEntrenamientos.getTamaño_conjunto_entrenamiento() +" NET ANILLO ..." ,1);	
+			param.depura("Nodo("+ident_Nodo+") ENVIA DATOS "+nuevosDatosEntrenamientos.getTamanho_conjunto_entrenamiento() +" NET ANILLO ..." ,1);	
 			
 			int Ident_Nodo_destino=ident_Nodo+1;
 			if (Ident_Nodo_destino==param.get_Numero_Nodos())
@@ -77,7 +77,7 @@ public class Net_Anillo implements NET {
 			if (buffer_datos_entrenamientos[Ident_Nodo_destino]== null)
 						buffer_datos_entrenamientos[Ident_Nodo_destino]=nuevosDatosEntrenamientos;
 			else
-				for (int i=0;i<nuevosDatosEntrenamientos.getTamaño_conjunto_entrenamiento();i++)
+				for (int i=0;i<nuevosDatosEntrenamientos.getTamanho_conjunto_entrenamiento();i++)
 						buffer_datos_entrenamientos[Ident_Nodo_destino].Insertar_Ejemplo_SinRepeticion(nuevosDatosEntrenamientos.get_EjemploFuzzy(i));
 		}
 	}
@@ -90,7 +90,7 @@ public class Net_Anillo implements NET {
 				datosEntrenamiento= buffer_datos_entrenamientos[Nodo];
 				// Cuando toma los datos de entrenaiento, se vacia el buffer
 				buffer_datos_entrenamientos[Nodo]=null;
-				param.depura("Nodo(" +Nodo + "): Ha obtenido "+ datosEntrenamiento.getTamaño_conjunto_entrenamiento()+" Datos de entrenamiento ...",2);
+				param.depura("Nodo(" +Nodo + "): Ha obtenido "+ datosEntrenamiento.getTamanho_conjunto_entrenamiento()+" Datos de entrenamiento ...",2);
 			}
 		}
 		return datosEntrenamiento;

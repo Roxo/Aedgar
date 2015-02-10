@@ -93,7 +93,7 @@ public class Isla extends Thread implements i_Nodo{
 		
 		//sólo se usa si se hce exploración de features por nodo
 		for(int i=0;i<poblacion;i++){
-			int indiceDatoEntrenamiento=Gen_Aleatorio.Randint(0,datosEntrenamiento.getTamaño_conjunto_entrenamiento()-1);
+			int indiceDatoEntrenamiento=Gen_Aleatorio.Randint(0,datosEntrenamiento.getTamanho_conjunto_entrenamiento()-1);
 			Regla NuevaRegla;
 			if (param.isParcial() ){
 				NuevaRegla=Operador.Sembrado(datosEntrenamiento.get_EjemploFuzzy(indiceDatoEntrenamiento),inicio,numAtributos);
@@ -243,7 +243,7 @@ public class Isla extends Thread implements i_Nodo{
 		int cont_featureSelection = 0;
 		Regla hijo1 = null, hijo2 = null;
 		NET red=Parametros.getInstancia_Parametros().get_NET();
-		while (param.get_Continuar_Busqueda() && datosEntrenamiento.getTamaño_conjunto_entrenamiento()>0 ){
+		while (param.get_Continuar_Busqueda() && datosEntrenamiento.getTamanho_conjunto_entrenamiento()>0 ){
 			Recibir_Parametros();
 			Solucion oldConcepto = this.descripcionNodo.copia();
 			//	Si es la primera generación no se puede ir a la red por reglas. 
@@ -252,7 +252,7 @@ public class Isla extends Thread implements i_Nodo{
 			if(comunicacionNodos)
 				Recibir_Reglas_Red();	
 			
-			if (datosEntrenamiento.getTamaño_conjunto_entrenamiento()>0){
+			if (datosEntrenamiento.getTamanho_conjunto_entrenamiento()>0){
 				//inserta los individuos recibidos en la poblacion
 				Solucion Av_U_Anet=new Solucion();
 				
@@ -302,8 +302,8 @@ public class Isla extends Thread implements i_Nodo{
 //<-- Daniel Albendín APROXIMATIVO
 						// Probablemente haya que agregar un operador de mutación a una plantilla. ! ! ! 
 						if(Parametros.getInstancia_Parametros().aproximativo()){
-							Plantilla h1 = Operador.blxAlpha(padre1.getPlantilla(),padre2.getPlantilla(),Gen_Aleatorio);
-							Plantilla h2 = Operador.blxAlpha(padre1.getPlantilla(),padre2.getPlantilla(),Gen_Aleatorio);
+							Plantilla h1 = Operador.pcBlxAlpha(padre1.getPlantilla(),padre2.getPlantilla(),Gen_Aleatorio);
+							Plantilla h2 = Operador.pcBlxAlpha(padre1.getPlantilla(),padre2.getPlantilla(),Gen_Aleatorio);
 							hijo1 = new Regla(h1);
 							hijo2 = new Regla(h2);
 
@@ -380,7 +380,7 @@ public class Isla extends Thread implements i_Nodo{
 					costes.add_Comunicaciones(numeroSolucionesEnviadas);
 					numeroSolucionesEnviadas=0;
 					costes.add_Evaluaciones(numeroEvaluaciones);
-					costes.add_EvaluacionesDesglosado(numeroEvaluaciones*datosEntrenamiento.getTamaño_conjunto_entrenamiento());
+					costes.add_EvaluacionesDesglosado(numeroEvaluaciones*datosEntrenamiento.getTamanho_conjunto_entrenamiento());
 					
 					numeroEvaluaciones=0;
 					
@@ -402,13 +402,13 @@ public class Isla extends Thread implements i_Nodo{
 					// si se pone num_poco_representados >=1, envia casos no cubiertos
 					Dataset Ejemplos_Poco_Cubiertos = Av.get_Ejemplos_Poco_Cubiertos(this.datosEntrenamiento, numPocoRepresentados,eliminarEntrenamiento);
 					red.EnviarDatosEntrenamiento(Id_Nodo,Ejemplos_Poco_Cubiertos);
-					costes.add_Comunicaciones(Ejemplos_Poco_Cubiertos.getTamaño_conjunto_entrenamiento());
+					costes.add_Comunicaciones(Ejemplos_Poco_Cubiertos.getTamanho_conjunto_entrenamiento());
 					//this.EnviarTodosEjemplos();
 					
 					// Comprueba si hay nuevos datos de entrenamiento.
 					Dataset ejemplosEntrenamiento=red.Get_Datos_Entrenamiento(this.Id_Nodo);
 					Recibir_Datos_Entrenamiento(ejemplosEntrenamiento,sustituirEntrenamiento); //nunca se sustituye en EDGAR los datos de entrenamiento
-					param.depura(this.Id_Nodo + " Numero de ejemplos  "+this.datosEntrenamiento.getTamaño_conjunto_entrenamiento(),2);
+					param.depura(this.Id_Nodo + " Numero de ejemplos  "+this.datosEntrenamiento.getTamanho_conjunto_entrenamiento(),2);
 							
 				}
 			}
@@ -518,7 +518,7 @@ public class Isla extends Thread implements i_Nodo{
 	public void EnviarTodosEjemplos() {
 		NET red=param.get_NET();
 		Dataset copia = new Dataset();
-		int num_ejemplos = datosEntrenamiento.getTamaño_conjunto_entrenamiento();
+		int num_ejemplos = datosEntrenamiento.getTamanho_conjunto_entrenamiento();
 		for (int i=0;i < num_ejemplos;i++) {
 				EjemploFuzzy ej = datosEntrenamiento.get_EjemploFuzzy(i);
 				copia.Insertar_Ejemplo(ej);
@@ -527,18 +527,18 @@ public class Isla extends Thread implements i_Nodo{
 		}	
 	
 	private void Recibir_Datos_Entrenamiento(Dataset ejemplosEntrenamiento,boolean sustituirEntrenamientoDestino){
-		param.depura("RECIBIENDO DATOS DE ENTRENAMIENTO ... Nodo " + this +" Nº Datos: "+ ejemplosEntrenamiento.getTamaño_conjunto_entrenamiento(),2);
-		if (ejemplosEntrenamiento.getTamaño_conjunto_entrenamiento()>0){
+		param.depura("RECIBIENDO DATOS DE ENTRENAMIENTO ... Nodo " + this +" Nº Datos: "+ ejemplosEntrenamiento.getTamanho_conjunto_entrenamiento(),2);
+		if (ejemplosEntrenamiento.getTamanho_conjunto_entrenamiento()>0){
 			if (sustituirEntrenamientoDestino==true) // Solo en caso de estrategias tipo Regal de asignación de conjuntos a nodos
 				datosEntrenamiento=ejemplosEntrenamiento;
 			else{
-				int num_ejemplos = ejemplosEntrenamiento.getTamaño_conjunto_entrenamiento();
+				int num_ejemplos = ejemplosEntrenamiento.getTamanho_conjunto_entrenamiento();
 				EjemploFuzzy ej= null;
 				for(int i = 0; i< num_ejemplos;i++ ){
 					ej = ejemplosEntrenamiento.get_EjemploFuzzy(i).get_CopiaFuzzy();
 					datosEntrenamiento.Insertar_Ejemplo_SinRepeticion(ej);
 				}
-				param.depura("DATOS DE ENTRENAMIENTO Total... Nodo " + this +" Nº Datos: "+ datosEntrenamiento.getTamaño_conjunto_entrenamiento(),2);
+				param.depura("DATOS DE ENTRENAMIENTO Total... Nodo " + this +" Nº Datos: "+ datosEntrenamiento.getTamanho_conjunto_entrenamiento(),2);
 			}
 		}
 		else 
@@ -564,7 +564,7 @@ public class Isla extends Thread implements i_Nodo{
 			Av=new Solucion();
 			// Inserto las Reglas Asignadas
 			for(int i=Av.getTamaño_solucion();i<poblacion;i++){
-				int indiceDatoEntrenamiento=Gen_Aleatorio.Randint(0,datosEntrenamiento.getTamaño_conjunto_entrenamiento()-1);
+				int indiceDatoEntrenamiento=Gen_Aleatorio.Randint(0,datosEntrenamiento.getTamanho_conjunto_entrenamiento()-1);
 				Regla Nuevo=Operador.Sembrado(datosEntrenamiento.get_EjemploFuzzy(indiceDatoEntrenamiento));
 				Nuevo.evaluar_solucion(datosEntrenamiento);
 				numeroEvaluaciones++;
@@ -584,18 +584,18 @@ public class Isla extends Thread implements i_Nodo{
 	 */
 	
 	private void Recibir_Datos_Entrenamiento(Solucion reglas_asignadas, Dataset _datosEntrenamiento){
-		param.depura("RECIBIENDO DATOS DE ENTRENAMIENTO ... Nodo " + this +" Nº Datos: "+ _datosEntrenamiento.getTamaño_conjunto_entrenamiento(),1);
-		if (_datosEntrenamiento.getTamaño_conjunto_entrenamiento()>0){
+		param.depura("RECIBIENDO DATOS DE ENTRENAMIENTO ... Nodo " + this +" Nº Datos: "+ _datosEntrenamiento.getTamanho_conjunto_entrenamiento(),1);
+		if (_datosEntrenamiento.getTamanho_conjunto_entrenamiento()>0){
 			if (eliminarEntrenamiento==true) 
 				datosEntrenamiento=_datosEntrenamiento;
 			else{
-				int num_ejemplos = _datosEntrenamiento.getTamaño_conjunto_entrenamiento();
+				int num_ejemplos = _datosEntrenamiento.getTamanho_conjunto_entrenamiento();
 				EjemploFuzzy ej= null;
 				for(int i = 0; i< num_ejemplos;i++ ){
 					ej = _datosEntrenamiento.get_EjemploFuzzy(i).get_CopiaFuzzy();
 					datosEntrenamiento.Insertar_Ejemplo(ej);
 				}
-				param.depura("DATOS DE ENTRENAMIENTO Total... Nodo " + this +" Nº Datos: "+ datosEntrenamiento.getTamaño_conjunto_entrenamiento(),1);
+				param.depura("DATOS DE ENTRENAMIENTO Total... Nodo " + this +" Nº Datos: "+ datosEntrenamiento.getTamanho_conjunto_entrenamiento(),1);
 			}
 		}
 		else 
@@ -633,7 +633,7 @@ public class Isla extends Thread implements i_Nodo{
 			}
 					
 			for(int i=Av.getTamaño_solucion();i<poblacion;i++){
-				int indiceDatoEntrenamiento=Gen_Aleatorio.Randint(0,datosEntrenamiento.getTamaño_conjunto_entrenamiento()-1);
+				int indiceDatoEntrenamiento=Gen_Aleatorio.Randint(0,datosEntrenamiento.getTamanho_conjunto_entrenamiento()-1);
 				Regla Nuevo=Operador.Sembrado(datosEntrenamiento.get_EjemploFuzzy(indiceDatoEntrenamiento));
 				Nuevo.evaluar_solucion(datosEntrenamiento);
 				numeroEvaluaciones++;

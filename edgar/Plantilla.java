@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import Dataset.Attribute;
 import Dataset.Attributes;
 
+/**
+ * @author Daniel Albendín
+ *	Cambio reciente: Fecha 10-02-2015. Se ha agregado cobertura en trapezoidales y triangulares
+ */
 public class Plantilla 
 {
 	 // JMGM
@@ -37,6 +41,7 @@ public class Plantilla
 	 private ArrayList valoresClase;
 	 private int numeroClases;
 	 private int contadorClases[];
+	 private i_Cobertura cob;
 	 // constructor de copia de plantilla
 	 public Plantilla(Plantilla plantilla, ArrayList[] particiones) {
 		// TODO Auto-generated constructor stub
@@ -58,7 +63,7 @@ public class Plantilla
 		 for(int i=0;i<longitud;i++)
 		 {
 			 this.valoresAtributos[i] = new ArrayList();
-			
+
 			 
 			 //******** !OJO copiar el array list de una plantilla a la otra 
 //			  if((tiposAtributos[i] == Attribute.NOMINAL)){;
@@ -90,6 +95,20 @@ public class Plantilla
 			 
 		 } //for j
 		 }//for i
+		 
+		 //<-- Daniel Albendín 
+		 // Cuando creamos la plantilla con un constructor de copia creamos el tipo de cobertura que queremos implementar
+		 // CAMBIO FUTURO POSIBLE -> Cambiar esto para tener plantillas que implementen distintos tipos de cobertura
+		 // Pensar si tiene sentido
+		 
+			if(Parametros.getInstancia_Parametros().getCobertura()==0){
+	            cob = new C_Trapezoidal(this.valoresAtributos);
+	           }
+	           else{
+	            cob = new C_Triangular(this.valoresAtributos);
+	           }
+
+		//-->
 	}
 	 /**
 		 * Numero de atributos que son numericos y por tanto se pueden optimizar sus particiones
@@ -283,6 +302,30 @@ public class Plantilla
 	public Attribute get_Atributoi(int i){
 		return Attributes.getInputAttribute(i);
 	}
+	
+	/**
+	 *  Crea un objeto que implementa la interfaz i_Cobertura dependiendo del valor que indiquemos en los parametros globales 
+	 */
+	public void CrearCobertura(){
+		if(Parametros.getInstancia_Parametros().getCobertura()==0){
+            cob = new C_Trapezoidal(this.valoresAtributos);
+           }
+           else{
+            cob = new C_Triangular(this.valoresAtributos);
+           }
+	}
+	
+	/**
+	 * 
+	 * @param posicion_regla	Intervalo del atributo de una regla que está activo.
+	 * @param valor				Valor del ejemplo el cual hay que ver si la regla lo cubre
+	 * @param indAtr			Indice del atributo de la regla que estamos analizando
+	 * @param sizeAtr			Tamaño del atributo[indAtr]
+	 * @return Devuelve la altura [0,1] del cumplimiento de un atributo en una regla (0) si la parte del atributo que estamos analizando no cubre el valor
+	 */
+	public Double getCobertura(int posicion_regla,Double valor, int indAtr, int sizeAtr) {
+		return cob.GetCobertura(posicion_regla,valor,indAtr,sizeAtr);
+    }
 	
 	
 }

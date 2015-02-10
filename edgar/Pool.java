@@ -97,7 +97,7 @@ public class Pool extends Thread implements i_Supervisor{
 				 
 		 System.out.println(" Supervisor starts  ");
 		Dataset ejemplos_aux=new Dataset();
-		for (int i=0;i<ejemplos.getTamaño_conjunto_entrenamiento();i++){
+		for (int i=0;i<ejemplos.getTamanho_conjunto_entrenamiento();i++){
 			ejemplos_aux.Insertar_Ejemplo(ejemplos.get_EjemploFuzzy(i).get_CopiaFuzzy());
 		}
 	
@@ -120,7 +120,7 @@ public class Pool extends Thread implements i_Supervisor{
 					
 				param_globales.depura(" Supervisor concepto actual: " +concepto.get_texto_solucion_Completa(),0);
 				param_globales.depura(" Supervisor número Reglas del concepto actual: " +concepto.getTamaño_solucion(),-1);
-				param_globales.depura("Casos no cubiertos: "+ concepto.get_Ejemplos_No_Cubiertos(ejemplos).getTamaño_conjunto_entrenamiento(),-1);
+				param_globales.depura("Casos no cubiertos: "+ concepto.get_Ejemplos_No_Cubiertos(ejemplos).getTamanho_conjunto_entrenamiento(),-1);
 		
 			//cambiado criterio a mejora de clasificador  //
 			double porcentaje_actual =porcentajeClasificadorGM(); //MARR 2011/01/14 calculart GM; 

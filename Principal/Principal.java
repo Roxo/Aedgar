@@ -213,8 +213,8 @@ public class Principal   {
 
 		Texto_Resultado += "Número de hilos: " + param.get_Numero_Nodos()
 				+ "\n";
-		double ejemplosNodo = (param.get_repartir_entrenamiento_nodos()==true ? (ejemplos_train.getTamaño_conjunto_entrenamiento() / param
-				.get_Numero_Nodos()) : ejemplos_train.getTamaño_conjunto_entrenamiento());
+		double ejemplosNodo = (param.get_repartir_entrenamiento_nodos()==true ? (ejemplos_train.getTamanho_conjunto_entrenamiento() / param
+				.get_Numero_Nodos()) : ejemplos_train.getTamanho_conjunto_entrenamiento());
 		Texto_Resultado += "Ejemplos de entrenamientos distribuidos por nodo "	+ ejemplosNodo; 
 		Texto_Resultado += "\nSemilla: " + param.get_Semilla() + "\n";
 		Texto_Resultado += "Epocas sin mejora para parar: "
@@ -242,7 +242,7 @@ public class Principal   {
 		
 		
 		
-		Texto_Resultado += "\nTamaño Entrenamiento:      "+ejemplos_train.getTamaño_conjunto_entrenamiento()
+		Texto_Resultado += "\nTamaño Entrenamiento:      "+ejemplos_train.getTamanho_conjunto_entrenamiento()
 		+ "\nEvaluaciones:     "+ _Num_Evaluaciones
 		+ "\nEvaluaciones*datos:     "+ _Num_EvaluacionesDesglosado
 		+ "\nComunicaciones    "+ _Num_Comunicaciones;
@@ -362,7 +362,7 @@ public class Principal   {
 		
 		String Texto_Resumen = prefijo+","+ particion+ "," + etiqueta +"," +  param.get_Numero_Nodos() +","  + param.getPoblacion()+ ","+ param.get_num_poco_representados()+"," 
 		+ param.get_Semilla() + "," +param.get_Topologia() +"," +  param.getClaseObjetivo()+ "," + param.get_Numero_Maximo_Epocas_Sin_Mejora() +  ","  + 
-		minutos_empleados + "," + ejemplos_train.getTamaño_conjunto_entrenamiento() + "," + _Num_Evaluaciones +"," +  _Num_EvaluacionesDesglosado +
+		minutos_empleados + "," + ejemplos_train.getTamanho_conjunto_entrenamiento() + "," + _Num_Evaluaciones +"," +  _Num_EvaluacionesDesglosado +
 		","+ _Num_Comunicaciones +  "," + conjunto_reglas.getTamaño_solucion() + ","+ (numAciertosTst / (double) ResultadoClasificaciontst.length)+ 
 		"," + (numAciertosTra / (double) ResultadoClasificaciontra.length)+ Texto_Clases+ "\n";
 		System.out.println("Etiqueta	 Nodos	 Poblacion	 Representados	 Topologia	 Objetivo	 EpocasMejora	 Tiempo	T Grid	 Ejemplos	 Evaluaciones	 Evaluaciones*d	Comunicaciones	Reglas	%test	 %Entrenamiento");

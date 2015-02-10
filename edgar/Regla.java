@@ -14,6 +14,13 @@ import Dataset.Attribute;
  * 						- modificada getCopia(), para tener en cuenta enviada (lo copia).  
  *  *
  */
+
+/**
+ * @author Daniel Albendín
+ *	Cambio reciente: Fecha 10-02-2015. Se ha agregado la funcionalidad de aproximativo. (Permite que la plantilla
+ *  sea perteneciente a cada regla o una global.
+ */
+
 public class Regla extends Cromosoma {
 	
 	private double fitness;
@@ -108,7 +115,6 @@ public class Regla extends Cromosoma {
 	}
 	
 	public Regla(){
-//TODO IF APROXIMATIVO SIEMPRE CAMBIAR EL CROMOSOMA
 				this(Parametros.getInstancia_Parametros().getPlantilla());
 	}
 	
@@ -275,16 +281,8 @@ public class Regla extends Cromosoma {
 	            
 	            Double altura = 0.0;
 	   	//<-- Albendín
+	            altura = plantilla.getCobertura(posicion_regla,valor,indAtr,valores[indAtr].size());
 	    /////////////////////////////TRAPEZOIDAL/////////////////////////
-	           if(Parametros.getInstancia_Parametros().getCobertura()==0){
-	            i_Cobertura trap = new C_Trapezoidal(valores,indAtr);
-	            altura = trap.GetCobertura(posicion_regla,valor);
-	           }
-	     /////////////////////////////TRIANGULAR/////////////////////////
-	           else{
-	            i_Cobertura tri = new C_Triangular(valores,indAtr);
-	            altura = tri.GetCobertura(posicion_regla,valor);
-	           }
 	            //-->
 	            /*          ArrayList[] valoresT = cambiarTriangulos(valores,indAtr);
 	            Double min;
@@ -555,7 +553,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 	
 	
 	public void EliminaEntrenamiento(Dataset datosEntrenamiento){
-		int num_ejemplos = datosEntrenamiento.getTamaño_conjunto_entrenamiento();
+		int num_ejemplos = datosEntrenamiento.getTamanho_conjunto_entrenamiento();
 		for (int i=num_ejemplos-1;i>=0;i-- ){
 			if (Cubre_Ejemplo_Pos(datosEntrenamiento.get_EjemploFuzzy(i)) )
 				datosEntrenamiento.Eliminar_Ejemplo(i);
@@ -782,7 +780,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 		for(int i=0;i<plantilla.get_numero_Clases();i++)
 			set_num_ejemplos_cubiertos(i,0);
 		
-		for(int i=0;i<datosEntrenamiento.getTamaño_conjunto_entrenamiento();i++){
+		for(int i=0;i<datosEntrenamiento.getTamanho_conjunto_entrenamiento();i++){
 			EjemploFuzzy ej=datosEntrenamiento.get_EjemploFuzzy(i);
 			//Si el ejemplo cumple la parte de la izquierda, incrementamos en 1 la clase correspondiente de la regla.
 			if(Cubre_Ejemplo(ej)>Parametros.getInstancia_Parametros().getCoberturaFuzzy()){
@@ -843,7 +841,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 
 	public int numeroEjemplosCubierto(Dataset ejemplos){
 		int numEjCubiertos=0;
-		for(int i=0;i<ejemplos.getTamaño_conjunto_entrenamiento();i++){
+		for(int i=0;i<ejemplos.getTamanho_conjunto_entrenamiento();i++){
 			EjemploFuzzy ej=ejemplos.get_EjemploFuzzy(i);
 			if ((Cubre_Ejemplo(ej)>Parametros.getInstancia_Parametros().getCoberturaFuzzy()) && (getClase()==ej.getClase())) numEjCubiertos++; // chapuza
 		}
@@ -853,7 +851,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 	
 	public int numeroEjemplosNoCumpleClase(Dataset ejemplos){
 		int numEjCubiertos=0;
-		for(int i=0;i<ejemplos.getTamaño_conjunto_entrenamiento();i++){
+		for(int i=0;i<ejemplos.getTamanho_conjunto_entrenamiento();i++){
 			EjemploFuzzy ej=ejemplos.get_EjemploFuzzy(i);
 			if ((Cubre_Ejemplo(ej) > Parametros.getInstancia_Parametros().getCoberturaFuzzy()) && (getClase()!=ej.getClase())) numEjCubiertos++; // chapuza
 		}

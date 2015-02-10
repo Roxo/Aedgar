@@ -79,7 +79,7 @@ public class Dataset {
 		return SubConjuntos;
 	}
 
-	public int getTamaño_conjunto_entrenamiento() {
+	public int getTamanho_conjunto_entrenamiento() {
 		return set_entrenamiento.size();
 	}
 

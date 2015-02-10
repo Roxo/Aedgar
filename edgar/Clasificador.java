@@ -177,7 +177,7 @@ public class Clasificador extends Thread implements i_Nodo{
 		costes.add_Comunicaciones(numero_soluciones_enviadas);
 		numero_soluciones_enviadas=0;
 		costes.add_Evaluaciones(numero_evaluaciones);
-		costes.add_EvaluacionesDesglosado(numero_evaluaciones*datosEntrenamiento.getTamaño_conjunto_entrenamiento());
+		costes.add_EvaluacionesDesglosado(numero_evaluaciones*datosEntrenamiento.getTamanho_conjunto_entrenamiento());
 		
 		numero_evaluaciones=0;
 		Parametros.getInstancia_Parametros().depura(" El Clasificador  ha finalizado la búsqueda ",-1);

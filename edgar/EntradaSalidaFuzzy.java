@@ -52,7 +52,6 @@ public class EntradaSalidaFuzzy {
 				plantilla.set_tiposAtributos(_tiposAtributos);
 				plantilla.set_plantillaAtributos(_plantillaAtributos);
 				plantilla.set_ValoresAtributos(_ValoresAtributos);
-				
 				// Ahora leo los datos de los atributos de salida, en el caso del clasificador tan solo es la clase a la que pertenece
 				auxAtributo = Attributes.getOutputAttribute(0);
 			    
@@ -241,7 +240,10 @@ public class EntradaSalidaFuzzy {
 			}
 
 			plantilla.setContadorClases(porcentajeClases);
-			
+//<-- Albendín CoberturaGeneral. Una cobertura cada vez que se cree una plantilla
+			plantilla.CrearCobertura();
+//-->
+
 			
 			return Nuevos_Datos_Entrenamiento;
 

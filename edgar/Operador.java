@@ -414,9 +414,9 @@ public class Operador {
 		ArrayList Indices_Poblacion_Total=new ArrayList();
 		int Individuos_Votan[];
 		
-		for(int i=0;i<datosEntrenamiento.getTamaño_conjunto_entrenamiento();i++) Indices_Poblacion_Total.add(new Integer(i));
+		for(int i=0;i<datosEntrenamiento.getTamanho_conjunto_entrenamiento();i++) Indices_Poblacion_Total.add(new Integer(i));
 		
-		if(num_Individuos_Votan<datosEntrenamiento.getTamaño_conjunto_entrenamiento()){
+		if(num_Individuos_Votan<datosEntrenamiento.getTamanho_conjunto_entrenamiento()){
 			Individuos_Votan=new int[num_Individuos_Votan];
 			for(int i=0;i<num_Individuos_Votan;i++){
 				int indice_aleatorio=param_globales.get_GeneradorAleatorio().Randint(0,Indices_Poblacion_Total.size()-1);
@@ -427,7 +427,7 @@ public class Operador {
 		}else{  // En el caso de que queden menos o igual número de ejemplos que ejemplos hay que selecionas
 			//num_Individuos_Votan=ejemplos.getTamaño_conjunto_entrenamiento();
 			
-			num_Individuos_Votan=datosEntrenamiento.getTamaño_conjunto_entrenamiento();
+			num_Individuos_Votan=datosEntrenamiento.getTamanho_conjunto_entrenamiento();
 			Individuos_Votan=new int[num_Individuos_Votan];
 			for(int i=0;i<num_Individuos_Votan;i++) Individuos_Votan[i]=Integer.parseInt(Indices_Poblacion_Total.get(i)+"");
 			
@@ -443,7 +443,7 @@ public class Operador {
 			// Obtengo el votante
 			int indice_votante=Individuos_Votan[i];
 			
-	         if (indice_votante > datosEntrenamiento.getTamaño_conjunto_entrenamiento())
+	         if (indice_votante > datosEntrenamiento.getTamanho_conjunto_entrenamiento())
 	        	 System.out.println(datosEntrenamiento);//para capturar el problema 
 			EjemploFuzzy votante=new EjemploFuzzy(); 
 				try{votante=(EjemploFuzzy)datosEntrenamiento.get_EjemploFuzzy(indice_votante);}
@@ -485,9 +485,9 @@ public class Operador {
 		ArrayList Indices_Poblacion_Total=new ArrayList();
 		int Individuos_Votan[];
 		
-		for(int i=0;i<ejemplos.getTamaño_conjunto_entrenamiento();i++) Indices_Poblacion_Total.add(new Integer(i));
+		for(int i=0;i<ejemplos.getTamanho_conjunto_entrenamiento();i++) Indices_Poblacion_Total.add(new Integer(i));
 		
-		if(num_Individuos_Votan<ejemplos.getTamaño_conjunto_entrenamiento()){
+		if(num_Individuos_Votan<ejemplos.getTamanho_conjunto_entrenamiento()){
 			Individuos_Votan=new int[num_Individuos_Votan];
 			for(int i=0;i<num_Individuos_Votan;i++){
 				int indice_aleatorio=param_globales.get_GeneradorAleatorio().Randint(0,Indices_Poblacion_Total.size()-1);
@@ -498,7 +498,7 @@ public class Operador {
 		}else{  // En el caso de que queden menos o igual número de ejemplos que ejemplos hay que selecionas
 			//num_Individuos_Votan=ejemplos.getTamaño_conjunto_entrenamiento();
 			
-			num_Individuos_Votan=ejemplos.getTamaño_conjunto_entrenamiento();
+			num_Individuos_Votan=ejemplos.getTamanho_conjunto_entrenamiento();
 			Individuos_Votan=new int[num_Individuos_Votan];
 			for(int i=0;i<num_Individuos_Votan;i++) Individuos_Votan[i]=Integer.parseInt(Indices_Poblacion_Total.get(i)+"");
 			
@@ -513,7 +513,7 @@ public class Operador {
 		for (int i=0;i<num_Individuos_Votan;i++){
 			// Obtengo el votante
 			int indice_votante=Individuos_Votan[i];
-	         if (indice_votante > ejemplos.getTamaño_conjunto_entrenamiento())
+	         if (indice_votante > ejemplos.getTamanho_conjunto_entrenamiento())
 	        	 System.out.println(ejemplos);//para capturar el problema 
 			EjemploFuzzy votante= ejemplos.get_EjemploFuzzy(indice_votante);
 			Solucion reglas_cubren_Ejemplo=new Solucion();
@@ -567,7 +567,7 @@ public class Operador {
 			}
 			
 		
-			r=((double)(n_positivo_parent1+n_negativo_parent1+n_positivo_parent2+n_negativo_parent2)/(double)(ejemplos.getTamaño_conjunto_entrenamiento()^2));
+			r=((double)(n_positivo_parent1+n_negativo_parent1+n_positivo_parent2+n_negativo_parent2)/(double)(ejemplos.getTamanho_conjunto_entrenamiento()^2));
 			Parametros param_globales=Parametros.getInstancia_Parametros();
 			
 			double a=param_globales.get_a();
@@ -842,7 +842,7 @@ private static double valor_medio(double inicio, double fin,double valor) {
 	public static Solucion TokenCompetition(Dataset ejemplos,Solucion Reglas,int m)
 	{
 		int num_reglas = Reglas.getTamaño_solucion();
-		int num_ejemplos = ejemplos.getTamaño_conjunto_entrenamiento();
+		int num_ejemplos = ejemplos.getTamanho_conjunto_entrenamiento();
 		
 		double fitness_reglas[] = new double[num_reglas];
 		

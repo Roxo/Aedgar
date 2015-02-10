@@ -114,7 +114,7 @@ public class Solucion {
 		int cont_reglas = 0;
 		ArrayList indice_ejemplos_No_Cubiertos = new ArrayList();
 		for (int i = 0; i < conjunto_ejemplos
-				.getTamaño_conjunto_entrenamiento(); i++) {
+				.getTamanho_conjunto_entrenamiento(); i++) {
 			indice_ejemplos_No_Cubiertos.add(new Integer(i));
 		}
 
@@ -161,7 +161,7 @@ public class Solucion {
 	public Dataset get_Ejemplos_Poco_Cubiertos(
 			Dataset datosEntrenamiento,int n,boolean eliminar) {
 		
-		int num_ejemplos =datosEntrenamiento.getTamaño_conjunto_entrenamiento();
+		int num_ejemplos =datosEntrenamiento.getTamanho_conjunto_entrenamiento();
         int cont_ejemplos[][] = new int[num_ejemplos][2];
 		int cont_reglas = 0;
 		
@@ -203,11 +203,11 @@ public class Solucion {
 	
 	public int[][] Clasificar(Dataset ejemplos)
 	{
-		int [][] resultado_clasificacion=new int[ejemplos.getTamaño_conjunto_entrenamiento()][2];
+		int [][] resultado_clasificacion=new int[ejemplos.getTamanho_conjunto_entrenamiento()][2];
 		
 		int num_reglas = set_reglas.size();
 		
-		for (int i=0;i<ejemplos.getTamaño_conjunto_entrenamiento();i++)
+		for (int i=0;i<ejemplos.getTamanho_conjunto_entrenamiento();i++)
 		{		
 			EjemploFuzzy ej=ejemplos.get_EjemploFuzzy(i);	
 			int clase=0;
@@ -303,11 +303,11 @@ public class Solucion {
 // TODO Plantilla no se está usando. Corregir.	
 	public int[][] Clasificar(Dataset ejemplos, Plantilla plan)
 	{
-		int [][] resultado_clasificacion=new int[ejemplos.getTamaño_conjunto_entrenamiento()][2];
+		int [][] resultado_clasificacion=new int[ejemplos.getTamanho_conjunto_entrenamiento()][2];
 		
 		int num_reglas = set_reglas.size();
 		
-		for (int i=0;i<ejemplos.getTamaño_conjunto_entrenamiento();i++)
+		for (int i=0;i<ejemplos.getTamanho_conjunto_entrenamiento();i++)
 		{		
 			EjemploFuzzy ej=ejemplos.get_EjemploFuzzy(i);	
 			int clase=0;
@@ -583,7 +583,7 @@ public class Solucion {
 		int cont_reglas=0;			
 		ArrayList indice_ejemplos_No_Cubiertos=new ArrayList();
 		
-		for (int i=0;i<datosEntrenamiento.getTamaño_conjunto_entrenamiento();i++){
+		for (int i=0;i<datosEntrenamiento.getTamanho_conjunto_entrenamiento();i++){
 			indice_ejemplos_No_Cubiertos.add(new Integer(i));
 		}		
 		
@@ -606,7 +606,7 @@ public class Solucion {
 			{
 				while(i<indice_ejemplos_No_Cubiertos.size()){
 					int ind_Ejemplo=Integer.parseInt(indice_ejemplos_No_Cubiertos.get(i)+"");
-					if (ind_Ejemplo > datosEntrenamiento.getTamaño_conjunto_entrenamiento())
+					if (ind_Ejemplo > datosEntrenamiento.getTamanho_conjunto_entrenamiento())
 						ind_Ejemplo--;//excusa para pararlo aqui
 					EjemploFuzzy ej=datosEntrenamiento.get_EjemploFuzzy(ind_Ejemplo);
 					
@@ -624,7 +624,7 @@ public class Solucion {
 				while(i<indice_ejemplos_No_Cubiertos.size())
 				{
 					int ind_Ejemplo=Integer.parseInt(indice_ejemplos_No_Cubiertos.get(i)+"");
-					if (ind_Ejemplo > datosEntrenamiento.getTamaño_conjunto_entrenamiento())
+					if (ind_Ejemplo > datosEntrenamiento.getTamanho_conjunto_entrenamiento())
 						ind_Ejemplo--;//excusa para pararlo aqui
 					EjemploFuzzy ej=datosEntrenamiento.get_EjemploFuzzy(ind_Ejemplo);
 					

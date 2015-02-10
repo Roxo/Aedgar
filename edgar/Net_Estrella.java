@@ -61,9 +61,9 @@ public class Net_Estrella implements NET{
 	
 	public void EnviarDatosEntrenamiento(int ident_Nodo, Dataset nuevosDatosEntrenamientos){
 		synchronized(buffer_datos_entrenamientos){
-			param.depura("Nodo("+ident_Nodo+") ENVIA DATOS "+nuevosDatosEntrenamientos.getTamaño_conjunto_entrenamiento() +" NET ANILLO ..." ,1);	
+			param.depura("Nodo("+ident_Nodo+") ENVIA DATOS "+nuevosDatosEntrenamientos.getTamanho_conjunto_entrenamiento() +" NET ANILLO ..." ,1);	
 			
-			for (int i=0;i<nuevosDatosEntrenamientos.getTamaño_conjunto_entrenamiento();i++)
+			for (int i=0;i<nuevosDatosEntrenamientos.getTamanho_conjunto_entrenamiento();i++)
 						buffer_datos_entrenamientos.Insertar_Ejemplo_SinRepeticion(nuevosDatosEntrenamientos.get_EjemploFuzzy(i));
 		}
 	}
@@ -71,16 +71,16 @@ public class Net_Estrella implements NET{
 	public  Dataset Get_Datos_Entrenamiento (int Nodo){
 		Dataset datosEntrenamiento = new Dataset();
 		synchronized(buffer_datos_entrenamientos){
-			if(buffer_datos_entrenamientos.getTamaño_conjunto_entrenamiento() >0){
+			if(buffer_datos_entrenamientos.getTamanho_conjunto_entrenamiento() >0){
 				// Primero asigno los datos de entrenamiento
-				int particion = buffer_datos_entrenamientos.getTamaño_conjunto_entrenamiento()/param.get_Numero_Nodos();
+				int particion = buffer_datos_entrenamientos.getTamanho_conjunto_entrenamiento()/param.get_Numero_Nodos();
 				for (int i = particion; i>0;i--){
 					int indice = param.get_GeneradorAleatorio().Randint(0,i-1);
 				
 					datosEntrenamiento.Insertar_Ejemplo_SinRepeticion(buffer_datos_entrenamientos.get_EjemploFuzzy(indice));
 					buffer_datos_entrenamientos.Eliminar_Ejemplo(indice);
 				}
-				param.depura("Nodo(" +Nodo + "): Ha obtenido "+ datosEntrenamiento.getTamaño_conjunto_entrenamiento()+" Datos de entrenamiento ...",2);
+				param.depura("Nodo(" +Nodo + "): Ha obtenido "+ datosEntrenamiento.getTamanho_conjunto_entrenamiento()+" Datos de entrenamiento ...",2);
 			}
 		}
 		return datosEntrenamiento;

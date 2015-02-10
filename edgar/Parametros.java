@@ -54,9 +54,11 @@ public class Parametros {
 	 private boolean formatoDatosTra = true; //Depende de si los ficheros de entrada vieen con terminación .tst y tra (false)  o tra.dat y tst.dat (true)
 	 // Parámetros utilizados para el modelo distribuido
 	 // Albendín
-	 private int cobertura = 0; //Forma de cobertura de la regla;
+	 private int cobertura = 1; //Forma de cobertura de la regla;
 	 							//0 -> Trapezoides
 	 							//1 -> Triangular
+	 private boolean aproximativo = false;
+
 	 private double ratio_migracion_nu=0.1;
 	 private double ratio_adaptacion_foraneo_P=0.1; 
 	 //inicialmente 0.1, indica los elementos de la red forzados a participar en la seleccion y cruce. 
@@ -95,7 +97,6 @@ public class Parametros {
 
 	private int tipo_de_discretizador = 1;
 
-	private boolean aproximativo = true;
 
 	 public boolean isFuzzy() {
 			return fuzzy;
