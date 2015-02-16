@@ -79,11 +79,11 @@ public class C_Triangular implements i_Cobertura{
 		Double alto=0.0;
 		Double fin=0.0;
 		Double altura=0.0;
-		
+		inicio = (Double)ptos_triangulos[indAtr].get(posicion_regla);
+		alto = (Double)ptos_triangulos[indAtr].get(posicion_regla+1);
+		fin = (Double)ptos_triangulos[indAtr].get(posicion_regla+2);
+
 		if(posicion_regla == 0){
-			inicio = (Double)ptos_triangulos[indAtr].get(0);
-			alto = (Double)ptos_triangulos[indAtr].get(1);
-			fin = (Double)ptos_triangulos[indAtr].get(posicion_regla+2);		
 			if(valor >= inicio && valor<=alto){
 				altura = 1.0;
 			}
@@ -93,9 +93,6 @@ public class C_Triangular implements i_Cobertura{
 			return altura;
 		}
 		else if(posicion_regla == sizeAtr-1){
-			inicio = (Double)ptos_triangulos[indAtr].get(posicion_regla);
-			alto = (Double)ptos_triangulos[indAtr].get(posicion_regla+1);
-			fin = (Double)ptos_triangulos[indAtr].get(posicion_regla+2);			
 			if(valor >= inicio && valor<=alto){
 	            altura = (valor - inicio.doubleValue()) / (alto.doubleValue() - inicio.doubleValue());
 			}
@@ -105,11 +102,7 @@ public class C_Triangular implements i_Cobertura{
 			return altura;
 
 		}
-		else{
-			inicio = (Double)ptos_triangulos[indAtr].get(posicion_regla);
-			alto = (Double)ptos_triangulos[indAtr].get(posicion_regla+1);
-			fin = (Double)ptos_triangulos[indAtr].get(posicion_regla+2);
-		}
+
 		if(valor == alto){
 			altura = 1.0;
 		}

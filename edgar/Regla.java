@@ -349,6 +349,16 @@ public class Regla extends Cromosoma {
 		
 	}
 
+	/**
+	 * 
+	 * Antes se calculaban los puntos del triángulo en este método, lo hemos cambiado para que use el método getCobertura de la plantilla que se le pasa
+	 * por parámetros.
+	 * 
+	 * @param indAtr
+	 * @param ej
+	 * @param plan
+	 * @return
+	 */
 	public Double cumple_Atributo(int indAtr, EjemploFuzzy ej, Plantilla plan)
 	{
 		Double cumpleAtr=1.0;
@@ -417,39 +427,15 @@ public class Regla extends Cromosoma {
 				
 				ArrayList[] valores = plan.get_ValoresAtributos();
 				
-				Double min;
-				
-				if(posicion_regla==0)
-					min = (Double)valores[indAtr].get(posicion_regla);
-				else
-					min = (Double)valores[indAtr].get(posicion_regla-1);
-				
-				Double centro = (Double)valores[indAtr].get(posicion_regla);
-				
-				Double max;
-				
-				if(posicion_regla == plan.numValoresAtributo(indAtr)-1)
-					max = (Double)valores[indAtr].get(posicion_regla);
-				else
-					max = (Double)valores[indAtr].get(posicion_regla+1);
-				
-				if(valor.doubleValue() >= min.doubleValue() && valor.doubleValue() <= max.doubleValue())
-				{
-					double altura = 0;
-					if(valor.doubleValue() < centro.doubleValue())
-						altura = (valor - min.doubleValue()) / (centro.doubleValue() - min.doubleValue());
-					
-					else if(valor.doubleValue() == centro.doubleValue())
-						altura = 1;
-					
-					else
-						altura = (max.doubleValue() - valor) / (max.doubleValue() - centro.doubleValue());
-					
+	            Double altura = 0.0;
+	   	//<-- Albendín Cobertura en plantilla2
+	            altura = plan.getCobertura(posicion_regla,valor,indAtr,valores[indAtr].size());
+			//-->		
 					
 					if(altura>mayorH0)
 						mayorH0 = altura;
 				}
-			}
+			
 			
 			return mayorH0;
 		}
@@ -506,6 +492,12 @@ public class Regla extends Cromosoma {
 		return menor_h0;
 	}
 	
+/*
+ * Anteriormente no hacía nada con la plantilla, ahora hemos agregado la plantilla a cumple_atributo
+ * @param ej
+ * @param plan
+ * @return
+ */
 public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
  
 	if(ej==null)// ojo! investigar
@@ -531,7 +523,7 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 
             else
             {
-            	h0 = Math.abs(cumple_Atributo(posRealAtributoNumerico, ej));
+            	h0 = Math.abs(cumple_Atributo(posRealAtributoNumerico, ej,plan));
                 posRealAtributoNumerico++;
             }
             // se queda con la menor, porque se utiliza el operador de inferencia Min, es decir que siempre manda la menor h0

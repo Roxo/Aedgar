@@ -57,6 +57,7 @@ public class Parametros {
 	 private int cobertura = 1; //Forma de cobertura de la regla;
 	 							//0 -> Trapezoides
 	 							//1 -> Triangular
+	 							//2 -> Intervalar
 	 private boolean aproximativo = false;
 
 	 private double ratio_migracion_nu=0.1;
@@ -477,6 +478,15 @@ public class Parametros {
 		// TODO Auto-generated method stub
 		return aproximativo;
 	}
+	
+	
+	/**
+	 * @return
+			//0 -> Intervalar
+			//1 -> Trapezoidal
+	 		//2 -> Triangular
+
+	 */
 	public int getCobertura() {
 		return cobertura;
 	}

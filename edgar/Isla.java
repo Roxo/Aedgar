@@ -302,8 +302,10 @@ public class Isla extends Thread implements i_Nodo{
 //<-- Daniel Albendín APROXIMATIVO
 						// Probablemente haya que agregar un operador de mutación a una plantilla. ! ! ! 
 						if(Parametros.getInstancia_Parametros().aproximativo()){
-							Plantilla h1 = Operador.pcBlxAlpha(padre1.getPlantilla(),padre2.getPlantilla(),Gen_Aleatorio);
+							/*Plantilla h1 = Operador.pcBlxAlpha(padre1.getPlantilla(),padre2.getPlantilla(),Gen_Aleatorio);
 							Plantilla h2 = Operador.pcBlxAlpha(padre1.getPlantilla(),padre2.getPlantilla(),Gen_Aleatorio);
+							*/
+							Plantilla h1 = new Plantilla(padre1.getPlantilla());
 							hijo1 = new Regla(h1);
 							hijo2 = new Regla(h2);
 

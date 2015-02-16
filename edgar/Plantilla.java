@@ -55,7 +55,6 @@ public class Plantilla
 
 		 int longitud = plantilla.valoresAtributos.length;
 		 valoresAtributos = new ArrayList[longitud];
-//<-- Daniel Albendín APROXIMATIVO
 		 this.valoresClase = new ArrayList();
 		 for(int i=0;i<plantilla.valoresClase.size();i++){
 			 this.valoresClase.add(plantilla.valoresClase.get(i));
@@ -100,14 +99,20 @@ public class Plantilla
 		 // Cuando creamos la plantilla con un constructor de copia creamos el tipo de cobertura que queremos implementar
 		 // CAMBIO FUTURO POSIBLE -> Cambiar esto para tener plantillas que implementen distintos tipos de cobertura
 		 // Pensar si tiene sentido
-		 
-			if(Parametros.getInstancia_Parametros().getCobertura()==0){
+		 int cobertura = Parametros.getInstancia_Parametros().getCobertura();
+		 switch(cobertura){
+		 	case	0:
+		 		cob = new C_Intervalar(this.valoresAtributos);
+			 break;
+		 	case 1:
 	            cob = new C_Trapezoidal(this.valoresAtributos);
-	           }
-	           else{
+	            break;
+		 	case 2:
 	            cob = new C_Triangular(this.valoresAtributos);
-	           }
-
+	            break;
+	        default:
+	        	break;
+		 }
 		//-->
 	}
 	 /**
@@ -307,12 +312,20 @@ public class Plantilla
 	 *  Crea un objeto que implementa la interfaz i_Cobertura dependiendo del valor que indiquemos en los parametros globales 
 	 */
 	public void CrearCobertura(){
-		if(Parametros.getInstancia_Parametros().getCobertura()==0){
-            cob = new C_Trapezoidal(this.valoresAtributos);
-           }
-           else{
-            cob = new C_Triangular(this.valoresAtributos);
-           }
+		 int cobertura = Parametros.getInstancia_Parametros().getCobertura();
+		 switch(cobertura){
+		 	case	0:
+		 		cob = new C_Intervalar(this.valoresAtributos);
+			 break;
+		 	case 1:
+	            cob = new C_Trapezoidal(this.valoresAtributos);
+	            break;
+		 	case 2:
+	            cob = new C_Triangular(this.valoresAtributos);
+	            break;
+	        default:
+	        	break;
+		 }
 	}
 	
 	/**
