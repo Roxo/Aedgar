@@ -468,6 +468,11 @@ public class Principal   {
 	    		System.out.println(" tipoDeDiscretizador: " + args[12]);
 	    		Parametros.getInstancia_Parametros().set_tipo_de_discretizador((args[12]));
 	    	}
+	    	if (args.length>13)
+	    	{
+	    		System.out.println(" tipoCobertura: " + args[13]);
+	    		Parametros.getInstancia_Parametros().set_cobertura((args[13]));
+	    	}
 	    /*	if (args.length> 12)//v2  Prefijo para agrupar
 	    	{System.out.println(" Prefijo: " + args[12]);
 	    	p_etiqueta = args[12];

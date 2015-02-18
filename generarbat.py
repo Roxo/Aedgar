@@ -17,12 +17,12 @@ DstFolder = ["datos/ecoli-0_vs_1","datos/ecoli-0_vs_1Discretizado",
 "datos/iris0Discretizado","datos/new-thyroid1","datos/new-thyroid1Discretizado"]
 CarpetaResultados = "resultados/Fuzzy/"
 depuracion = "0"
-
+cobertura = "2"
 ############## Creamos ficheros bat y csv ####################
-c = csv.writer(open("ejecucion.csv", "wb"))
-f = open('ejecucion.bat','w')
-c.writerow(["echo","Etiqueta","Nodos","T_Pob","Representados","Semilla","Topologia","Objetivo","GenSinCom","epocas","Subcarpeta","Carpeta Resultados","Depuracion"])
-f.write("echo Etiqueta Nodos T_Pob Representados Semilla Topologia Objetivo GenSinCom epocas Subcarpeta Carpeta_Resultados Depuracion")
+c = csv.writer(open("ejecucion2.csv", "wb"))
+f = open('ejecucion2.bat','w')
+c.writerow(["echo","Etiqueta","Nodos","T_Pob","Representados","Semilla","Topologia","Objetivo","GenSinCom","epocas","Subcarpeta","Carpeta Resultados","Depuracion","Cobertura"])
+f.write("echo Etiqueta Nodos T_Pob Representados Semilla Topologia Objetivo GenSinCom epocas Subcarpeta Carpeta_Resultados Depuracion Cobertura")
 
 #################### Buscamos los ficheros que queremos y les quitamos el tra.dat ###################
 for j in DstFolder:
@@ -33,7 +33,7 @@ for j in DstFolder:
 			archivo = i.split("tra.dat")[0]
 			lista.append(archivo)
 	for i in lista:
-		c.writerow([ProgramCall,i,Nodes,TPob,Represented,Seed,Top,Obj,GnWCom,Seasons,j,CarpetaResultados])
-		f.write(ProgramCall+" "+i+" "+Nodes+" "+TPob+" "+Represented+" "+Seed+" "+Top+" "+Obj+" "+GnWCom+" "+Seasons+" "+j+ " "+CarpetaResultados+" "+depuracion+"\n")
+		c.writerow([ProgramCall,i,Nodes,TPob,Represented,Seed,Top,Obj,GnWCom,Seasons,j,CarpetaResultados,depuracion,cobertura])
+		f.write(ProgramCall+" "+i+" "+Nodes+" "+TPob+" "+Represented+" "+Seed+" "+Top+" "+Obj+" "+GnWCom+" "+Seasons+" "+j+ " "+CarpetaResultados+" "+depuracion+" "+cobertura+"\n")
 
 f.close()

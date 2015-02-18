@@ -490,6 +490,9 @@ public class Parametros {
 	public int getCobertura() {
 		return cobertura;
 	}
+	public void set_cobertura(String string) {
+		this.cobertura = Integer.parseInt(string);
+	}
  
 	
 	
