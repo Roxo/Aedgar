@@ -230,7 +230,8 @@ public class Plantilla
 	}
 	
 	public String valorAtributo(int numAributo, int numValor){
-		return (String) get_ValoresAtributos()[numAributo].get(numValor);
+		String devolver = ""+ get_ValoresAtributos()[numAributo].get(numValor);
+		return devolver;
 	}
 	
 	public String toString(){

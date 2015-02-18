@@ -457,7 +457,14 @@ public class CHCOptimizarParticiones {
 
 					for(int h=0;h<numParticiones;h++)
 					{
-						atributo.add(Integer.parseInt(""+mejorIndividuo[j].get(h)));
+						String mejor = ""+mejorIndividuo[j].get(h);
+						try{
+							Double aux = Double.parseDouble(mejor);
+							atributo.add(aux.intValue());
+						}catch(Exception e){
+							atributo.add(Integer.parseInt(mejor));
+						}
+						
 					}
 					
 					individuo[j] = atributo;

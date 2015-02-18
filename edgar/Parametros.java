@@ -490,6 +490,15 @@ public class Parametros {
 	public int getCobertura() {
 		return cobertura;
 	}
+	
+	/**
+	 * @string
+			//0 -> Intervalar
+			//1 -> Trapezoidal
+	 		//2 -> Triangular
+
+	 */
+
 	public void set_cobertura(String string) {
 		this.cobertura = Integer.parseInt(string);
 	}

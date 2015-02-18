@@ -52,7 +52,7 @@ public class EjemploFuzzy extends CromosomaFuzzy{
 		}
 		cromosoma=new char[numeroBits];
 		for(int i=0;i<numeroBits;i++) cromosoma[i]='0';
-		
+		int a = 0;
 	}
 	
 	public boolean atributo_evaluado(int indAtributo){
