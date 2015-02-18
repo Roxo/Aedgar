@@ -16,7 +16,7 @@ DstFolder = ["datos/ecoli-0_vs_1","datos/ecoli-0_vs_1Discretizado",
 "datos/habermanImb","datos/habermanImbDiscretizado","datos/iris0",
 "datos/iris0Discretizado","datos/new-thyroid1","datos/new-thyroid1Discretizado"]
 CarpetaResultados = "resultados/Fuzzy/"
-depuracion = "4"
+depuracion = "0"
 
 ############## Creamos ficheros bat y csv ####################
 c = csv.writer(open("ejecucion.csv", "wb"))
