@@ -46,6 +46,10 @@ public class C_Trapezoidal implements i_Cobertura{
 	C_Trapezoidal(ArrayList[] ptos_corte){
 		ptos_trap = new ArrayList[ptos_corte.length];
 		for(int j = 0;j<ptos_corte.length;j++){
+			try{
+				ptos_corte[j] = convertirpuntos(ptos_corte[j]);
+			}catch(Exception e){			
+			}
 			ptos_trap[j] = new ArrayList();
 			//Cojo el valor inicial de este atributo, que no se guarda en la plantilla.
 			ptos_trap[j].add(Attributes.getInputAttribute(j).getMinAttribute());
@@ -68,7 +72,22 @@ public class C_Trapezoidal implements i_Cobertura{
 		ptos_inicio[indAtr].add(pto_corte-(Double)pto_inicio);
 	}
 */
-	
+
+	/**
+	 * @param arrayList Lista de puntos (Valor String, si no, intentamos la conversión)
+	 * @return  Un nuevo ArrayList con los contenidos del que le pasamos por parametros convertidos a Double
+	 */
+
+	private ArrayList convertirpuntos(ArrayList arrayList) {
+		ArrayList ptos_nuevos=new ArrayList();
+		for(int i = 0; i<arrayList.size();i++){
+			String a = (String) arrayList.get(i);
+			Double agregar = Double.parseDouble(a);
+			ptos_nuevos.add(agregar);
+		}
+		return ptos_nuevos;
+	}
+
 	/**
 	 * @param ptos_corte -> Puntos de corte de un atributo
 	 * @param i			 -> Selecciona la posición de un atributo para calcular el alfa del trapecio
