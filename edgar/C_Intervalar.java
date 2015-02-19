@@ -41,7 +41,7 @@ public class C_Intervalar implements i_Cobertura{
 			this.ptos_corte[j] = new ArrayList();
 			this.ptos_corte[j].add(Attributes.getInputAttribute(j).getMinAttribute());
 			for (int i = 0; i<ptos_corte[j].size()-1; i++){
-				this.ptos_corte[j].add(ptos_corte[j]);
+				this.ptos_corte[j].add(ptos_corte[j].get(i));
 			}
 			Double ultimo_punto = (Double)ptos_corte[j].get(ptos_corte[j].size()-1);
 			this.ptos_corte[j].add(ultimo_punto);
@@ -80,8 +80,8 @@ public class C_Intervalar implements i_Cobertura{
 		Double altura=0.0;
 		inicio = (Double)ptos_corte[indAtr].get(posicion_regla);
 		fin = (Double)ptos_corte[indAtr].get(posicion_regla+1);
-
-		if(valor >= inicio && valor<=fin)
+//TODO El último punto no lo coge
+		if(valor >= inicio && valor<fin)
 			altura = 1.0;
 		return altura;
 			

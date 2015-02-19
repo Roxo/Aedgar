@@ -51,7 +51,11 @@ public class BufferMejoresReglas {
 		if (num_comunicaciones<nodos && Parametros.getInstancia_Parametros().get_Continuar_Busqueda() ) 
 			num_comunicaciones++;
 		else{
+			try{
 			buffer_comunicacion_mejores_reglas.notifyAll();
+			}catch(Exception e){
+				System.out.print("!__!_!_____!_______FALLO_____!____________!_!____!");
+			}
 			Parametros.getInstancia_Parametros().depura("Despertando al supervisor",0);
 			num_comunicaciones=0;
 		}

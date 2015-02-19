@@ -449,8 +449,13 @@ public class Principal   {
 	    	}
 	    	if (args.length>10)//v2 Para guardar restados por carpetas
 	    	{
-	    		System.out.println(" subdirectorio: " + args[10]);
-	    		Parametros.getInstancia_Parametros().set_carpeta_resultados((args[10]));
+	    		System.out.println(" tipoCobertura: " + args[10]);
+	    		Parametros.getInstancia_Parametros().set_cobertura((args[10]));
+	    	}
+		    if (args.length> 11)// v2 nivel depuracion
+	    	{
+	    		System.out.println(" subdirectorio: " + args[11]);
+	    		Parametros.getInstancia_Parametros().set_carpeta_resultados((args[11]));
 	    		File directorio = new File(Parametros.getInstancia_Parametros().get_carpeta_resultados());
 	    	
 			   if (directorio.mkdir())
@@ -458,20 +463,15 @@ public class Principal   {
 			   else
 			     System.out.println("No se ha podido crear el directorio");
 	    	}
-		    if (args.length> 11)// v2 nivel depuracion
-	    	{
-		    	System.out.println(" Depuracion: " + args[11]);
-		    	Parametros.getInstancia_Parametros().set_Nivel_Depuracion(Integer.parseInt(args[11]));
-	    	}
 	    	if (args.length>12)
 	    	{
-	    		System.out.println(" tipoDeDiscretizador: " + args[12]);
-	    		Parametros.getInstancia_Parametros().set_tipo_de_discretizador((args[12]));
+		    	System.out.println(" Depuracion: " + args[12]);
+		    	Parametros.getInstancia_Parametros().set_Nivel_Depuracion(Integer.parseInt(args[12]));
 	    	}
 	    	if (args.length>13)
 	    	{
-	    		System.out.println(" tipoCobertura: " + args[13]);
-	    		Parametros.getInstancia_Parametros().set_cobertura((args[13]));
+	    		System.out.println(" tipoDeDiscretizador: " + args[13]);
+	    		Parametros.getInstancia_Parametros().set_tipo_de_discretizador((args[13]));
 	    	}
 	    /*	if (args.length> 12)//v2  Prefijo para agrupar
 	    	{System.out.println(" Prefijo: " + args[12]);

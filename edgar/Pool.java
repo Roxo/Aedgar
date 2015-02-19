@@ -179,7 +179,7 @@ public class Pool extends Thread implements i_Supervisor{
 			/**
 			 *  Añado al if una condición, la de !aproximativo();
 			 */
-			if (param_globales.getOptimizaParticiones() && ((Regla)(concepto.getReglas().get(0))).plantilla.numeroAtributosNumericos() > 0 && !Parametros.getInstancia_Parametros().aproximativo())
+		/*	if (param_globales.getOptimizaParticiones() && ((Regla)(concepto.getReglas().get(0))).plantilla.numeroAtributosNumericos() > 0 && !Parametros.getInstancia_Parametros().aproximativo())
 		//-->
 			{
 				CHCOptimizarParticiones opt = new CHCOptimizarParticiones(ejemplos, concepto);
@@ -188,7 +188,7 @@ public class Pool extends Thread implements i_Supervisor{
 				ejemplos.plantilla.set_ValoresAtributos(valoresObtenidos);
 				
 				
-			}
+			}*/
 			
 			  // chc --ª modificando  los puntos de corte  y el fitness : calcular la clasificación sobre training. 
 			// cromosoma : plantilla
