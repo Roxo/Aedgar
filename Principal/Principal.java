@@ -447,15 +447,20 @@ public class Principal   {
 		    {System.out.println(" carpeta datos: " + args[9]);
 	    	Parametros.getInstancia_Parametros().set_carpeta_datos(args[9]+ "/");
 	    	}
-	    	if (args.length>10)//v2 Para guardar restados por carpetas
+	    	if (args.length>10)//v2 Tipo de cobertura
 	    	{
 	    		System.out.println(" tipoCobertura: " + args[10]);
 	    		Parametros.getInstancia_Parametros().set_cobertura((args[10]));
 	    	}
-		    if (args.length> 11)// v2 nivel depuracion
+	    	if (args.length>11)//v2 Tipo de cobertura
 	    	{
-	    		System.out.println(" subdirectorio: " + args[11]);
-	    		Parametros.getInstancia_Parametros().set_carpeta_resultados((args[11]));
+	    		System.out.println(" tipoCobertura: " + args[11]);
+	    		Parametros.getInstancia_Parametros().set_aproximativo((args[11]));
+	    	}
+		    if (args.length> 12)//v2 Para guardar restados por carpetas
+	    	{
+	    		System.out.println(" subdirectorio: " + args[12]);
+	    		Parametros.getInstancia_Parametros().set_carpeta_resultados((args[12]));
 	    		File directorio = new File(Parametros.getInstancia_Parametros().get_carpeta_resultados());
 	    	
 			   if (directorio.mkdir())
@@ -463,15 +468,15 @@ public class Principal   {
 			   else
 			     System.out.println("No se ha podido crear el directorio");
 	    	}
-	    	if (args.length>12)
+	    	if (args.length>13)// v2 nivel depuracion
 	    	{
-		    	System.out.println(" Depuracion: " + args[12]);
-		    	Parametros.getInstancia_Parametros().set_Nivel_Depuracion(Integer.parseInt(args[12]));
+		    	System.out.println(" Depuracion: " + args[13]);
+		    	Parametros.getInstancia_Parametros().set_Nivel_Depuracion(Integer.parseInt(args[13]));
 	    	}
-	    	if (args.length>13)
+	    	if (args.length>14)
 	    	{
-	    		System.out.println(" tipoDeDiscretizador: " + args[13]);
-	    		Parametros.getInstancia_Parametros().set_tipo_de_discretizador((args[13]));
+	    		System.out.println(" tipoDeDiscretizador: " + args[14]);
+	    		Parametros.getInstancia_Parametros().set_tipo_de_discretizador((args[14]));
 	    	}
 	    /*	if (args.length> 12)//v2  Prefijo para agrupar
 	    	{System.out.println(" Prefijo: " + args[12]);

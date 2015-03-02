@@ -170,13 +170,13 @@ public class EntradaSalida {
 		     f = new FileOutputStream(NombreFichero_Resultado);
 		     f.write(Cabecera.getBytes());
 //<-- Daniel Albendín - APROXIMATIVO
-		     if(!Parametros.getInstancia_Parametros().aproximativo()){
+		   //  if(!Parametros.getInstancia_Parametros().aproximativo()){
 		    	 ArrayList _Valores_Clase=Parametros.getInstancia_Parametros().getPlantilla().get_Valores_Clase();		     
 		    	 for(int i=0;i<Resultado_Clasificacion.length;i++){
 		    		 String Salida_Prediccion=_Valores_Clase.get(Resultado_Clasificacion[i][0])+"";
 		    		 Salida_Prediccion+= " "+_Valores_Clase.get(Resultado_Clasificacion[i][1])+"\n";	 
 		    		 f.write(Salida_Prediccion.getBytes());
-		    	 }
+		    //	 }
 		     }
 //-->		 
 		     f.close();			

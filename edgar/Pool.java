@@ -123,8 +123,10 @@ public class Pool extends Thread implements i_Supervisor{
 				param_globales.depura("Casos no cubiertos: "+ concepto.get_Ejemplos_No_Cubiertos(ejemplos).getTamanho_conjunto_entrenamiento(),-1);
 		
 			//cambiado criterio a mejora de clasificador  //
-			double porcentaje_actual =porcentajeClasificadorGM(); //MARR 2011/01/14 calculart GM; 
-			if (porcentaje_actual <= (porcentaje_anterior +0.01) && porcentaje_actual> 0.1 || porcentaje_actual > 0.999  ){
+			double porcentaje_actual =porcentajeClasificador(); //MARR 2011/01/14 calculart GM; 
+			//ISSUE Bloqueo. Cambiado IF
+			//if (porcentaje_actual <= (porcentaje_anterior +0.01) && porcentaje_actual> 0.1 || porcentaje_actual > 0.999  ){
+			if (porcentaje_actual <= (porcentaje_anterior +0.01) && concepto.getReglas().size() > 0 || porcentaje_actual > 0.999  ){
 				//********TUNING CHC****************
 				/*if (param_globales.getOptimizaParticiones())
 				{   System.out.println("********* OPTIMIZANDO CHC***********"+ ejemplos.plantilla);

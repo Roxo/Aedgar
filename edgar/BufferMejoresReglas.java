@@ -54,7 +54,7 @@ public class BufferMejoresReglas {
 			try{
 			buffer_comunicacion_mejores_reglas.notifyAll();
 			}catch(Exception e){
-				System.out.print("!__!_!_____!_______FALLO_____!____________!_!____!");
+				Parametros.getInstancia_Parametros().depura("Fallo de fin comunicación buffer (SINCRONIZACIÓN)",0);
 			}
 			Parametros.getInstancia_Parametros().depura("Despertando al supervisor",0);
 			num_comunicaciones=0;
