@@ -282,7 +282,7 @@ public class Regla extends Cromosoma {
 	            Double altura = 0.0;
 	   	//<-- Albendín
 	            altura = plantilla.getCobertura(posicion_regla,valor,indAtr,valores[indAtr].size());
-	    /////////////////////////////TRAPEZOIDAL/////////////////////////
+//	            System.out.println("Altura de los ejemplos == "+altura);/////////////////////////////TRAPEZOIDAL/////////////////////////
 	            //-->
 	            /*          ArrayList[] valoresT = cambiarTriangulos(valores,indAtr);
 	            Double min;
@@ -460,38 +460,40 @@ public class Regla extends Cromosoma {
 		
 		int posRealAtributoNumerico = 0;
 		int i=0;
-		double h0;
+		double h0 = Double.MAX_VALUE;
 		double menor_h0 = Double.MAX_VALUE;
 				
 		int numAtributosEvaluados = 0;
 		// devolver el minimo de los h0. 
 		while(i<numAtributos)
 		{
-			if(atributo_evaluado(i))
+			if(tipos[i] == Attribute.NOMINAL)
 			{
-				numAtributosEvaluados++;
-				
-				if(tipos[i] == Attribute.NOMINAL)
-						
-					h0 = Math.abs(cumple_Atributo(i,ej));
-						
-				else
-				{
+					if(atributo_evaluado(i)){
+						h0 = Math.abs(cumple_Atributo(i,ej));
+						numAtributosEvaluados++;
+					}
+
+			}else
+			{
+				if(atributo_evaluado(i)){
 					h0 = Math.abs(cumple_Atributo(posRealAtributoNumerico, ej));
-					posRealAtributoNumerico++;
+					numAtributosEvaluados++;
 				}
+					posRealAtributoNumerico++;
+
+			}
 				
-				if (h0<menor_h0) 
-				menor_h0 = h0;  
-			}		
+			if (h0<menor_h0) 
+			menor_h0 = h0;  
+		
 			i++;
 		}
 		
 		if(numAtributosEvaluados == 0)
 			return 0.0;
 		return menor_h0;
-	}
-	
+	}	
 /*
  * Anteriormente no hacía nada con la plantilla, ahora hemos agregado la plantilla a cumple_atributo
  * @param ej
@@ -499,44 +501,48 @@ public class Regla extends Cromosoma {
  * @return
  */
 public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
- 
-	if(ej==null)// ojo! investigar
-		return 0.0;
-
-	int[] tipos = ej.getPlantilla().get_TiposAtributos();
-
-	int posRealAtributoNumerico = 0;
-	int i=0;
-	double h0;
-	double menor_h0 = Double.MAX_VALUE;
-
-	int numAtributosEvaluados = 0;
-	// devolver el minimo de los h0. 
-	while(i<numAtributos)
-	{
-		if(atributo_evaluado(i))
+ 		
+		if(ej==null)
+			return 0.0;
+		
+		int[] tipos = ej.getPlantilla().get_TiposAtributos();
+		
+		int posRealAtributoNumerico = 0;
+		int i=0;
+		double h0 = Double.MAX_VALUE;
+		double menor_h0 = Double.MAX_VALUE;
+				
+		int numAtributosEvaluados = 0;
+		// devolver el minimo de los h0. 
+		while(i<numAtributos)
 		{
-			numAtributosEvaluados++;
-
 			if(tipos[i] == Attribute.NOMINAL)
-                h0 = Math.abs(cumple_Atributo(i,ej));
+			{
+					if(atributo_evaluado(i)){
+						h0 = Math.abs(cumple_Atributo(i,ej,plan));
+						numAtributosEvaluados++;
+					}
 
-            else
-            {
-            	h0 = Math.abs(cumple_Atributo(posRealAtributoNumerico, ej,plan));
-                posRealAtributoNumerico++;
-            }
-            // se queda con la menor, porque se utiliza el operador de inferencia Min, es decir que siempre manda la menor h0
+			}else
+			{
+				if(atributo_evaluado(i)){
+					h0 = Math.abs(cumple_Atributo(posRealAtributoNumerico, ej,plan));
+					numAtributosEvaluados++;
+				}
+					posRealAtributoNumerico++;
+
+			}
+				
 			if (h0<menor_h0) 
-				menor_h0 = h0;  
-		}        
-		i++;
-    }
-
-    if(numAtributosEvaluados == 0)
-        return 0.0;
-    return menor_h0;
-}
+			menor_h0 = h0;  
+		
+			i++;
+		}
+		
+		if(numAtributosEvaluados == 0)
+			return 0.0;
+		return menor_h0;
+	}
 
 	/**
 	 * Elimina de un conjunto de entrenamiento todos aquellos datos que esta regla soporta con casos positivos

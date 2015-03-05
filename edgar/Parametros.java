@@ -16,7 +16,7 @@ public class Parametros {
 	// Número de triángulos de cada atributo para la versión Fuzzy del algoritmo
 	private int num_particiones=7;
 
-	private boolean fuzzy = true;//Comportamiento de las Etiquetas, poner en un parametro externo para el estudio.
+	private boolean fuzzy = false;//Comportamiento de las Etiquetas, poner en un parametro externo para el estudio.
 
 	
 	//Niveles de depuración 1 -> Solo resultados  2-> solucion actual y evolucion 3 ->bajo nivel 4 -> verbose

@@ -99,20 +99,7 @@ public class Plantilla
 		 // Cuando creamos la plantilla con un constructor de copia creamos el tipo de cobertura que queremos implementar
 		 // CAMBIO FUTURO POSIBLE -> Cambiar esto para tener plantillas que implementen distintos tipos de cobertura
 		 // Pensar si tiene sentido
-		 int cobertura = Parametros.getInstancia_Parametros().getCobertura();
-		 switch(cobertura){
-		 	case	0:
-		 		cob = new C_Intervalar(this.valoresAtributos);
-			 break;
-		 	case 1:
-	            cob = new C_Trapezoidal(this.valoresAtributos);
-	            break;
-		 	case 2:
-	            cob = new C_Triangular(this.valoresAtributos);
-	            break;
-	        default:
-	        	break;
-		 }
+		 crearcobertura();
 		//-->
 	}
 	 /**
