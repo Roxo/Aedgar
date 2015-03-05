@@ -17,7 +17,11 @@ public class Solucion {
 	
 		
 	public Regla get_regla(int ind_regla){
+		try{
 		return (Regla)set_reglas.get(ind_regla);
+		}catch(Exception e){
+			return null;
+		}
 	}
 		
 	/**

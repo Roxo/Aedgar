@@ -389,9 +389,13 @@ public class Isla extends Thread implements i_Nodo{
 					// pdte : mejorar la gestion de enfriamiento, excesivamente simple. debe eliminar sólo cuando el concepto haya convergido de nuevo	    
 					//	if (descripcionNodo.Es_Igual(oldConcepto)){
 							param.depura(" Nodo "+ this.Id_Nodo + " Enfriando",1);
+//ISSUE NO HAY REGLAS --> Albendín		
+							if(Av.getReglas().size()!=0){
 							param.depura("Nodo " + this.Id_Nodo + " Elimina regla "+ Av.get_regla(Av.get_Indice_Mejor_Regla()),0);
 							Av.get_regla(Av.get_Indice_Mejor_Regla()).EliminaEntrenamiento(datosEntrenamiento);
 							Av.eliminarRegla(Av.get_Indice_Mejor_Regla());
+							}
+//<--
 					//	}
 					}
 					
@@ -492,9 +496,15 @@ public class Isla extends Thread implements i_Nodo{
 			if((Gen_Aleatorio.Rand()<=g) && (reemplazados[indice]=='0')){
 				reemplazados[indice]='1';
 				//System.out.println(indice+ "_" + (Av.getTamaño_solucion()-1));
+//ISSUE NO_RULES --> Daniel Albendín
+			try{
 				Av.eliminarRegla(indice);
 				Av.Insertar_regla_Posicion(Bv.get_regla(i).getCopia(),indice);//vtoken si existe en Av esta regla: Bv.get_regla(i).getCopia(), entonces no repetirla (no hacer nada, ni elimino ni inserto). 
 				i++;
+			}catch(Exception e){
+				param.depura("ERROR --> NO HAY REGLAS?!",0);
+			}
+//<--
 			}
 			indice=(indice+1)%(Av.getTamaño_solucion()-1);
 		}

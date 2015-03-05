@@ -149,6 +149,7 @@ public class Pool extends Thread implements i_Supervisor{
 			}
 			else
 				porcentaje_anterior =porcentaje_actual ; 
+			
 			param_globales.depura("porcentaje clasificador: "+ porcentaje_anterior + ", " + porcentaje_actual,-1);
 			
 		}

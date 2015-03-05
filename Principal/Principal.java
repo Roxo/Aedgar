@@ -452,9 +452,9 @@ public class Principal   {
 	    		System.out.println(" tipoCobertura: " + args[10]);
 	    		Parametros.getInstancia_Parametros().set_cobertura((args[10]));
 	    	}
-	    	if (args.length>11)//v2 Tipo de cobertura
+	    	if (args.length>11)//v2  de cobertura
 	    	{
-	    		System.out.println(" tipoCobertura: " + args[11]);
+	    		System.out.println(" Aproximativo: " + args[11]);
 	    		Parametros.getInstancia_Parametros().set_aproximativo((args[11]));
 	    	}
 		    if (args.length> 12)//v2 Para guardar restados por carpetas

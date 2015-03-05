@@ -99,7 +99,7 @@ public class Plantilla
 		 // Cuando creamos la plantilla con un constructor de copia creamos el tipo de cobertura que queremos implementar
 		 // CAMBIO FUTURO POSIBLE -> Cambiar esto para tener plantillas que implementen distintos tipos de cobertura
 		 // Pensar si tiene sentido
-		 crearcobertura();
+		 CrearCobertura();
 		//-->
 	}
 	 /**
