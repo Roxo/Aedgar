@@ -128,7 +128,7 @@ public class Pool extends Thread implements i_Supervisor{
 			//if (porcentaje_actual <= (porcentaje_anterior +0.01) && porcentaje_actual> 0.1 || porcentaje_actual > 0.999  ){
 			if (porcentaje_actual <= (porcentaje_anterior +0.01) && concepto.getReglas().size() > 0 || porcentaje_actual > 0.999  ){
 				//********TUNING CHC****************
-				if (param_globales.getOptimizaParticiones())
+				if (param_globales.getOptimizaParticiones() && !param_globales.aproximativo())
 				{   System.out.println("********* OPTIMIZANDO CHC***********"+ ejemplos.plantilla);
 					CHCOptimizarParticiones opt = new CHCOptimizarParticiones(ejemplos, concepto);
 					synchronized(BufferMejoresReglas.getInstancia_buffer().getBuffer_comunicacion_mejores_reglas()){
@@ -183,7 +183,7 @@ public class Pool extends Thread implements i_Supervisor{
 			/**
 			 *  Añado al if una condición, la de !aproximativo();
 			 */
-			if (param_globales.getOptimizaParticiones() && ((Regla)(concepto.getReglas().get(0))).plantilla.numeroAtributosNumericos() > 0 && !Parametros.getInstancia_Parametros().aproximativo())
+			if (param_globales.getOptimizaParticiones() && ((Regla)(concepto.getReglas().get(0))).plantilla.numeroAtributosNumericos() > 0 && !param_globales.aproximativo())
 		//-->
 			{
 				CHCOptimizarParticiones opt = new CHCOptimizarParticiones(ejemplos, concepto);
