@@ -25,7 +25,7 @@ public class Parametros {
 	 private int NodosActivos=0;
 	 private long Semilla=1232457;
  
-	 private boolean optimizaParticiones = false;
+	 private boolean optimizaParticiones = true;
 	 
 	 private double coberturaFuzzy = 0.3;
 	 
@@ -58,7 +58,7 @@ public class Parametros {
 	 							//0 -> Trapezoides
 	 							//1 -> Triangular
 	 							//2 -> Intervalar
-	 private boolean aproximativo = true;
+	 private boolean aproximativo = false;
 
 	 private double ratio_migracion_nu=0.1;
 	 private double ratio_adaptacion_foraneo_P=0.1; 

@@ -153,9 +153,13 @@ public class Plantilla
 	public Plantilla()
 	{
 	}
-	public void set_ValoresAtributos(ArrayList _ValoresAtributos[]){
+	
+	public void set_ValoresAtributos(ArrayList _ValoresAtributos[],boolean cambio){
 		valoresAtributos=_ValoresAtributos;
+		if(cambio)
+			CrearCobertura();
 	}
+
 	public ArrayList[] get_ValoresAtributos(){
 		return valoresAtributos;
 	}

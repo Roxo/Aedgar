@@ -128,18 +128,19 @@ public class Pool extends Thread implements i_Supervisor{
 			//if (porcentaje_actual <= (porcentaje_anterior +0.01) && porcentaje_actual> 0.1 || porcentaje_actual > 0.999  ){
 			if (porcentaje_actual <= (porcentaje_anterior +0.01) && concepto.getReglas().size() > 0 || porcentaje_actual > 0.999  ){
 				//********TUNING CHC****************
-				/*if (param_globales.getOptimizaParticiones())
+				if (param_globales.getOptimizaParticiones())
 				{   System.out.println("********* OPTIMIZANDO CHC***********"+ ejemplos.plantilla);
 					CHCOptimizarParticiones opt = new CHCOptimizarParticiones(ejemplos, concepto);
 					synchronized(BufferMejoresReglas.getInstancia_buffer().getBuffer_comunicacion_mejores_reglas()){
 						ArrayList[] valoresObtenidos = opt.ejecutar();
-						ejemplos.plantilla.set_ValoresAtributos(valoresObtenidos);	
+						boolean check = no_iguales(ejemplos.plantilla.get_ValoresAtributos(),valoresObtenidos);
+						ejemplos.plantilla.set_ValoresAtributos(valoresObtenidos,check);	
 					
 					System.out.println("********* FIN CHC***********" + ejemplos.plantilla);
 					}
 				}
 				
-				*/
+				
 				//********TUNING CHC****************
 				contador_iteraciones++;	
 				if (param_globales.get_mecanismo_enfriamiento()) 
@@ -182,16 +183,17 @@ public class Pool extends Thread implements i_Supervisor{
 			/**
 			 *  Añado al if una condición, la de !aproximativo();
 			 */
-		/*	if (param_globales.getOptimizaParticiones() && ((Regla)(concepto.getReglas().get(0))).plantilla.numeroAtributosNumericos() > 0 && !Parametros.getInstancia_Parametros().aproximativo())
+			if (param_globales.getOptimizaParticiones() && ((Regla)(concepto.getReglas().get(0))).plantilla.numeroAtributosNumericos() > 0 && !Parametros.getInstancia_Parametros().aproximativo())
 		//-->
 			{
 				CHCOptimizarParticiones opt = new CHCOptimizarParticiones(ejemplos, concepto);
 				
 				ArrayList[] valoresObtenidos = opt.ejecutar();
-				ejemplos.plantilla.set_ValoresAtributos(valoresObtenidos);
+				boolean check = no_iguales(ejemplos.plantilla.get_ValoresAtributos(),valoresObtenidos);
+				ejemplos.plantilla.set_ValoresAtributos(valoresObtenidos,check);	
 				
 				
-			}*/
+			}
 			
 			  // chc --ª modificando  los puntos de corte  y el fitness : calcular la clasificación sobre training. 
 			// cromosoma : plantilla
@@ -234,10 +236,24 @@ public class Pool extends Thread implements i_Supervisor{
 			//solucionRegal.
 			solucionEdgar.Put_SolucionFinal(conceptoFinal);
 		}
+	
+	
+	
+	private boolean no_iguales(ArrayList[] get_ValoresAtributos,
+			ArrayList[] valoresObtenidos) {
+		if(valoresObtenidos != get_ValoresAtributos)
+		return true;
+			else
+		return false;
+	}
 
+	
+	
 	///////////////////////////////////////////
 	// CÓDIGO DE JOSÉ MANUEL GARRIDO MORGADO //
 	///////////////////////////////////////////
+	
+	
 	
 	
 	public double  porcentajeClasificadorGM()

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import Dataset.Attribute;
+import Dataset.Attributes;
 
 
 /**
@@ -64,11 +65,14 @@ public class CHCOptimizarParticiones {
 				hijo[i] = new ArrayList();
 				
 				// El primer y el último valor de cada atributo no cambia
-				hijo[i].add(madre[i].get(0));
+//--> ISSUE Cambio de plantilla.
+//				hijo[i].add(madre[i].get(0));
 				
 				int numParticiones = madre[i].size();
 				
-				for (int j = 1; j < numParticiones-1;j++)
+//				for (int j = 1; j < numParticiones-1;j++)
+				for (int j = 0; j < numParticiones-1;j++)
+//<--
 				{
 					double x = (Double)(padre[i].get(j));
 					double y = (Double)(madre[i].get(j));
@@ -156,11 +160,12 @@ public class CHCOptimizarParticiones {
 			if(tipos_atributos[i] != Attribute.NOMINAL)
 			{
 				int numParticiones = hijo[i].size();
-				
-				min = ((Double)(hijo[i].get(0)));
+
+//--> ISSUE PUNTO MENOR NO ESTÁ EN LA PLANTILLA
+				min = (Double) Attributes.getInputAttribute(i).getMinAttribute();
 				max = ((Double)(hijo[i].get(numParticiones-1)));
 				
-				for (int j = 1; j < numParticiones-1;j++)
+				for (int j = 0; j < numParticiones-1;j++)
 				{
 					if(((Double)(hijo[i].get(j))) < min)
 					{
@@ -177,15 +182,16 @@ public class CHCOptimizarParticiones {
 		}
 		
 		// Ordenamos los valores de menor a mayor
+// ISSUE Cambio de plantilla agregamos en los bucles el valor 0
 		for(int i=0;i < numAtributos; i++)
 		{
 			if(tipos_atributos[i] != Attribute.NOMINAL)
 			{
 				int numParticiones = hijo[i].size();
 				
-				for (int j = 1; j < numParticiones-2;j++)
+				for (int j = 0; j < numParticiones-2;j++)
 				{
-					for(int k = 1; k < numParticiones-2; k++)
+					for(int k = 0; k < numParticiones-2; k++)
 					{
 						double temp = ((Double)(hijo[i].get(k)));
 						double compara = ((Double)(hijo[i].get(k+1)));
@@ -346,7 +352,7 @@ public class CHCOptimizarParticiones {
 			{
 				int numParticiones = madre[i].size();
 				//La tolerancia es proporcinal al ancho del intervalo
-				double tolerancia = ( ((Double)(madre[i].get(numParticiones-1))) - ((Double)(madre[i].get(0))) ) * valTolerancia;
+				double tolerancia = ( ((Double)(madre[i].get(numParticiones-1))) - ((Double) Attributes.getInputAttribute(i).getMinAttribute()) ) * valTolerancia;
 				
 				// Comprobamos todos los valores menos el primero y el último, que son fijos
 				for(int j=1; j<numParticiones-1; j++)
@@ -390,16 +396,19 @@ public class CHCOptimizarParticiones {
 				if(!(tipos_atributos[j] == Attribute.NOMINAL))
 				{
 					int numParticiones = mejorIndividuo[j].size();
-					double min = (Double) mejorIndividuo[j].get(0);
+// --> ISSUE primer elemento chc 
+					double min = (Double) Attributes.getInputAttribute(j).getMinAttribute();
 					double max = (Double) mejorIndividuo[j].get(numParticiones-1);
 					
 					double valoresAtributo[] = new double[numParticiones];
 					double amplitud = max - min;
-					
-					valoresAtributo[0] = min;
+
+//--> ISSUE Cambio primer elemento de la plantilla	>Daniel Albendín>	
+//					valoresAtributo[0] = min;
 					valoresAtributo[numParticiones - 1] = max;
 					
-					for(int z=1;z<numParticiones-1;z++)
+//					for(int z=1;z<numParticiones-1;z++)
+					for(int z=0;z<numParticiones-1;z++)
 					{
 						double nuevo;
 						
@@ -577,7 +586,7 @@ public class CHCOptimizarParticiones {
 		//int iteracionesEjecutadas = 0;
 		
 		int iteracionesTotales = 0;
-		int iteracionesMaximas = 10;
+		int iteracionesMaximas = 40;
 		
 		int iteracionesSinCambios = 0;
 		
@@ -601,8 +610,13 @@ public class CHCOptimizarParticiones {
 			
 			while(seguir)
 			{
-				ArrayList[] peorDeLaPoblacion = damePeor();
+				int peor = damePeorAlbendin();
 				ArrayList<Double> cPrimaFitness = new ArrayList<Double>();
+				int mejor = mejorIndividuoAlbendin(cPrima,cPrimaFitness);
+				double fitnessMejor = porcentajeClasificadorGM((ArrayList[]) cPrima.get(mejor));
+				double fitnessPeor = porcentajeClasificadorGM((ArrayList[]) poblacion.get(peor));
+/*				
+				ArrayList[] peorDeLaPoblacion = damePeor();
 				ArrayList[] mejorHijo = mejorIndividuo(cPrima, cPrimaFitness); 
 				// Devuelve el mejor hijo y lo elimina del ArrayList cPrima, además mete en cPrimaFitness los fitness de todos los que quedan en cPrima
 				
@@ -622,17 +636,25 @@ public class CHCOptimizarParticiones {
 						//mejorIndividuo = x;
 					}
 				}
-				
+*/				
 				if(fitnessMejor > fitnessPeor)
 				{
+					
+/*
 					poblacion.remove(peorDeLaPoblacion);
 					fitnessPoblacion.remove(fitnessPeor);
-					
 					poblacion.add(mejorHijo);
 					fitnessPoblacion.add(fitnessMejor);
-					
+
+*/
+					poblacion.remove(peor);
+					fitnessPoblacion.remove(peor);
+					poblacion.add(cPrima.get(mejor));
+					fitnessPoblacion.add(fitnessMejor);
+					cPrima.remove(mejor);
+					cPrimaFitness.remove(mejor);
 					//cPrima.remove(mejorHijo); // No hace falta eliminarlo, ya lo hace el método que devuelve el mejor antes
-					cPrimaFitness.remove(fitnessMejor);
+					//cPrimaFitness.remove(fitnessMejor);
 					numCambios++;
 				}
 				else
@@ -715,16 +737,19 @@ public class CHCOptimizarParticiones {
 				if(mejorIndividuo[j] != null)
 				{
 					int numParticiones = mejorIndividuo[j].size();
-					double min = (Double) mejorIndividuo[j].get(0);
+					// --> ISSUE primer elemento chc 
+					double min = (Double) Attributes.getInputAttribute(j).getMinAttribute();
 					double max = (Double) mejorIndividuo[j].get(numParticiones-1);
 					
 					double valoresAtributo[] = new double[numParticiones];
 					double amplitud = max - min;
-					
-					valoresAtributo[0] = min;
+
+//--> ISSUE Cambio primer elemento de la plantilla	>Daniel Albendín>	
+//					valoresAtributo[0] = min;
+
 					valoresAtributo[numParticiones - 1] = max;
 					
-					for(int z=1;z<numParticiones-1;z++)
+					for(int z=0;z<numParticiones-1;z++)
 					{
 						double nuevo;
 						// Si vale 1, se generará cada individuo como una mínima variación del mejor hasta ahora
@@ -776,6 +801,10 @@ public class CHCOptimizarParticiones {
 			}
 			nuevaPoblacion.add(individuo);
 		}
+		fitnessPoblacion.clear();
+		for(int i = 0;i<nuevaPoblacion.size();i++)
+			fitnessPoblacion.add(porcentajeClasificadorGM((ArrayList[]) nuevaPoblacion.get(i)));
+
 		return nuevaPoblacion;
 	}
 
@@ -810,6 +839,32 @@ public class CHCOptimizarParticiones {
 		return devolver;
 	}
 	
+	private int mejorIndividuoAlbendin(ArrayList cPrima, ArrayList cPrimaFitness) 
+	{
+		int mejorIndividuo = 0;
+		int num = cPrima.size();
+		
+		if(num > 0)
+		{
+			double mejorFitness = Double.MIN_VALUE;
+			
+			for(int i=0;i<num;i++)
+			{
+				double fitness = porcentajeClasificadorGM((ArrayList[]) cPrima.get(i));
+				cPrimaFitness.add(fitness);
+				
+				if(fitness > mejorFitness)
+				{
+					mejorFitness = fitness;
+					mejorIndividuo = i;
+				}
+			}
+			//cPrimaFitness.remove(mejorIndividuo);
+		}
+		
+		return mejorIndividuo;
+	}
+
 	private ArrayList[] mejorIndividuoSinEliminar(ArrayList cPrima, ArrayList fitnessPoblacion) 
 	{
 		ArrayList[] devolver = null;
@@ -865,6 +920,26 @@ public class CHCOptimizarParticiones {
 			}
 		}
 		return (ArrayList[]) poblacion.get(peorIndividuo);
+	}	
+	
+	private int damePeorAlbendin() {
+
+		int num = poblacion.size();
+		
+		double peorFitness = Double.MAX_VALUE;
+		int peorIndividuo = 0;
+		
+		for(int i=0;i<num;i++)
+		{
+			double fitness = (Double) fitnessPoblacion.get(i);
+			
+			if(fitness < peorFitness)
+			{
+				peorFitness = fitness;
+				peorIndividuo = i;
+			}
+		}
+		return peorIndividuo;
 	}
 
 	private double damePeorFitness() {

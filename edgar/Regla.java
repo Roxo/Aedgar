@@ -915,4 +915,5 @@ public double Cubre_Ejemplo(EjemploFuzzy ej, Plantilla plan){
 		return this.fitness_token;
 	}
 	
+	
 }

@@ -353,7 +353,7 @@ public class CHCOptimizarParticionesCopiaOriginal {
 	public double  porcentajeClasificadorGM(ArrayList[] particiones)
 	{
 		
-		((Regla)(concepto.getReglas().get(0))).plantilla.set_ValoresAtributos(particiones);
+		((Regla)(concepto.getReglas().get(0))).plantilla.set_ValoresAtributos(particiones,true);
 		
 		
 		int[][] ResultadoClasificaciontra =concepto.Clasificar(ejemplos);

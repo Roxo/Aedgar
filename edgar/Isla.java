@@ -501,12 +501,12 @@ public class Isla extends Thread implements i_Nodo{
 				Av.eliminarRegla(indice);
 				Av.Insertar_regla_Posicion(Bv.get_regla(i).getCopia(),indice);//vtoken si existe en Av esta regla: Bv.get_regla(i).getCopia(), entonces no repetirla (no hacer nada, ni elimino ni inserto). 
 				i++;
+				indice=(indice+1)%(Av.getTamaño_solucion()-1);
 			}catch(Exception e){
 				param.depura("ERROR --> NO HAY REGLAS?!",0);
 			}
 //<--
 			}
-			indice=(indice+1)%(Av.getTamaño_solucion()-1);
 		}
 	}
 	

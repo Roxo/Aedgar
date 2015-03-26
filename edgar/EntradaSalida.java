@@ -58,7 +58,7 @@ public class EntradaSalida {
 			Plantilla plantilla = new Plantilla();
 			plantilla.set_NombresAtributos(_NombresAtributos);
 			plantilla.set_plantillaAtributos(_plantillaAtributos);
-			plantilla.set_ValoresAtributos(_ValoresAtributos);
+			plantilla.set_ValoresAtributos(_ValoresAtributos,false);
 			
 			// Ahora leo los datos de los atributos de salida, en el caso del clasificador tan solo es la clase a la que pertenece
 			auxAtributo = Attributes.getOutputAttribute(0);
