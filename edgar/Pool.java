@@ -139,7 +139,8 @@ public class Pool extends Thread implements i_Supervisor{
 					System.out.println("********* FIN CHC***********" + ejemplos.plantilla);
 					}
 				}
-				
+				porcentaje_actual =porcentajeClasificador(); //MARR 2011/01/14 calculart GM; 
+
 				
 				//********TUNING CHC****************
 				contador_iteraciones++;	

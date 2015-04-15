@@ -26,13 +26,14 @@ public class Parametros {
 	 private long Semilla=1232457;
  
 	 private boolean optimizaParticiones = true;
-	 
 	 private double coberturaFuzzy = 0.3;
 	 
 	 public boolean getOptimizaParticiones()
 	 {
 		 return optimizaParticiones;
 	 }
+	 
+	 private int BitsHamming = 30;
 	 // Parametros del nodo
 	 private double g=0.9;
 	 private int poblacion=500;  //poblacion de cada nodo
@@ -509,6 +510,12 @@ public class Parametros {
 
 	public void set_cobertura(String string) {
 		this.cobertura = Integer.parseInt(string);
+	}
+	public int getBitsHamming() {
+		return BitsHamming;
+	}
+	public void setBitsHamming(int bitsHamming) {
+		BitsHamming = bitsHamming;
 	}
  
 	

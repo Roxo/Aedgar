@@ -1,6 +1,7 @@
 package edgar;
 
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -330,6 +331,8 @@ public class CHCOptimizarParticiones {
 		return hijo;	
 	}
 	
+
+	
 	/**
 	 * Distancia de Hamming entre 2 padres. Devuelve el número de valores diferentes que tienen
 	 * dos padres
@@ -337,7 +340,7 @@ public class CHCOptimizarParticiones {
 	 * @param ArrayList[] padre
 	 * @return
 	 */
-	private int hamming(ArrayList[] madre, ArrayList[] padre)
+/*	private int hamming(ArrayList[] madre, ArrayList[] padre)
 	{
 		double valor = 0;
 		int diferentes = 0;
@@ -353,13 +356,12 @@ public class CHCOptimizarParticiones {
 				int numParticiones = madre[i].size();
 				//La tolerancia es proporcinal al ancho del intervalo
 				double tolerancia = ( ((Double)(madre[i].get(numParticiones-1))) - ((Double) Attributes.getInputAttribute(i).getMinAttribute()) ) * valTolerancia;
-				
-				// Comprobamos todos los valores menos el primero y el último, que son fijos
 				for(int j=1; j<numParticiones-1; j++)
 				{
+					int parecidos = 0;
 					double vMadre = (Double) madre[i].get(j);	//Tomamos la variable de la madre
 					double vPadre = (Double) padre[i].get(j);	//Tomamos la variable del padre
-	
+
 					valor = Math.abs(vMadre - vPadre);  //Calculamos la distancia entre los alelos
 						if (valor > tolerancia)					//Si es mayor que la tolerancia es que son diferentes.
 							diferentes++;
@@ -369,6 +371,54 @@ public class CHCOptimizarParticiones {
 		return diferentes;
 	}
 	
+	*/
+	
+	private boolean hamming(ArrayList[] madre, ArrayList[] padre)
+	{
+		double valor = 0;
+		int diferentes = 0;
+		int bits = Parametros.getInstancia_Parametros().getBitsHamming();
+		int longbits = 0;
+		for(int i = 0; i<madre.length; i++)
+			longbits += madre[i].size();
+		///OJO! TRAMPA. MADRE.LENGTH*BITS NO SON TODOS LOS BITS QUE QUEREMOS,
+		// YA QUE QUEREMOS 30 PARA CADA ELEMENTO DEL ARRAY PRIMCIPAL DE LA MADRE
+		double tolerancia = (double)((longbits*bits)/10.0);
+
+		int numAtributos = madre.length;
+		
+		// Comparamos los valores ae las particiones de cada atributo
+		for (int i = 0; i<numAtributos; i++)	//Para cada variable
+		{
+			// Será null cuando sea un atributo nominal, que no nos interesa
+			if(tipos_atributos[i] != Attribute.NOMINAL)
+			{
+				int numParticiones = madre[i].size();
+				//La tolerancia es proporcinal al ancho del intervalo
+				//double tolerancia = ( ((Double)(madre[i].get(numParticiones-1))) - ((Double) Attributes.getInputAttribute(i).getMinAttribute()) ) * valTolerancia;
+				for(int j=1; j<numParticiones-1; j++)
+				{
+					double vMadre = (Double) madre[i].get(j);	//Tomamos la variable de la madre
+					double vPadre = (Double) padre[i].get(j);	//Tomamos la variable del padre
+					char[] A = Gray(vMadre,bits);
+					char[] B = Gray(vPadre,bits);
+					for(int z = 0; z < A.length; z++){
+						if(A[z] != B[z])
+							diferentes += 1;
+					}
+					
+
+		/*
+					valor = Math.abs(vMadre - vPadre);  //Calculamos la distancia entre los alelos
+						if (valor > tolerancia)					//Si es mayor que la tolerancia es que son diferentes.
+							diferentes++;*/
+				}
+			}
+		}
+		if(diferentes/2 > tolerancia)
+			return true;
+		else return false;
+	}
 	// tipoGeneracion valdrá 1 si se utiliza un número cercano al del mejor individuo
 	// En cualquier otro caso, se generará de forma aleatoria
 	public ArrayList generaPoblacionInicial(ArrayList[] mejorIndividuo, Random al, int[] tiposAtributos)
@@ -613,9 +663,12 @@ public class CHCOptimizarParticiones {
 				int peor = damePeorAlbendin();
 				ArrayList<Double> cPrimaFitness = new ArrayList<Double>();
 				int mejor = mejorIndividuoAlbendin(cPrima,cPrimaFitness);
-				double fitnessMejor = porcentajeClasificadorGM((ArrayList[]) cPrima.get(mejor));
-				double fitnessPeor = porcentajeClasificadorGM((ArrayList[]) poblacion.get(peor));
-/*				
+				if(cPrima.size()==0)
+					seguir = false;
+				else{
+					double fitnessMejor = porcentajeClasificadorGM((ArrayList[]) cPrima.get(mejor));
+					double fitnessPeor = porcentajeClasificadorGM((ArrayList[]) poblacion.get(peor));
+				/*				
 				ArrayList[] peorDeLaPoblacion = damePeor();
 				ArrayList[] mejorHijo = mejorIndividuo(cPrima, cPrimaFitness); 
 				// Devuelve el mejor hijo y lo elimina del ArrayList cPrima, además mete en cPrimaFitness los fitness de todos los que quedan en cPrima
@@ -637,8 +690,8 @@ public class CHCOptimizarParticiones {
 					}
 				}
 */				
-				if(fitnessMejor > fitnessPeor)
-				{
+					if(fitnessMejor > fitnessPeor)
+					{
 					
 /*
 					poblacion.remove(peorDeLaPoblacion);
@@ -647,19 +700,20 @@ public class CHCOptimizarParticiones {
 					fitnessPoblacion.add(fitnessMejor);
 
 */
-					poblacion.remove(peor);
-					fitnessPoblacion.remove(peor);
-					poblacion.add(cPrima.get(mejor));
-					fitnessPoblacion.add(fitnessMejor);
-					cPrima.remove(mejor);
-					cPrimaFitness.remove(mejor);
-					//cPrima.remove(mejorHijo); // No hace falta eliminarlo, ya lo hace el método que devuelve el mejor antes
-					//cPrimaFitness.remove(fitnessMejor);
-					numCambios++;
-				}
-				else
-				{
-					seguir = false;
+						poblacion.remove(peor);
+						fitnessPoblacion.remove(peor);
+						poblacion.add(cPrima.get(mejor));
+						fitnessPoblacion.add(fitnessMejor);
+						cPrima.remove(mejor);
+						cPrimaFitness.remove(mejor);
+						//	cPrima.remove(mejorHijo); // No hace falta eliminarlo, ya lo hace el método que devuelve el mejor antes
+					//	cPrimaFitness.remove(fitnessMejor);
+						numCambios++;
+					}
+					else
+					{	
+						seguir = false;
+					}
 				}
 			}
 		    
@@ -733,7 +787,7 @@ public class CHCOptimizarParticiones {
 			ArrayList[] individuo = new ArrayList[numAtributos];
 			
 			for(int j=0;j<numAtributos;j++)
-			{
+			{ 
 				if(mejorIndividuo[j] != null)
 				{
 					int numParticiones = mejorIndividuo[j].size();
@@ -806,6 +860,54 @@ public class CHCOptimizarParticiones {
 			fitnessPoblacion.add(porcentajeClasificadorGM((ArrayList[]) nuevaPoblacion.get(i)));
 
 		return nuevaPoblacion;
+	}
+
+	
+	public char[] Gray(Double Cad_ent,int length){
+		float intBits = Double.doubleToLongBits(Cad_ent);
+		int fbin = Float.floatToIntBits(intBits);
+		String c = Integer.toBinaryString(fbin);
+		/*boolean negativo = false;
+		  String s = toInteger(Cad_ent);
+		  if(s.contains("-")){
+			  negativo = true;
+			  s.replace("-","");
+		  }
+		  BigInteger a = new BigInteger(s);
+		  if(negativo)
+			  a.negate();
+		  String  c =  a.toString(2);*/
+		  char last;
+		  last = '0';
+		  char[] Cad_sal = new char[length];
+		  int aux;
+		  for (int i=0; i<length; i++)
+		    {
+			  char f;
+			  try{
+				  f = c.charAt(i);
+			  }catch(Exception e){
+				  f = 0;
+			  }
+			  if(f !='.'){
+				  aux = f != last ? 1 : 0;
+				  char a = (char) ('0' + aux);
+				  Cad_sal[i] = a;
+				  last = f;
+		    }
+		   }
+		  return Cad_sal;
+	}
+
+	
+	private String toInteger(Double cad_ent) {
+		String devolver = "";
+		String c = ""+cad_ent;
+		for(int i = 0; i<c.length();i++){
+			if(c.charAt(i)!='.')
+				devolver = devolver+c.charAt(i);
+		}
+		return devolver;
 	}
 
 	private ArrayList[] mejorIndividuo(ArrayList cPrima, ArrayList cPrimaFitness) 
@@ -1025,8 +1127,8 @@ public class CHCOptimizarParticiones {
 		{
 			ArrayList[] madre = (ArrayList[]) padres.get(i);
 			ArrayList[] padre = (ArrayList[]) padres.get(i+1);
-			int h = hamming(madre,padre); //Calculamos la distancia de HAMMING
-			if (h > this.umbral)	//Si es mayor que el umbral, cruzamos los padres
+		//	int h = hamming(madre,padre); //Calculamos la distancia de HAMMING
+			if (hamming(madre,padre))	//Si es mayor que el umbral, cruzamos los padres
 			{
 				//decrementarUmbral = false;
 				
@@ -1067,4 +1169,57 @@ public class CHCOptimizarParticiones {
 		
 		return nuevaPoblacion;
 	}
+
+	/*
+		public double getFitness(ArrayList[] particiones)
+		{
+			((Regla)(concepto.getReglas().get(0))).plantilla.set_ValoresAtributos(particiones);
+			int[][] ResultadoClasificaciontra = concepto.Clasificar(ejemplos);
+			int cont_fallos = 0;
+			for (int i = 0; i < ResultadoClasificaciontra.length; i++) {
+				if (ResultadoClasificaciontra[i][0] != ResultadoClasificaciontra[i][1])
+					cont_fallos++;
+			}
+			int numAciertosTra = ResultadoClasificaciontra.length - cont_fallos;
+			return (numAciertosTra / (double) ResultadoClasificaciontra.length);
+		}
+	*/
+		
+		public double  porcentajeClasificadorAccuracy(ArrayList[] particiones)
+		{
+	
+			Plantilla plantillaOriginal = ((Regla)(concepto.getReglas().get(0))).plantilla;
+			
+			Plantilla plan = new Plantilla(plantillaOriginal, particiones);
+			
+			
+			//((Regla)(concepto.getReglas().get(0))).plantilla.set_ValoresAtributos(particiones);
+			
+			//int[][] ResultadoClasificaciontra =concepto.Clasificar(ejemplos, plantilla);
+			int[][] ResultadoClasificaciontra =concepto.Clasificar(ejemplos, plan);
+			double aciertos_clase_1 = 0;
+			double aciertos_clase_2 = 0;
+			double num_total_clase_1 = 0;
+			double num_total_clase_2 = 0;
+			for (int i = 0; i < ResultadoClasificaciontra.length; i++) 
+			{
+				if (ResultadoClasificaciontra[i][0] == 0)
+				{
+					num_total_clase_1++;
+					
+					if(ResultadoClasificaciontra[i][0] == ResultadoClasificaciontra[i][1])
+						aciertos_clase_1++;
+				}
+				else
+				{
+					num_total_clase_2++;
+					
+					if(ResultadoClasificaciontra[i][0] == ResultadoClasificaciontra[i][1])
+						aciertos_clase_2++;
+				}
+			}
+			
+			Double dev = (aciertos_clase_1 + aciertos_clase_2)/(num_total_clase_1+num_total_clase_2);
+			return dev;
+		}
 }

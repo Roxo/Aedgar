@@ -159,17 +159,29 @@ public class CHCOptimizarParticionesCopiaOriginal {
 			{
 				int numParticiones = madre[i].size();
 				//La tolerancia es proporcinal al ancho del intervalo (ahora está puesto al 1%)
-				double tolerancia = ( ((Double)(madre[i].get(numParticiones-1))) - ((Double)(madre[i].get(0))) ) * 0.02;
+				//double tolerancia = ( ((Double)(madre[i].get(numParticiones-1))) - ((Double)(madre[i].get(0))) ) * 0.02;
 				
 				// Comprobamos todos los valores menos el primero y el último, que son fijos
+				int bits = Parametros.getInstancia_Parametros().getBitsHamming();
+				double tolerancia = bits *0.5;
 				for(int j=1; j<numParticiones-1; j++)
 				{
+					int parecidos = 0;
 					double vMadre = (Double) madre[i].get(j);	//Tomamos la variable de la madre
 					double vPadre = (Double) padre[i].get(j);	//Tomamos la variable del padre
-	
-					valor = Math.abs(vMadre - vPadre);  //Calculamos la distancia entre los alelos
+					//char[] A = Gray(vMadre,bits);
+					//char[] B = Gray(vPadre,bits);
+					for(int z = 0; z < 30; z++){
+				///(A[z] == B[z])
+							parecidos += 1;
+					}
+					
+					if(parecidos > tolerancia)
+						diferentes++;
+					
+				/*	valor = Math.abs(vMadre - vPadre);  //Calculamos la distancia entre los alelos
 						if (valor > tolerancia)					//Si es mayor que la tolerancia es que son diferentes.
-							diferentes++;
+							diferentes++;*/
 				}
 			}
 		}
@@ -349,6 +361,8 @@ public class CHCOptimizarParticionesCopiaOriginal {
 		return (numAciertosTra / (double) ResultadoClasificaciontra.length);
 	}
 */
+	
+
 	
 	public double  porcentajeClasificadorGM(ArrayList[] particiones)
 	{
