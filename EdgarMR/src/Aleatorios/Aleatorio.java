@@ -1,13 +1,8 @@
 package Aleatorios;
 
 
-public class Aleatorio {
-
-	public Aleatorio(){
-		
-	}
-	
-	
+public class Aleatorio
+{
 	private long Seed = 0L;
 	private long MASK=2147483647;
 	private int PRIME= 65539;
@@ -45,5 +40,4 @@ public class Aleatorio {
 	{
 	    return (float)(low + (high-(low))*Rand());
 	}
-	
 }
