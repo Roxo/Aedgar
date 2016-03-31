@@ -314,7 +314,7 @@ public class Principal   {
 				+ (numAciertosTra) + " -> "
 				+ (numAciertosTra / (double) ResultadoClasificaciontra.length)
 				+ "\n";
-		;
+		
 		Texto_Resultado += "Numero de ejemplos mal clasificados: "
 				+ cont_fallos + "\n";
 		Texto_Resultado += "*******************************************************\n";
@@ -386,7 +386,8 @@ public class Principal   {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+        {
 	
 		System.out.println(get_Cabecera());
 		
@@ -397,7 +398,8 @@ public class Principal   {
 		String nombre_Fichero_train="";
 		String nombre_Fichero_tst="";
 		
-		if (args.length>0){
+		if (args.length>0)
+                {
 			if (Parametros.getInstancia_Parametros().isFormatoDatosTra())//v2
 			{
 				nombre_Fichero_train=args[0]+ "tra.dat";
