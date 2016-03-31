@@ -39,5 +39,6 @@ public class Aleatorio
 	   (incluyendo 'low' pero sin incluir 'high') */
 	{
 	    return (float)(low + (high-(low))*Rand());
-	}
+        }
+        
 }
